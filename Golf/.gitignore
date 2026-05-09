@@ -1,0 +1,7 @@
+﻿datasets/
+.env
+node_modules/
+__pycache__/
+*.onnx
+*.onnx.data
+*.json
