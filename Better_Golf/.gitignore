@@ -1,0 +1,7 @@
+# Competition data is large + Kaggle-owned: keep it local, never in the repo.
+data/
+# Regenerable / scratch
+out/submission.zip
+**/__pycache__/
+*.pyc
+bg_*/
