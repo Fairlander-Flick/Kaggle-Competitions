@@ -22317,13 +22317,13 @@
     "task": 94
   },
   "095": {
-    "family": "local_neighborhood",
-    "memory": 244800,
+    "family": "linear_local_conv",
+    "memory": 0,
     "n_fail": 0,
     "n_pass": 265,
-    "note": "local_neighborhood: passes all 265 examples",
-    "params": 3434,
-    "points": 12.578,
+    "note": "linear_local_conv: passes all 265 examples",
+    "params": 910,
+    "points": 18.187,
     "sample": {
       "in": "000000000\n000000500\n000000000\n000000000\n000500000\n000000000\n000000000\n050000000\n000000000",
       "out": "000001110\n000001510\n000001110\n001110000\n001510000\n001110000\n111000000\n151000000\n111000000"
@@ -24004,13 +24004,13 @@
     "task": 97
   },
   "098": {
-    "family": "local_neighborhood",
-    "memory": 11412000,
+    "family": "linear_local_conv",
+    "memory": 0,
     "n_fail": 0,
     "n_pass": 266,
-    "note": "local_neighborhood: passes all 266 examples",
-    "params": 160085,
-    "points": 8.736,
+    "note": "linear_local_conv: passes all 266 examples",
+    "params": 910,
+    "points": 18.187,
     "sample": {
       "in": "<18x16 grid>",
       "out": "<18x16 grid>"
@@ -31115,13 +31115,13 @@
     "task": 126
   },
   "127": {
-    "family": "local_neighborhood",
-    "memory": 799200,
+    "family": "linear_local_conv",
+    "memory": 0,
     "n_fail": 0,
     "n_pass": 267,
-    "note": "local_neighborhood: passes all 267 examples",
-    "params": 11211,
-    "points": 11.395,
+    "note": "linear_local_conv: passes all 267 examples",
+    "params": 910,
+    "points": 18.187,
     "sample": {
       "in": "00050005000\n01050205010\n00050005000",
       "out": "66657775666\n66657775666\n66657775666"
@@ -40628,13 +40628,13 @@
     "task": 170
   },
   "171": {
-    "family": "local_neighborhood",
-    "memory": 64800,
+    "family": "linear_local_conv",
+    "memory": 0,
     "n_fail": 0,
     "n_pass": 54,
-    "note": "local_neighborhood: passes all 54 examples",
-    "params": 909,
-    "points": 13.907,
+    "note": "linear_local_conv: passes all 54 examples",
+    "params": 910,
+    "points": 18.187,
     "sample": {
       "in": "000\n000\n000",
       "out": "888\n808\n888"
@@ -62538,13 +62538,13 @@
     "task": 282
   },
   "283": {
-    "family": "local_neighborhood",
-    "memory": 1101600,
+    "family": "linear_local_conv",
+    "memory": 0,
     "n_fail": 0,
     "n_pass": 265,
-    "note": "local_neighborhood: passes all 265 examples",
-    "params": 15453,
-    "points": 11.074,
+    "note": "linear_local_conv: passes all 265 examples",
+    "params": 2510,
+    "points": 17.172,
     "sample": {
       "in": "0000000000\n0000000000\n0555500000\n0555500000\n0555500000\n0555505555\n0000005555\n0000005555\n0000005555\n0000005555",
       "out": "0000000000\n0000000000\n0144100000\n0422400000\n0422400000\n0144101441\n0000004224\n0000004224\n0000004224\n0000001441"
@@ -66738,13 +66738,13 @@
     "task": 293
   },
   "294": {
-    "family": "local_neighborhood",
-    "memory": 1087200,
+    "family": "linear_local_conv",
+    "memory": 0,
     "n_fail": 0,
     "n_pass": 265,
-    "note": "local_neighborhood: passes all 265 examples",
-    "params": 15251,
-    "points": 11.087,
+    "note": "linear_local_conv: passes all 265 examples",
+    "params": 910,
+    "points": 18.187,
     "sample": {
       "in": "0000000000\n0000000000\n5555500000\n5555505550\n5555505550\n5555505550\n5555505550\n0000000000\n0000000000\n0000000000",
       "out": "0000000000\n0000000000\n5555500000\n5222505550\n5222505250\n5222505250\n5555505550\n0000000000\n0000000000\n0000000000"
@@ -70428,13 +70428,13 @@
     "task": 316
   },
   "317": {
-    "family": "local_neighborhood",
-    "memory": 244800,
+    "family": "linear_local_conv",
+    "memory": 0,
     "n_fail": 0,
     "n_pass": 265,
-    "note": "local_neighborhood: passes all 265 examples",
-    "params": 3434,
-    "points": 12.578,
+    "note": "linear_local_conv: passes all 265 examples",
+    "params": 910,
+    "points": 18.187,
     "sample": {
       "in": "000000000\n050000000\n000000000\n000000000\n000050000\n000000000\n000000000\n000000050\n000000000",
       "out": "111000000\n111000000\n111000000\n000111000\n000111000\n000111000\n000000111\n000000111\n000000111"

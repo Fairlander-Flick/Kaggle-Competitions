@@ -383,6 +383,164 @@ class LocalNeighborhood(Family):
             ir_version=IR_VERSION, opset_imports=op)
 
 
+# --------------------------------------------------------------------------- #
+# 6. LinearLocalConv — same-shape rule where the WHOLE 30x30 canvas transform
+#    (grid top-left, zeros elsewhere) is a linearly-separable function of the
+#    KxK input one-hot window.  Then ONE Conv node — weight [10,10,K,K] + bias
+#    [10], sole output named "output" — reproduces it.  No intermediate tensor,
+#    so memory == 0; cost == params == 100*K^2 + 10.  K=3 => 910 => 18.19 pts
+#    (vs the LocalNeighborhood pattern-matcher's ~10 for the same task).
+#
+#    Construction (not prediction): fit 10 one-vs-rest integer perceptrons with
+#    a unit margin over EVERY cell of EVERY 30x30 canvas of every train+test+
+#    arc-gen grid (interior cell -> its colour with score>=+1; every other
+#    canvas/padding cell -> all scores<=-1, which also makes it canvas-safe:
+#    an all-zero window scores == bias <= -1 -> "no colour"). Accepted only if
+#    a separator is found AND the official grader passes; otherwise the solver
+#    falls through to LocalNeighborhood (never a regression).
+# --------------------------------------------------------------------------- #
+class LinearLocalConv(Family):
+    name = "linear_local_conv"
+    est_points = 18.19  # K=3 single zero-memory Conv; tried before the matcher
+
+    MAX_EPOCHS = 800
+    PATIENCE = 60      # stop a class early if its violation count stalls
+
+    def detect(self, train):
+        for i, o in train:
+            if len(i) != len(o) or len(i[0]) != len(o[0]):
+                return None
+        return {"_llc": True}
+
+    # ---- canvas sample extraction ---------------------------------------- #
+    @staticmethod
+    def _samples(pairs, K):
+        """Yield (feat_idx[K*K], target_color | -1) for every 30x30 canvas
+        cell of every <=30 same-shape grid.  feat = pos*10 + colour, or the
+        DUMMY index (frozen 0) for an out-of-grid window position."""
+        rad = K // 2
+        F = K * K * 10           # real one-hot feature count
+        DUMMY = F                # frozen-zero slot for out-of-grid positions
+        feats: List[List[int]] = []
+        labels: List[int] = []
+        for i, o in pairs:
+            H, W = len(i), len(i[0])
+            if max(H, W) > 30:
+                continue
+            if len(o) != H or len(o[0]) != W:
+                return None, None, None
+            for r in range(30):
+                for c in range(30):
+                    row = []
+                    pos = 0
+                    for dy in range(-rad, rad + 1):
+                        for dx in range(-rad, rad + 1):
+                            y, x = r + dy, c + dx
+                            if 0 <= y < H and 0 <= x < W:
+                                row.append(pos * 10 + i[y][x])
+                            else:
+                                row.append(DUMMY)
+                            pos += 1
+                    feats.append(row)
+                    labels.append(o[r][c] if (r < H and c < W) else -1)
+        if not feats:
+            return None, None, None
+        return (np.asarray(feats, dtype=np.int64),
+                np.asarray(labels, dtype=np.int64), F)
+
+    def fit(self, spec, pairs):
+        for K in (3, 5):
+            feats, labels, F = self._samples(pairs, K)
+            if feats is None:
+                if F is None and labels is None:  # not same-shape
+                    return None
+                continue
+            W = self._train(feats, labels, F, K)
+            if W is not None:
+                return {"K": K, "W": W}
+        return None
+
+    def _train(self, feats, labels, F, K):
+        """10 one-vs-rest perceptrons w/ unit margin, shared sparse features.
+        Weight cols: 0..F-1 real, F = dummy(frozen 0), F+1 = bias(const 1)."""
+        n = feats.shape[0]
+        bias_col = np.full((n, 1), F + 1, dtype=np.int64)
+        idx = np.concatenate([feats, bias_col], axis=1)        # (n, K*K+1)
+        width = idx.shape[1]
+        Wm = np.zeros((10, F + 2), dtype=np.float64)
+        for c in range(10):
+            y = np.where(labels == c, 1.0, -1.0)               # one-vs-rest
+            w = Wm[c]
+            best = n + 1
+            stall = 0
+            for _ in range(self.MAX_EPOCHS):
+                viol = y * w[idx].sum(axis=1) < 1.0             # margin 1
+                nv = int(viol.sum())
+                if nv == 0:
+                    break
+                if nv < best:
+                    best, stall = nv, 0
+                else:
+                    stall += 1
+                    if stall >= self.PATIENCE:
+                        break
+                grad = np.zeros(F + 2, dtype=np.float64)
+                np.add.at(grad, idx[viol].ravel(),
+                          np.repeat(y[viol], width))            # batch step
+                w += grad
+                w[F] = 0.0                                      # freeze dummy
+            if (y * w[idx].sum(axis=1) < 1.0).any():
+                return None                                     # not separable
+        Wm[:, F] = 0.0
+        return Wm
+
+    @staticmethod
+    def _to_conv(Wm, K):
+        F = K * K * 10
+        w = np.zeros((10, 10, K, K), dtype=np.float32)
+        for oc in range(10):
+            for pos in range(K * K):
+                dy, dx = divmod(pos, K)
+                for col in range(10):
+                    w[oc, col, dy, dx] = Wm[oc, pos * 10 + col]
+        b = Wm[:, F + 1].astype(np.float32)
+        return w, b
+
+    def apply(self, spec, grid):
+        K = spec["K"]
+        w, b = self._to_conv(spec["W"], K)
+        rad = K // 2
+        H, Wd = len(grid), len(grid[0])
+        out = [[0] * Wd for _ in range(H)]
+        for r in range(H):
+            for c in range(Wd):
+                sc = b.copy()
+                for dy in range(-rad, rad + 1):
+                    for dx in range(-rad, rad + 1):
+                        y, x = r + dy, c + dx
+                        if 0 <= y < H and 0 <= x < Wd:
+                            sc = sc + w[:, grid[y][x],
+                                        dy + rad, dx + rad]
+                hit = [k for k in range(10) if sc[k] > 0.0]
+                if len(hit) != 1:
+                    return None
+                out[r][c] = hit[0]
+        return out
+
+    def build_onnx(self, spec):
+        K = spec["K"]
+        w, b = self._to_conv(spec["W"], K)
+        rad = K // 2
+        x, y = _io()
+        wt = h.make_tensor("W", TensorProto.FLOAT, [10, 10, K, K],
+                           w.flatten().tolist())
+        bt = h.make_tensor("Bc", TensorProto.FLOAT, [10], b.tolist())
+        n = h.make_node("Conv", ["input", "W", "Bc"], ["output"],
+                        kernel_shape=[K, K], pads=[rad, rad, rad, rad])
+        return _model(h.make_graph([n], "linear_local_conv", [x], [y],
+                                   [wt, bt]))
+
+
 # Ordered cheapest-correct-first (highest est_points first).
 REGISTRY: List[Family] = [Identity(), ColorPermute(), ColorLUT(), Fractal3(),
-                          LocalNeighborhood()]
+                          LinearLocalConv(), LocalNeighborhood()]
