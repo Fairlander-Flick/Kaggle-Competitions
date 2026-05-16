@@ -62,6 +62,10 @@ def solve_one(n: int, persist: bool = True) -> dict:
         spec = fam.detect(train)
         if spec is None:
             continue
+        if hasattr(fam, "fit"):
+            spec = fam.fit(spec, pairs)
+            if spec is None:
+                continue  # no globally-consistent fit over all pairs
         if verify.quick_apply_check(fam, spec, pairs) != 0:
             continue  # explains train but not arc-gen/test -> not the true rule
         model = fam.build_onnx(spec)

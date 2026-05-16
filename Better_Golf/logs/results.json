@@ -255,18 +255,18 @@
     "task": 3
   },
   "004": {
-    "family": null,
-    "memory": null,
-    "n_fail": 265,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_neighborhood",
+    "memory": 9367200,
+    "n_fail": 0,
+    "n_pass": 265,
+    "note": "local_neighborhood: passes all 265 examples",
+    "params": 131401,
+    "points": 8.933,
     "sample": {
       "in": "000000000\n066600000\n060060000\n006006000\n000600600\n000066600\n000000000\n002220000\n002002000\n000222000\n000000000\n000000000\n000000000\n000000000",
       "out": "000000000\n006660000\n006006000\n000600600\n000060600\n000066600\n000000000\n000222000\n000202000\n000222000\n000000000\n000000000\n000000000\n000000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -3895,18 +3895,18 @@
     "task": 14
   },
   "015": {
-    "family": null,
-    "memory": null,
-    "n_fail": 265,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_neighborhood",
+    "memory": 3052800,
+    "n_fail": 0,
+    "n_pass": 265,
+    "note": "local_neighborhood: passes all 265 examples",
+    "params": 42824,
+    "points": 10.054,
     "sample": {
       "in": "000000000\n000000000\n000000000\n002000000\n000000000\n000000000\n000000100\n000000000\n000000000",
       "out": "000000000\n000000000\n040400000\n002000000\n040400000\n000000700\n000007170\n000000700\n000000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,

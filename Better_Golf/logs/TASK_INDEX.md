@@ -1,53 +1,53 @@
 # NeuroGolf 2026 — Task Index
 
 - Tasks attempted: **101/400**
-- Tasks solved (full match, scored): **3**
-- Projected points: **58.3 / 10000**  (target ≥ 7500)
+- Tasks solved (full match, scored): **5**
+- Projected points: **77.3 / 10000**  (target ≥ 7500)
 
 Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md).
 
 | Task | Status | Type / Family | Points | Mem | Params | In→Out | Detail |
 |---|---|---|---|---|---|---|---|
-| task001 | ✅ solved | fractal3_bg0 | 15.219 | 17568 | 120 | (3, 3)→(9, 9) | [task001](SOLVE_LOG.md#task001) |
+| task001 | ✅ solved | fractal3_bg0 | 15.219 | 17568 | 120 | [3, 3]→[9, 9] | [task001](SOLVE_LOG.md#task001) |
 | task002 | ⬜ unsolved | — | — | — | — | var→var | [task002](SOLVE_LOG.md#task002) |
-| task003 | ⬜ unsolved | — | — | — | — | [6, 3]→[9, 3] | [task003](SOLVE_LOG.md#task003) |
-| task004 | ⬜ unsolved | — | — | — | — | var→var | [task004](SOLVE_LOG.md#task004) |
-| task005 | ⬜ unsolved | — | — | — | — | [21, 21]→[21, 21] | [task005](SOLVE_LOG.md#task005) |
-| task006 | ⬜ unsolved | — | — | — | — | [3, 7]→[3, 3] | [task006](SOLVE_LOG.md#task006) |
-| task007 | ⬜ unsolved | — | — | — | — | [7, 7]→[7, 7] | [task007](SOLVE_LOG.md#task007) |
+| task003 | ⬜ unsolved | — | — | — | — | (6, 3)→(9, 3) | [task003](SOLVE_LOG.md#task003) |
+| task004 | ✅ solved | local_neighborhood | 8.933 | 9367200 | 131401 | var→var | [task004](SOLVE_LOG.md#task004) |
+| task005 | ⬜ unsolved | — | — | — | — | (21, 21)→(21, 21) | [task005](SOLVE_LOG.md#task005) |
+| task006 | ⬜ unsolved | — | — | — | — | (3, 7)→(3, 3) | [task006](SOLVE_LOG.md#task006) |
+| task007 | ⬜ unsolved | — | — | — | — | (7, 7)→(7, 7) | [task007](SOLVE_LOG.md#task007) |
 | task008 | ⬜ unsolved | — | — | — | — | var→var | [task008](SOLVE_LOG.md#task008) |
 | task009 | ⬜ unsolved | — | — | — | — | var→var | [task009](SOLVE_LOG.md#task009) |
-| task010 | ⬜ unsolved | — | — | — | — | [9, 9]→[9, 9] | [task010](SOLVE_LOG.md#task010) |
-| task011 | ⬜ unsolved | — | — | — | — | [11, 11]→[11, 11] | [task011](SOLVE_LOG.md#task011) |
-| task012 | ⬜ unsolved | — | — | — | — | [12, 12]→[12, 12] | [task012](SOLVE_LOG.md#task012) |
+| task010 | ⬜ unsolved | — | — | — | — | (9, 9)→(9, 9) | [task010](SOLVE_LOG.md#task010) |
+| task011 | ⬜ unsolved | — | — | — | — | (11, 11)→(11, 11) | [task011](SOLVE_LOG.md#task011) |
+| task012 | ⬜ unsolved | — | — | — | — | (12, 12)→(12, 12) | [task012](SOLVE_LOG.md#task012) |
 | task013 | ⬜ unsolved | — | — | — | — | var→var | [task013](SOLVE_LOG.md#task013) |
 | task014 | ⬜ unsolved | — | — | — | — | var→var | [task014](SOLVE_LOG.md#task014) |
-| task015 | ⬜ unsolved | — | — | — | — | [9, 9]→[9, 9] | [task015](SOLVE_LOG.md#task015) |
-| task016 | ✅ solved | color_permute | 22.697 | 0 | 10 | [3, 3]→[3, 3] | [task016](SOLVE_LOG.md#task016) |
-| task017 | ⬜ unsolved | — | — | — | — | [21, 21]→[21, 21] | [task017](SOLVE_LOG.md#task017) |
+| task015 | ✅ solved | local_neighborhood | 10.054 | 3052800 | 42824 | (9, 9)→(9, 9) | [task015](SOLVE_LOG.md#task015) |
+| task016 | ✅ solved | color_permute | 22.697 | 0 | 10 | (3, 3)→(3, 3) | [task016](SOLVE_LOG.md#task016) |
+| task017 | ⬜ unsolved | — | — | — | — | (21, 21)→(21, 21) | [task017](SOLVE_LOG.md#task017) |
 | task018 | ⬜ unsolved | — | — | — | — | var→var | [task018](SOLVE_LOG.md#task018) |
 | task019 | ⬜ unsolved | — | — | — | — | var→var | [task019](SOLVE_LOG.md#task019) |
-| task020 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task020](SOLVE_LOG.md#task020) |
+| task020 | ⬜ unsolved | — | — | — | — | (10, 10)→(10, 10) | [task020](SOLVE_LOG.md#task020) |
 | task021 | ⬜ unsolved | — | — | — | — | var→var | [task021](SOLVE_LOG.md#task021) |
-| task022 | ⬜ unsolved | — | — | — | — | [11, 11]→[3, 3] | [task022](SOLVE_LOG.md#task022) |
+| task022 | ⬜ unsolved | — | — | — | — | (11, 11)→(3, 3) | [task022](SOLVE_LOG.md#task022) |
 | task023 | ⬜ unsolved | — | — | — | — | var→var | [task023](SOLVE_LOG.md#task023) |
 | task024 | ⬜ unsolved | — | — | — | — | var→var | [task024](SOLVE_LOG.md#task024) |
 | task025 | ⬜ unsolved | — | — | — | — | var→var | [task025](SOLVE_LOG.md#task025) |
-| task026 | ⬜ unsolved | — | — | — | — | [5, 7]→[5, 3] | [task026](SOLVE_LOG.md#task026) |
-| task027 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task027](SOLVE_LOG.md#task027) |
-| task028 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task028](SOLVE_LOG.md#task028) |
+| task026 | ⬜ unsolved | — | — | — | — | (5, 7)→(5, 3) | [task026](SOLVE_LOG.md#task026) |
+| task027 | ⬜ unsolved | — | — | — | — | (10, 10)→(10, 10) | [task027](SOLVE_LOG.md#task027) |
+| task028 | ⬜ unsolved | — | — | — | — | (10, 10)→(10, 10) | [task028](SOLVE_LOG.md#task028) |
 | task029 | ⬜ unsolved | — | — | — | — | var→var | [task029](SOLVE_LOG.md#task029) |
 | task030 | ⬜ unsolved | — | — | — | — | var→var | [task030](SOLVE_LOG.md#task030) |
 | task031 | ⬜ unsolved | — | — | — | — | var→var | [task031](SOLVE_LOG.md#task031) |
 | task032 | ⬜ unsolved | — | — | — | — | var→var | [task032](SOLVE_LOG.md#task032) |
-| task033 | ⬜ unsolved | — | — | — | — | [17, 17]→[17, 17] | [task033](SOLVE_LOG.md#task033) |
-| task034 | ⬜ unsolved | — | — | — | — | [9, 9]→[9, 9] | [task034](SOLVE_LOG.md#task034) |
-| task035 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task035](SOLVE_LOG.md#task035) |
-| task036 | ⬜ unsolved | — | — | — | — | [30, 30]→var | [task036](SOLVE_LOG.md#task036) |
-| task037 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task037](SOLVE_LOG.md#task037) |
-| task038 | ⬜ unsolved | — | — | — | — | [9, 9]→[1, 5] | [task038](SOLVE_LOG.md#task038) |
-| task039 | ⬜ unsolved | — | — | — | — | [10, 10]→[3, 3] | [task039](SOLVE_LOG.md#task039) |
-| task040 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task040](SOLVE_LOG.md#task040) |
+| task033 | ⬜ unsolved | — | — | — | — | (17, 17)→(17, 17) | [task033](SOLVE_LOG.md#task033) |
+| task034 | ⬜ unsolved | — | — | — | — | (9, 9)→(9, 9) | [task034](SOLVE_LOG.md#task034) |
+| task035 | ⬜ unsolved | — | — | — | — | (10, 10)→(10, 10) | [task035](SOLVE_LOG.md#task035) |
+| task036 | ⬜ unsolved | — | — | — | — | (30, 30)→var | [task036](SOLVE_LOG.md#task036) |
+| task037 | ⬜ unsolved | — | — | — | — | (10, 10)→(10, 10) | [task037](SOLVE_LOG.md#task037) |
+| task038 | ⬜ unsolved | — | — | — | — | (9, 9)→(1, 5) | [task038](SOLVE_LOG.md#task038) |
+| task039 | ⬜ unsolved | — | — | — | — | (10, 10)→(3, 3) | [task039](SOLVE_LOG.md#task039) |
+| task040 | ⬜ unsolved | — | — | — | — | (10, 10)→(10, 10) | [task040](SOLVE_LOG.md#task040) |
 | task041 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task041](SOLVE_LOG.md#task041) |
 | task042 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task042](SOLVE_LOG.md#task042) |
 | task043 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task043](SOLVE_LOG.md#task043) |
