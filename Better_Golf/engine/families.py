@@ -180,5 +180,81 @@ class ColorLUT(Family):
         return _model(h.make_graph([n], "color_lut", [x], [y], [wt]))
 
 
+# --------------------------------------------------------------------------- #
+# 4. Fractal3 — 3x3 self-fractal, background=0 (task001 family).
+#    out[3i:3i+3, 3j:3j+3] = input  if input[i,j]!=0 else 0-block.
+#    Position/shape-changing => NOT canvas-safe: build the 9x9 fractal then
+#    Pad back into the 30x30 canvas (Pad opset-13 pads = input, tiny params).
+# --------------------------------------------------------------------------- #
+class Fractal3(Family):
+    name = "fractal3_bg0"
+    est_points = 15.0  # several small intermediates; correctness first
+
+    def detect(self, train):
+        for i, o in train:
+            if len(i) != 3 or len(i[0]) != 3:
+                return None
+            if len(o) != 9 or len(o[0]) != 9:
+                return None
+        return {}
+
+    def apply(self, spec, grid):
+        if len(grid) != 3 or len(grid[0]) != 3:
+            return None
+        out = [[0] * 9 for _ in range(9)]
+        for i in range(3):
+            for j in range(3):
+                if grid[i][j] != 0:
+                    for r in range(3):
+                        for c in range(3):
+                            out[i * 3 + r][j * 3 + c] = grid[r][c]
+        return out
+
+    def build_onnx(self, spec):
+        x = h.make_tensor_value_info("input", TensorProto.FLOAT, SHAPE)
+        y = h.make_tensor_value_info("output", TensorProto.FLOAT, SHAPE)
+        op = [h.make_opsetid("", 13)]
+
+        def i64(name, vals):
+            return h.make_tensor(name, TensorProto.INT64, [len(vals)], vals)
+
+        ones9 = h.make_tensor("ones9", TensorProto.FLOAT, [1, 1, 9, 9],
+                              [1.0] * 81)
+        inits = [
+            i64("g_s", [0, 0]), i64("g_e", [3, 3]), i64("g_ax", [2, 3]),
+            i64("m_s", [1]), i64("m_e", [10]), i64("m_ax", [1]),
+            i64("rsum_ax", [1]),
+            h.make_tensor("rs_sc", TensorProto.FLOAT, [4], [1, 1, 3, 3]),
+            i64("tg_rep", [1, 1, 3, 3]), i64("mb_rep", [1, 10, 1, 1]),
+            ones9,
+            i64("ch_pad", [0, 0, 0, 0, 0, 9, 0, 0]),
+            i64("pad", [0, 0, 0, 0, 0, 0, 21, 21]),
+            h.make_tensor("pv", TensorProto.FLOAT, [], [0.0]),
+        ]
+        nodes = [
+            h.make_node("Slice", ["input", "g_s", "g_e", "g_ax"], ["G3"]),
+            h.make_node("Tile", ["G3", "tg_rep"], ["TG"]),
+            h.make_node("Slice", ["G3", "m_s", "m_e", "m_ax"], ["Mc"]),
+            h.make_node("ReduceSum", ["Mc", "rsum_ax"], ["Msum"],
+                        keepdims=1),
+            h.make_node("Resize", ["Msum", "", "rs_sc"], ["MB"],
+                        mode="nearest",
+                        coordinate_transformation_mode="asymmetric",
+                        nearest_mode="floor"),
+            h.make_node("Tile", ["MB", "mb_rep"], ["MBt"]),
+            h.make_node("Mul", ["TG", "MBt"], ["core"]),
+            # off-blocks (mask==0) are solid color-0 => set channel 0 there.
+            h.make_node("Sub", ["ones9", "MB"], ["off"]),
+            h.make_node("Pad", ["off", "ch_pad", "pv"], ["offch0"],
+                        mode="constant"),
+            h.make_node("Add", ["core", "offch0"], ["O9"]),
+            h.make_node("Pad", ["O9", "pad", "pv"], ["output"],
+                        mode="constant"),
+        ]
+        return h.make_model(
+            h.make_graph(nodes, "fractal3", [x], [y], inits),
+            ir_version=IR_VERSION, opset_imports=op)
+
+
 # Ordered cheapest-correct-first (highest est_points first).
-REGISTRY: List[Family] = [Identity(), ColorPermute(), ColorLUT()]
+REGISTRY: List[Family] = [Identity(), ColorPermute(), ColorLUT(), Fractal3()]

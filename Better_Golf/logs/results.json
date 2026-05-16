@@ -1,17 +1,17 @@
 {
   "001": {
-    "family": null,
-    "memory": null,
-    "n_fail": 268,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "fractal3_bg0",
+    "memory": 17568,
+    "n_fail": 0,
+    "n_pass": 268,
+    "note": "fractal3_bg0: passes all 268 examples",
+    "params": 120,
+    "points": 15.219,
     "sample": {
       "in": "077\n777\n077",
       "out": "000077077\n000777777\n000077077\n077077077\n777777777\n077077077\n000077077\n000777777\n000077077"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
