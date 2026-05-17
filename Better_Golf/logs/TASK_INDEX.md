@@ -2,7 +2,7 @@
 
 - Tasks attempted: **400/400**
 - Tasks solved (full match, scored): **35**
-- Projected points: **463.5 / 10000**  (target ≥ 7500)
+- Projected points: **510.5 / 10000**  (target ≥ 7500)
 
 Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md).
 
@@ -11,7 +11,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task001 | ✅ solved | fractal3_bg0 | 15.219 | 17568 | 120 | [3, 3]→[9, 9] | [task001](SOLVE_LOG.md#task001) |
 | task002 | ⬜ unsolved | — | — | — | — | var→var | [task002](SOLVE_LOG.md#task002) |
 | task003 | ⬜ unsolved | — | — | — | — | [6, 3]→[9, 3] | [task003](SOLVE_LOG.md#task003) |
-| task004 | ✅ solved | local_neighborhood | 8.933 | 9367200 | 131401 | var→var | [task004](SOLVE_LOG.md#task004) |
+| task004 | ✅ solved | local_conv_min | 11.423 | 777600 | 10405 | var→var | [task004](SOLVE_LOG.md#task004) |
 | task005 | ⬜ unsolved | — | — | — | — | [21, 21]→[21, 21] | [task005](SOLVE_LOG.md#task005) |
 | task006 | ⬜ unsolved | — | — | — | — | [3, 7]→[3, 3] | [task006](SOLVE_LOG.md#task006) |
 | task007 | ⬜ unsolved | — | — | — | — | [7, 7]→[7, 7] | [task007](SOLVE_LOG.md#task007) |
@@ -22,7 +22,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task012 | ⬜ unsolved | — | — | — | — | [12, 12]→[12, 12] | [task012](SOLVE_LOG.md#task012) |
 | task013 | ⬜ unsolved | — | — | — | — | var→var | [task013](SOLVE_LOG.md#task013) |
 | task014 | ⬜ unsolved | — | — | — | — | var→var | [task014](SOLVE_LOG.md#task014) |
-| task015 | ✅ solved | local_neighborhood | 10.054 | 3052800 | 42824 | [9, 9]→[9, 9] | [task015](SOLVE_LOG.md#task015) |
+| task015 | ✅ solved | local_conv_min | 11.404 | 792000 | 10607 | [9, 9]→[9, 9] | [task015](SOLVE_LOG.md#task015) |
 | task016 | ✅ solved | color_permute | 22.697 | 0 | 10 | [3, 3]→[3, 3] | [task016](SOLVE_LOG.md#task016) |
 | task017 | ⬜ unsolved | — | — | — | — | [21, 21]→[21, 21] | [task017](SOLVE_LOG.md#task017) |
 | task018 | ⬜ unsolved | — | — | — | — | var→var | [task018](SOLVE_LOG.md#task018) |
@@ -60,7 +60,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task050 | ⬜ unsolved | — | — | — | — | var→var | [task050](SOLVE_LOG.md#task050) |
 | task051 | ⬜ unsolved | — | — | — | — | var→var | [task051](SOLVE_LOG.md#task051) |
 | task052 | ⬜ unsolved | — | — | — | — | [3, 3]→[3, 3] | [task052](SOLVE_LOG.md#task052) |
-| task053 | ✅ solved | local_neighborhood | 10.628 | 1720800 | 24139 | [3, 3]→[3, 3] | [task053](SOLVE_LOG.md#task053) |
+| task053 | ✅ solved | local_conv_min | 12.929 | 172800 | 1921 | [3, 3]→[3, 3] | [task053](SOLVE_LOG.md#task053) |
 | task054 | ⬜ unsolved | — | — | — | — | [30, 30]→[30, 30] | [task054](SOLVE_LOG.md#task054) |
 | task055 | ⬜ unsolved | — | — | — | — | var→var | [task055](SOLVE_LOG.md#task055) |
 | task056 | ⬜ unsolved | — | — | — | — | [3, 3]→[1, 1] | [task056](SOLVE_LOG.md#task056) |
@@ -80,7 +80,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task070 | ⬜ unsolved | — | — | — | — | [17, 17]→[17, 17] | [task070](SOLVE_LOG.md#task070) |
 | task071 | ⬜ unsolved | — | — | — | — | [16, 16]→[16, 16] | [task071](SOLVE_LOG.md#task071) |
 | task072 | ⬜ unsolved | — | — | — | — | [13, 5]→[6, 5] | [task072](SOLVE_LOG.md#task072) |
-| task073 | ✅ solved | local_neighborhood | 12.32 | 316800 | 4444 | [5, 5]→[5, 5] | [task073](SOLVE_LOG.md#task073) |
+| task073 | ✅ solved | local_conv_min | 13.713 | 79200 | 608 | [5, 5]→[5, 5] | [task073](SOLVE_LOG.md#task073) |
 | task074 | ⬜ unsolved | — | — | — | — | [30, 30]→[30, 30] | [task074](SOLVE_LOG.md#task074) |
 | task075 | ⬜ unsolved | — | — | — | — | [9, 13]→[9, 13] | [task075](SOLVE_LOG.md#task075) |
 | task076 | ⬜ unsolved | — | — | — | — | var→var | [task076](SOLVE_LOG.md#task076) |
@@ -88,7 +88,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task078 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task078](SOLVE_LOG.md#task078) |
 | task079 | ⬜ unsolved | — | — | — | — | [14, 14]→[3, 3] | [task079](SOLVE_LOG.md#task079) |
 | task080 | ⬜ unsolved | — | — | — | — | var→var | [task080](SOLVE_LOG.md#task080) |
-| task081 | ✅ solved | local_neighborhood | 10.649 | 1684800 | 23634 | [7, 7]→[7, 7] | [task081](SOLVE_LOG.md#task081) |
+| task081 | ✅ solved | local_conv_min | 12.929 | 172800 | 1921 | [7, 7]→[7, 7] | [task081](SOLVE_LOG.md#task081) |
 | task082 | ⬜ unsolved | — | — | — | — | var→var | [task082](SOLVE_LOG.md#task082) |
 | task083 | ⬜ unsolved | — | — | — | — | [3, 4]→[6, 8] | [task083](SOLVE_LOG.md#task083) |
 | task084 | ⬜ unsolved | — | — | — | — | var→var | [task084](SOLVE_LOG.md#task084) |
@@ -104,7 +104,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task094 | ⬜ unsolved | — | — | — | — | [15, 15]→[15, 15] | [task094](SOLVE_LOG.md#task094) |
 | task095 | ✅ solved | linear_local_conv | 18.187 | 0 | 910 | [9, 9]→[9, 9] | [task095](SOLVE_LOG.md#task095) |
 | task096 | ⬜ unsolved | — | — | — | — | var→var | [task096](SOLVE_LOG.md#task096) |
-| task097 | ✅ solved | local_neighborhood | 8.361 | 16610400 | 233007 | var→var | [task097](SOLVE_LOG.md#task097) |
+| task097 | ✅ solved | local_conv_min | 11.074 | 1101600 | 14950 | var→var | [task097](SOLVE_LOG.md#task097) |
 | task098 | ✅ solved | linear_local_conv | 18.187 | 0 | 910 | var→var | [task098](SOLVE_LOG.md#task098) |
 | task099 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task099](SOLVE_LOG.md#task099) |
 | task100 | ⬜ unsolved | — | — | — | — | [10, 10]→[2, 2] | [task100](SOLVE_LOG.md#task100) |
@@ -127,9 +127,9 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task117 | ⬜ unsolved | — | — | — | — | var→var | [task117](SOLVE_LOG.md#task117) |
 | task118 | ⬜ unsolved | — | — | — | — | var→var | [task118](SOLVE_LOG.md#task118) |
 | task119 | ⬜ unsolved | — | — | — | — | [12, 12]→[12, 12] | [task119](SOLVE_LOG.md#task119) |
-| task120 | ✅ solved | local_neighborhood | 9.63 | 4665600 | 65448 | var→var | [task120](SOLVE_LOG.md#task120) |
+| task120 | ✅ solved | local_conv_min | 12.929 | 172800 | 1921 | var→var | [task120](SOLVE_LOG.md#task120) |
 | task121 | ⬜ unsolved | — | — | — | — | [13, 13]→[3, 3] | [task121](SOLVE_LOG.md#task121) |
-| task122 | ✅ solved | local_neighborhood | 9.26 | 6609600 | 239598 | var→var | [task122](SOLVE_LOG.md#task122) |
+| task122 | ✅ solved | local_conv_min | 11.754 | 547200 | 18533 | var→var | [task122](SOLVE_LOG.md#task122) |
 | task123 | ⬜ unsolved | — | — | — | — | [5, 5]→[10, 10] | [task123](SOLVE_LOG.md#task123) |
 | task124 | ⬜ unsolved | — | — | — | — | var→[10, 10] | [task124](SOLVE_LOG.md#task124) |
 | task125 | ⬜ unsolved | — | — | — | — | [15, 15]→[15, 15] | [task125](SOLVE_LOG.md#task125) |
@@ -154,11 +154,11 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task144 | ⬜ unsolved | — | — | — | — | [9, 4]→[4, 4] | [task144](SOLVE_LOG.md#task144) |
 | task145 | ⬜ unsolved | — | — | — | — | var→var | [task145](SOLVE_LOG.md#task145) |
 | task146 | ⬜ unsolved | — | — | — | — | [9, 3]→[3, 3] | [task146](SOLVE_LOG.md#task146) |
-| task147 | ✅ solved | local_neighborhood | 9.408 | 5824800 | 81709 | var→var | [task147](SOLVE_LOG.md#task147) |
+| task147 | ✅ solved | local_conv_min | 13.112 | 144000 | 1517 | var→var | [task147](SOLVE_LOG.md#task147) |
 | task148 | ⬜ unsolved | — | — | — | — | var→var | [task148](SOLVE_LOG.md#task148) |
 | task149 | ⬜ unsolved | — | — | — | — | [11, 11]→[3, 3] | [task149](SOLVE_LOG.md#task149) |
 | task150 | ⬜ unsolved | — | — | — | — | var→var | [task150](SOLVE_LOG.md#task150) |
-| task151 | ✅ solved | local_neighborhood | 8.744 | 11318400 | 158772 | var→var | [task151](SOLVE_LOG.md#task151) |
+| task151 | ✅ solved | local_conv_min | 9.59 | 4860000 | 67672 | var→var | [task151](SOLVE_LOG.md#task151) |
 | task152 | ⬜ unsolved | — | — | — | — | [3, 3]→[6, 6] | [task152](SOLVE_LOG.md#task152) |
 | task153 | ⬜ unsolved | — | — | — | — | [10, 10]→[3, 3] | [task153](SOLVE_LOG.md#task153) |
 | task154 | ⬜ unsolved | — | — | — | — | [15, 15]→[15, 15] | [task154](SOLVE_LOG.md#task154) |
@@ -200,7 +200,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task190 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task190](SOLVE_LOG.md#task190) |
 | task191 | ⬜ unsolved | — | — | — | — | [23, 23]→[23, 23] | [task191](SOLVE_LOG.md#task191) |
 | task192 | ⬜ unsolved | — | — | — | — | var→var | [task192](SOLVE_LOG.md#task192) |
-| task193 | ✅ solved | local_neighborhood | 8.223 | 19058400 | 267347 | var→var | [task193](SOLVE_LOG.md#task193) |
+| task193 | ✅ solved | local_conv_min | 11.343 | 842400 | 11314 | var→var | [task193](SOLVE_LOG.md#task193) |
 | task194 | ⬜ unsolved | — | — | — | — | [3, 3]→[6, 6] | [task194](SOLVE_LOG.md#task194) |
 | task195 | ⬜ unsolved | — | — | — | — | var→[9, 9] | [task195](SOLVE_LOG.md#task195) |
 | task196 | ⬜ unsolved | — | — | — | — | var→var | [task196](SOLVE_LOG.md#task196) |
@@ -227,7 +227,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task217 | ⬜ unsolved | — | — | — | — | [9, 9]→[9, 9] | [task217](SOLVE_LOG.md#task217) |
 | task218 | ⬜ unsolved | — | — | — | — | [21, 21]→var | [task218](SOLVE_LOG.md#task218) |
 | task219 | ⬜ unsolved | — | — | — | — | [15, 10]→[15, 10] | [task219](SOLVE_LOG.md#task219) |
-| task220 | ✅ solved | local_neighborhood | 11.673 | 604800 | 8484 | var→var | [task220](SOLVE_LOG.md#task220) |
+| task220 | ✅ solved | local_conv_min | 12.392 | 295200 | 3638 | var→var | [task220](SOLVE_LOG.md#task220) |
 | task221 | ⬜ unsolved | — | — | — | — | [3, 3]→var | [task221](SOLVE_LOG.md#task221) |
 | task222 | ⬜ unsolved | — | — | — | — | [16, 16]→[16, 16] | [task222](SOLVE_LOG.md#task222) |
 | task223 | ⬜ unsolved | — | — | — | — | [3, 3]→[9, 9] | [task223](SOLVE_LOG.md#task223) |
@@ -237,7 +237,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task227 | ⬜ unsolved | — | — | — | — | [8, 4]→[4, 4] | [task227](SOLVE_LOG.md#task227) |
 | task228 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task228](SOLVE_LOG.md#task228) |
 | task229 | ⬜ unsolved | — | — | — | — | [3, 3]→[3, 3] | [task229](SOLVE_LOG.md#task229) |
-| task230 | ✅ solved | local_neighborhood | 12.467 | 273600 | 3838 | var→var | [task230](SOLVE_LOG.md#task230) |
+| task230 | ✅ solved | local_conv_min | 13.063 | 151200 | 1618 | var→var | [task230](SOLVE_LOG.md#task230) |
 | task231 | ⬜ unsolved | — | — | — | — | var→var | [task231](SOLVE_LOG.md#task231) |
 | task232 | ⬜ unsolved | — | — | — | — | var→var | [task232](SOLVE_LOG.md#task232) |
 | task233 | ⬜ unsolved | — | — | — | — | var→var | [task233](SOLVE_LOG.md#task233) |
@@ -265,21 +265,21 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task255 | ⬜ unsolved | — | — | — | — | [30, 30]→[30, 30] | [task255](SOLVE_LOG.md#task255) |
 | task256 | ⬜ unsolved | — | — | — | — | var→var | [task256](SOLVE_LOG.md#task256) |
 | task257 | ⬜ unsolved | — | — | — | — | [9, 9]→[4, 4] | [task257](SOLVE_LOG.md#task257) |
-| task258 | ✅ solved | local_neighborhood | 10.906 | 1303200 | 18281 | var→var | [task258](SOLVE_LOG.md#task258) |
+| task258 | ✅ solved | local_conv_min | 13.545 | 93600 | 810 | var→var | [task258](SOLVE_LOG.md#task258) |
 | task259 | ⬜ unsolved | — | — | — | — | var→var | [task259](SOLVE_LOG.md#task259) |
 | task260 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task260](SOLVE_LOG.md#task260) |
-| task261 | ✅ solved | local_neighborhood | 9.848 | 3751200 | 52621 | var→var | [task261](SOLVE_LOG.md#task261) |
-| task262 | ✅ solved | local_neighborhood | 11.87 | 496800 | 6969 | [3, 3]→[3, 3] | [task262](SOLVE_LOG.md#task262) |
+| task261 | ✅ solved | local_conv_min | 13.47 | 100800 | 911 | var→var | [task261](SOLVE_LOG.md#task261) |
+| task262 | ✅ solved | local_conv_min | 12.929 | 172800 | 1921 | [3, 3]→[3, 3] | [task262](SOLVE_LOG.md#task262) |
 | task263 | ⬜ unsolved | — | — | — | — | var→[3, 3] | [task263](SOLVE_LOG.md#task263) |
 | task264 | ⬜ unsolved | — | — | — | — | var→[9, 9] | [task264](SOLVE_LOG.md#task264) |
 | task265 | ⬜ unsolved | — | — | — | — | [18, 18]→[18, 18] | [task265](SOLVE_LOG.md#task265) |
-| task266 | ✅ solved | local_neighborhood | 12.044 | 417600 | 5858 | [3, 5]→[3, 5] | [task266](SOLVE_LOG.md#task266) |
+| task266 | ✅ solved | local_conv_min | 12.972 | 165600 | 1820 | [3, 5]→[3, 5] | [task266](SOLVE_LOG.md#task266) |
 | task267 | ⬜ unsolved | — | — | — | — | [7, 7]→[7, 7] | [task267](SOLVE_LOG.md#task267) |
 | task268 | ⬜ unsolved | — | — | — | — | var→var | [task268](SOLVE_LOG.md#task268) |
 | task269 | ⬜ unsolved | — | — | — | — | [3, 3]→var | [task269](SOLVE_LOG.md#task269) |
 | task270 | ⬜ unsolved | — | — | — | — | [15, 15]→[15, 15] | [task270](SOLVE_LOG.md#task270) |
 | task271 | ⬜ unsolved | — | — | — | — | [9, 9]→[3, 3] | [task271](SOLVE_LOG.md#task271) |
-| task272 | ✅ solved | local_neighborhood | 9.458 | 5544000 | 77770 | var→var | [task272](SOLVE_LOG.md#task272) |
+| task272 | ✅ solved | local_conv_min | 13.163 | 136800 | 1416 | var→var | [task272](SOLVE_LOG.md#task272) |
 | task273 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task273](SOLVE_LOG.md#task273) |
 | task274 | ⬜ unsolved | — | — | — | — | var→[3, 3] | [task274](SOLVE_LOG.md#task274) |
 | task275 | ⬜ unsolved | — | — | — | — | var→var | [task275](SOLVE_LOG.md#task275) |
@@ -289,7 +289,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task279 | ⬜ unsolved | — | — | — | — | var→var | [task279](SOLVE_LOG.md#task279) |
 | task280 | ⬜ unsolved | — | — | — | — | var→var | [task280](SOLVE_LOG.md#task280) |
 | task281 | ⬜ unsolved | — | — | — | — | var→var | [task281](SOLVE_LOG.md#task281) |
-| task282 | ✅ solved | local_neighborhood | 12.578 | 244800 | 3434 | [9, 9]→[9, 9] | [task282](SOLVE_LOG.md#task282) |
+| task282 | ✅ solved | local_conv_min | 12.972 | 165600 | 1820 | [9, 9]→[9, 9] | [task282](SOLVE_LOG.md#task282) |
 | task283 | ✅ solved | linear_local_conv | 17.172 | 0 | 2510 | [10, 10]→[10, 10] | [task283](SOLVE_LOG.md#task283) |
 | task284 | ⬜ unsolved | — | — | — | — | var→var | [task284](SOLVE_LOG.md#task284) |
 | task285 | ⬜ unsolved | — | — | — | — | var→var | [task285](SOLVE_LOG.md#task285) |
@@ -300,7 +300,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task290 | ⬜ unsolved | — | — | — | — | var→var | [task290](SOLVE_LOG.md#task290) |
 | task291 | ⬜ unsolved | — | — | — | — | var→[1, 1] | [task291](SOLVE_LOG.md#task291) |
 | task292 | ⬜ unsolved | — | — | — | — | var→var | [task292](SOLVE_LOG.md#task292) |
-| task293 | ✅ solved | local_neighborhood | 8.189 | 19713600 | 276538 | var→var | [task293](SOLVE_LOG.md#task293) |
+| task293 | ✅ solved | local_conv_min | 10.275 | 2448000 | 33837 | var→var | [task293](SOLVE_LOG.md#task293) |
 | task294 | ✅ solved | linear_local_conv | 18.187 | 0 | 910 | [10, 10]→[10, 10] | [task294](SOLVE_LOG.md#task294) |
 | task295 | ⬜ unsolved | — | — | — | — | var→var | [task295](SOLVE_LOG.md#task295) |
 | task296 | ⬜ unsolved | — | — | — | — | [5, 7]→[3, 3] | [task296](SOLVE_LOG.md#task296) |
@@ -338,7 +338,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task328 | ⬜ unsolved | — | — | — | — | var→var | [task328](SOLVE_LOG.md#task328) |
 | task329 | ⬜ unsolved | — | — | — | — | var→var | [task329](SOLVE_LOG.md#task329) |
 | task330 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task330](SOLVE_LOG.md#task330) |
-| task331 | ✅ solved | local_neighborhood | 12.027 | 424800 | 5959 | [10, 10]→[10, 10] | [task331](SOLVE_LOG.md#task331) |
+| task331 | ✅ solved | local_conv_min | 13.163 | 136800 | 1416 | [10, 10]→[10, 10] | [task331](SOLVE_LOG.md#task331) |
 | task332 | ⬜ unsolved | — | — | — | — | var→var | [task332](SOLVE_LOG.md#task332) |
 | task333 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task333](SOLVE_LOG.md#task333) |
 | task334 | ⬜ unsolved | — | — | — | — | [5, 5]→[3, 3] | [task334](SOLVE_LOG.md#task334) |
@@ -351,7 +351,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task341 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task341](SOLVE_LOG.md#task341) |
 | task342 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task342](SOLVE_LOG.md#task342) |
 | task343 | ⬜ unsolved | — | — | — | — | [5, 15]→[5, 15] | [task343](SOLVE_LOG.md#task343) |
-| task344 | ✅ solved | local_neighborhood | 8.749 | 11260800 | 157964 | var→var | [task344](SOLVE_LOG.md#task344) |
+| task344 | ✅ solved | local_conv_min | 11.994 | 439200 | 5658 | var→var | [task344](SOLVE_LOG.md#task344) |
 | task345 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task345](SOLVE_LOG.md#task345) |
 | task346 | ⬜ unsolved | — | — | — | — | var→[1, 1] | [task346](SOLVE_LOG.md#task346) |
 | task347 | ⬜ unsolved | — | — | — | — | [3, 6]→[3, 3] | [task347](SOLVE_LOG.md#task347) |
@@ -359,7 +359,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task349 | ⬜ unsolved | — | — | — | — | var→var | [task349](SOLVE_LOG.md#task349) |
 | task350 | ⬜ unsolved | — | — | — | — | var→var | [task350](SOLVE_LOG.md#task350) |
 | task351 | ⬜ unsolved | — | — | — | — | [16, 16]→[5, 5] | [task351](SOLVE_LOG.md#task351) |
-| task352 | ✅ solved | local_neighborhood | 9.75 | 4140000 | 58075 | var→var | [task352](SOLVE_LOG.md#task352) |
+| task352 | ✅ solved | local_conv_min | 10.666 | 1656000 | 22727 | var→var | [task352](SOLVE_LOG.md#task352) |
 | task353 | ⬜ unsolved | — | — | — | — | var→var | [task353](SOLVE_LOG.md#task353) |
 | task354 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task354](SOLVE_LOG.md#task354) |
 | task355 | ⬜ unsolved | — | — | — | — | var→[1, 1] | [task355](SOLVE_LOG.md#task355) |

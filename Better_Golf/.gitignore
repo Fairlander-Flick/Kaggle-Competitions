@@ -2,6 +2,7 @@
 data/
 # Regenerable / scratch
 out/submission.zip
+out/calib/
 **/__pycache__/
 *.pyc
 bg_*/

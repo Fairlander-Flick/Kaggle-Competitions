@@ -255,13 +255,13 @@
     "task": 3
   },
   "004": {
-    "family": "local_neighborhood",
-    "memory": 9367200,
+    "family": "local_conv_min",
+    "memory": 777600,
     "n_fail": 0,
     "n_pass": 265,
-    "note": "local_neighborhood: passes all 265 examples",
-    "params": 131401,
-    "points": 8.933,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 10405,
+    "points": 11.423,
     "sample": {
       "in": "000000000\n066600000\n060060000\n006006000\n000600600\n000066600\n000000000\n002220000\n002002000\n000222000\n000000000\n000000000\n000000000\n000000000",
       "out": "000000000\n006660000\n006006000\n000600600\n000060600\n000066600\n000000000\n000222000\n000202000\n000222000\n000000000\n000000000\n000000000\n000000000"
@@ -3895,13 +3895,13 @@
     "task": 14
   },
   "015": {
-    "family": "local_neighborhood",
-    "memory": 3052800,
+    "family": "local_conv_min",
+    "memory": 792000,
     "n_fail": 0,
     "n_pass": 265,
-    "note": "local_neighborhood: passes all 265 examples",
-    "params": 42824,
-    "points": 10.054,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 10607,
+    "points": 11.404,
     "sample": {
       "in": "000000000\n000000000\n000000000\n002000000\n000000000\n000000000\n000000100\n000000000\n000000000",
       "out": "000000000\n000000000\n040400000\n002000000\n040400000\n000000700\n000007170\n000000700\n000000000"
@@ -14560,13 +14560,13 @@
     "task": 52
   },
   "053": {
-    "family": "local_neighborhood",
-    "memory": 1720800,
+    "family": "local_conv_min",
+    "memory": 172800,
     "n_fail": 0,
     "n_pass": 60,
-    "note": "local_neighborhood: passes all 60 examples",
-    "params": 24139,
-    "points": 10.628,
+    "note": "local_conv_min: passes all 60 examples",
+    "params": 1921,
+    "points": 12.929,
     "sample": {
       "in": "111\n000\n000",
       "out": "000\n111\n000"
@@ -18673,13 +18673,13 @@
     "task": 72
   },
   "073": {
-    "family": "local_neighborhood",
-    "memory": 316800,
+    "family": "local_conv_min",
+    "memory": 79200,
     "n_fail": 0,
     "n_pass": 15,
-    "note": "local_neighborhood: passes all 15 examples",
-    "params": 4444,
-    "points": 12.32,
+    "note": "local_conv_min: passes all 15 examples",
+    "params": 608,
+    "points": 13.713,
     "sample": {
       "in": "00000\n00000\n00100\n00500\n55555",
       "out": "00000\n00000\n00000\n00500\n55155"
@@ -19328,13 +19328,13 @@
     "task": 80
   },
   "081": {
-    "family": "local_neighborhood",
-    "memory": 1684800,
+    "family": "local_conv_min",
+    "memory": 172800,
     "n_fail": 0,
     "n_pass": 264,
-    "note": "local_neighborhood: passes all 264 examples",
-    "params": 23634,
-    "points": 10.649,
+    "note": "local_conv_min: passes all 264 examples",
+    "params": 1921,
+    "points": 12.929,
     "sample": {
       "in": "0000000\n0800000\n0880000\n0000880\n0000080\n0000000\n0000000",
       "out": "0000000\n0810000\n0880000\n0000880\n0000180\n0000000\n0000000"
@@ -22618,13 +22618,13 @@
     "task": 96
   },
   "097": {
-    "family": "local_neighborhood",
-    "memory": 16610400,
+    "family": "local_conv_min",
+    "memory": 1101600,
     "n_fail": 0,
     "n_pass": 267,
-    "note": "local_neighborhood: passes all 267 examples",
-    "params": 233007,
-    "points": 8.361,
+    "note": "local_conv_min: passes all 267 examples",
+    "params": 14950,
+    "points": 11.074,
     "sample": {
       "in": "08000000000\n80000000000\n00008008080\n00008000000\n00880000000\n00080000800\n00800080000\n00000000000\n00000800008\n00000880000\n08008000000\n00000000000\n08000000000\n00000080080\n00008000000\n00000000800",
       "out": "08000000000\n80000000000\n00008000000\n00008000000\n00880000000\n00080000000\n00800000000\n00000000000\n00000800000\n00000880000\n00008000000\n00000000000\n00000000000\n00000000000\n00000000000\n00000000000"
@@ -28811,13 +28811,13 @@
     "task": 119
   },
   "120": {
-    "family": "local_neighborhood",
-    "memory": 4665600,
+    "family": "local_conv_min",
+    "memory": 172800,
     "n_fail": 0,
     "n_pass": 266,
-    "note": "local_neighborhood: passes all 266 examples",
-    "params": 65448,
-    "points": 9.63,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 1921,
+    "points": 12.929,
     "sample": {
       "in": "000000000000000\n002222200011100\n002222200011100\n002222200011100\n002222200000000\n002222200000000\n002222200000000\n000000000000000\n000000003333333\n000000003333333\n000000003333333\n000000003333333\n000000003333333",
       "out": "000000000000000\n002222200011100\n002888200018100\n002888200011100\n002888200000000\n002888200000000\n002222200000000\n000000000000000\n000000003333333\n000000003888883\n000000003888883\n000000003888883\n000000003333333"
@@ -29043,13 +29043,13 @@
     "task": 121
   },
   "122": {
-    "family": "local_neighborhood",
-    "memory": 6609600,
+    "family": "local_conv_min",
+    "memory": 547200,
     "n_fail": 0,
     "n_pass": 266,
-    "note": "local_neighborhood: passes all 266 examples",
-    "params": 239598,
-    "points": 9.26,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 18533,
+    "points": 11.754,
     "sample": {
       "in": "0000000000000\n0000000000000\n2220000000000\n2323030303030\n2220000000000\n0000000000000\n0000000000000",
       "out": "0000000000000\n0000000000000\n0022200000000\n0323230303030\n0022200000000\n0000000000000\n0000000000000"
@@ -36405,13 +36405,13 @@
     "task": 146
   },
   "147": {
-    "family": "local_neighborhood",
-    "memory": 5824800,
+    "family": "local_conv_min",
+    "memory": 144000,
     "n_fail": 0,
     "n_pass": 267,
-    "note": "local_neighborhood: passes all 267 examples",
-    "params": 81709,
-    "points": 9.408,
+    "note": "local_conv_min: passes all 267 examples",
+    "params": 1517,
+    "points": 13.112,
     "sample": {
       "in": "330\n030\n303",
       "out": "880\n080\n303"
@@ -37102,13 +37102,13 @@
     "task": 150
   },
   "151": {
-    "family": "local_neighborhood",
-    "memory": 11318400,
+    "family": "local_conv_min",
+    "memory": 4860000,
     "n_fail": 0,
     "n_pass": 266,
-    "note": "local_neighborhood: passes all 266 examples",
-    "params": 158772,
-    "points": 8.744,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 67672,
+    "points": 9.59,
     "sample": {
       "in": "0300\n2222\n0300\n0300",
       "out": "4440\n4242\n4440\n0300"
@@ -46358,13 +46358,13 @@
     "task": 192
   },
   "193": {
-    "family": "local_neighborhood",
-    "memory": 19058400,
+    "family": "local_conv_min",
+    "memory": 842400,
     "n_fail": 0,
     "n_pass": 266,
-    "note": "local_neighborhood: passes all 266 examples",
-    "params": 267347,
-    "points": 8.223,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 11314,
+    "points": 11.343,
     "sample": {
       "in": "0700000077777\n0000000077777\n0000700077777\n0077770000000\n0077770000000\n0077770000700\n0000000000000\n0000000000000\n0700000077700\n0000000077700\n0000000000070\n0000000000000\n0000700000000",
       "out": "0000000077777\n0000000077777\n0000000077777\n0077770000000\n0077770000000\n0077770000000\n0000000000000\n0000000000000\n0000000077700\n0000000077700\n0000000000000\n0000000000000\n0000000000000"
@@ -53173,13 +53173,13 @@
     "task": 219
   },
   "220": {
-    "family": "local_neighborhood",
-    "memory": 604800,
+    "family": "local_conv_min",
+    "memory": 295200,
     "n_fail": 0,
     "n_pass": 267,
-    "note": "local_neighborhood: passes all 267 examples",
-    "params": 8484,
-    "points": 11.673,
+    "note": "local_conv_min: passes all 267 examples",
+    "params": 3638,
+    "points": 12.392,
     "sample": {
       "in": "000000000000\n000000000000\n000000000000\n000000000000\n000008000000\n030000000000\n000000002000\n000000000000\n000000000000\n000000000000\n000000000000\n000000000000",
       "out": "000000000000\n000000000000\n000000000000\n000044400000\n666048400000\n636044411100\n666000012100\n000000011100\n000000000000\n000000000000\n000000000000\n000000000000"
@@ -54089,13 +54089,13 @@
     "task": 229
   },
   "230": {
-    "family": "local_neighborhood",
-    "memory": 273600,
+    "family": "local_conv_min",
+    "memory": 151200,
     "n_fail": 0,
     "n_pass": 266,
-    "note": "local_neighborhood: passes all 266 examples",
-    "params": 3838,
-    "points": 12.467,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 1618,
+    "points": 13.063,
     "sample": {
       "in": "0000000000\n0000000000\n0000000000\n0000550000\n0000550000\n0000000000\n0000000000\n0000000000\n0000000000\n0000000000",
       "out": "0000000000\n0000000000\n0001002000\n0000550000\n0000550000\n0003004000\n0000000000\n0000000000\n0000000000\n0000000000"
@@ -60124,13 +60124,13 @@
     "task": 257
   },
   "258": {
-    "family": "local_neighborhood",
-    "memory": 1303200,
+    "family": "local_conv_min",
+    "memory": 93600,
     "n_fail": 0,
     "n_pass": 266,
-    "note": "local_neighborhood: passes all 266 examples",
-    "params": 18281,
-    "points": 10.906,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 810,
+    "points": 13.545,
     "sample": {
       "in": "10100\n00000\n00000\n01010\n00000",
       "out": "12100\n00000\n00000\n01210\n00000"
@@ -60364,13 +60364,13 @@
     "task": 260
   },
   "261": {
-    "family": "local_neighborhood",
-    "memory": 3751200,
+    "family": "local_conv_min",
+    "memory": 100800,
     "n_fail": 0,
     "n_pass": 265,
-    "note": "local_neighborhood: passes all 265 examples",
-    "params": 52621,
-    "points": 9.848,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 911,
+    "points": 13.47,
     "sample": {
       "in": "88000\n88000\n00000\n00000\n00000",
       "out": "00000\n22000\n22000\n00000\n00000"
@@ -60438,13 +60438,13 @@
     "task": 261
   },
   "262": {
-    "family": "local_neighborhood",
-    "memory": 496800,
+    "family": "local_conv_min",
+    "memory": 172800,
     "n_fail": 0,
     "n_pass": 11,
-    "note": "local_neighborhood: passes all 11 examples",
-    "params": 6969,
-    "points": 11.87,
+    "note": "local_conv_min: passes all 11 examples",
+    "params": 1921,
+    "points": 12.929,
     "sample": {
       "in": "005\n050\n500",
       "out": "333\n444\n222"
@@ -60691,13 +60691,13 @@
     "task": 265
   },
   "266": {
-    "family": "local_neighborhood",
-    "memory": 417600,
+    "family": "local_conv_min",
+    "memory": 165600,
     "n_fail": 0,
     "n_pass": 20,
-    "note": "local_neighborhood: passes all 20 examples",
-    "params": 5858,
-    "points": 12.044,
+    "note": "local_conv_min: passes all 20 examples",
+    "params": 1820,
+    "points": 12.972,
     "sample": {
       "in": "00000\n02000\n00000",
       "out": "30600\n00000\n80700"
@@ -61065,13 +61065,13 @@
     "task": 271
   },
   "272": {
-    "family": "local_neighborhood",
-    "memory": 5544000,
+    "family": "local_conv_min",
+    "memory": 136800,
     "n_fail": 0,
     "n_pass": 267,
-    "note": "local_neighborhood: passes all 267 examples",
-    "params": 77770,
-    "points": 9.458,
+    "note": "local_conv_min: passes all 267 examples",
+    "params": 1416,
+    "points": 13.163,
     "sample": {
       "in": "022\n022\n200",
       "out": "022\n022\n100"
@@ -62495,13 +62495,13 @@
     "task": 281
   },
   "282": {
-    "family": "local_neighborhood",
-    "memory": 244800,
+    "family": "local_conv_min",
+    "memory": 165600,
     "n_fail": 0,
     "n_pass": 265,
-    "note": "local_neighborhood: passes all 265 examples",
-    "params": 3434,
-    "points": 12.578,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 1820,
+    "points": 12.972,
     "sample": {
       "in": "000000000\n000000000\n000500000\n000000000\n000000000\n000000500\n000000000\n005000000\n000000000",
       "out": "000000000\n005150000\n001010000\n005150000\n000005150\n000001010\n051505150\n010100000\n051500000"
@@ -65856,13 +65856,13 @@
     "task": 292
   },
   "293": {
-    "family": "local_neighborhood",
-    "memory": 19713600,
+    "family": "local_conv_min",
+    "memory": 2448000,
     "n_fail": 0,
     "n_pass": 267,
-    "note": "local_neighborhood: passes all 267 examples",
-    "params": 276538,
-    "points": 8.189,
+    "note": "local_conv_min: passes all 267 examples",
+    "params": 33837,
+    "points": 10.275,
     "sample": {
       "in": "0008800000000\n0008800000000\n0008800000000\n3338833333333\n3338833333333\n3338833333333\n0008800000000\n0008800000000\n0008800000000\n0008800000000\n0008800000000\n0008800000000\n0008800000000",
       "out": "0008800000000\n0008800000000\n0008800000000\n3333333333333\n3333333333333\n3333333333333\n0008800000000\n0008800000000\n0008800000000\n0008800000000\n0008800000000\n0008800000000\n0008800000000"
@@ -72626,13 +72626,13 @@
     "task": 330
   },
   "331": {
-    "family": "local_neighborhood",
-    "memory": 424800,
+    "family": "local_conv_min",
+    "memory": 136800,
     "n_fail": 0,
     "n_pass": 265,
-    "note": "local_neighborhood: passes all 265 examples",
-    "params": 5959,
-    "points": 12.027,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 1416,
+    "points": 13.163,
     "sample": {
       "in": "0000000000\n0000001000\n0000000000\n0000000001\n0000000000\n0001000000\n0000000000\n0000000100\n0000000000\n0100000000",
       "out": "0000002000\n0000071600\n0000008002\n0000000071\n0002000008\n0071600000\n0008000200\n0000007160\n0200000800\n7160000000"
@@ -75098,13 +75098,13 @@
     "task": 343
   },
   "344": {
-    "family": "local_neighborhood",
-    "memory": 11260800,
+    "family": "local_conv_min",
+    "memory": 439200,
     "n_fail": 0,
     "n_pass": 266,
-    "note": "local_neighborhood: passes all 266 examples",
-    "params": 157964,
-    "points": 8.749,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 5658,
+    "points": 11.994,
     "sample": {
       "in": "320\n000\n050",
       "out": "800\n000\n050"
@@ -77178,13 +77178,13 @@
     "task": 351
   },
   "352": {
-    "family": "local_neighborhood",
-    "memory": 4140000,
+    "family": "local_conv_min",
+    "memory": 1656000,
     "n_fail": 0,
     "n_pass": 266,
-    "note": "local_neighborhood: passes all 266 examples",
-    "params": 58075,
-    "points": 9.75,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 22727,
+    "points": 10.666,
     "sample": {
       "in": "20000\n00020\n00000\n06000\n00000",
       "out": "21111\n11121\n00111\n06000\n00000"

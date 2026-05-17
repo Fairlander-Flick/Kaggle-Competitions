@@ -541,6 +541,179 @@ class LinearLocalConv(Family):
                                    [wt, bt]))
 
 
+# --------------------------------------------------------------------------- #
+# 7. LocalConvMin — same proven canvas-safe skeleton as LocalNeighborhood
+#    (Conv -> Relu -> Conv1x1) but every channel is a logic-minimised CUBE
+#    (a partial window: only the literals needed to fix the colour) instead of
+#    one channel per distinct full window. Two-level (DNF) minimisation per
+#    output colour collapses P (distinct windows) to P' (cubes) — often 5-50x —
+#    with ZERO change to correctness or canvas-safety:
+#
+#      * each cube weights +2 on the colour channel of every FIXED real-colour
+#        literal, -4 on all channels of every FIXED pad literal, bias
+#        -(2*n_real-1); non-fixed positions get weight 0. Score == 1 iff every
+#        fixed literal matches, else <= -1 -> Relu kills it. Identical firing
+#        algebra to LocalNeighborhood, just over a literal subset.
+#      * a cube is a VALID implicant: built so no observed window of any other
+#        colour satisfies it (the off-set is excluded during literal dropping),
+#        and the always-kept centre literal (a real colour for every in-grid
+#        cell) guarantees an all-zero / padding window can never fire ->
+#        canvas-safe by the same argument LocalNeighborhood already proves.
+#      * several cubes of the SAME colour may fire on one window (DNF cover,
+#        not partition) so the routed channel can sum to an integer >= 1; a
+#        final Clip(0,1) collapses it back to an exact one-hot. Different
+#        colours never co-fire on a graded window (every graded cell's window
+#        is in the LUT == observed, and cross-colour cubes exclude it).
+#
+#    Accepted only when the full ONNX cost strictly drops vs the exact matcher
+#    AND the official grader passes; else fit() returns None and the solver
+#    falls through to LocalNeighborhood -> never a regression.
+# --------------------------------------------------------------------------- #
+class LocalConvMin(Family):
+    name = "local_conv_min"
+    est_points = 14.0  # cube-minimised; tried before the exact matcher
+
+    def detect(self, train):
+        for i, o in train:
+            if len(i) != len(o) or len(i[0]) != len(o[0]):
+                return None
+        return {"_lcm": True}
+
+    @staticmethod
+    def _cost(P, K):
+        # Conv->Relu->Conv1x1->Clip : m,mr [1,P,30,30] + z [1,10,30,30] memory;
+        # params W1(P*10K^2)+b1(P)+W2(10P)+clip min/max(2).
+        mem = 2 * P * 900 * 4 + 10 * 900 * 4
+        par = P * (10 * K * K + 11) + 2
+        return mem + par
+
+    def fit(self, spec, pairs):
+        for K in (1, 3, 5):
+            lut = _fit_lut(pairs, K)
+            if lut is None:
+                continue
+            P = len(lut)
+            cubes = self._minimise(lut, K)
+            Pp = sum(len(v) for v in cubes.values())
+            if Pp < P and self._cost(Pp, K) < self._cost(P, K):
+                return {"K": K, "cubes": cubes}
+            return None  # this K is the rule but minimisation didn't pay off
+        return None
+
+    # ---- two-level (DNF) minimisation per output colour ------------------- #
+    @staticmethod
+    def _minimise(lut, K):
+        M = K * K
+        center = M // 2
+        keys = list(lut.keys())
+        # PAD(-1) -> 10 so arrays are non-negative.
+        A = np.array([[10 if v < 0 else v for v in k] for k in keys],
+                     dtype=np.int16)
+        Y = np.array([lut[k] for k in keys], dtype=np.int16)
+        # outer-ring-first drop order (centre never dropped, most informative)
+        rad = K // 2
+        order = sorted(
+            (p for p in range(M) if p != center),
+            key=lambda p: -max(abs(p // K - rad), abs(p % K - rad)))
+        cubes: Dict[int, List[List[Tuple[int, int]]]] = {}
+        for c in sorted(set(int(v) for v in Y)):
+            on = np.where(Y == c)[0]
+            off = A[Y != c]
+            covered = np.zeros(len(on), dtype=bool)
+            col_cubes: List[List[Tuple[int, int]]] = []
+            while not covered.all():
+                s = on[np.argmax(~covered)]
+                sv = A[s]
+                fixed = set(range(M))
+                # two passes of greedy literal dropping (a drop can unlock more)
+                for _ in range(2):
+                    for p in order:
+                        if p not in fixed:
+                            continue
+                        trial = fixed - {p}
+                        cols = list(trial)
+                        if off.shape[0] and (
+                                off[:, cols] == sv[cols]).all(axis=1).any():
+                            continue  # would admit an other-colour window
+                        fixed = trial
+                cube = [(p, int(sv[p])) for p in sorted(fixed)]
+                cols = [p for p, _ in cube]
+                vals = np.array([v for _, v in cube], dtype=np.int16)
+                hit = (A[on][:, cols] == vals).all(axis=1)
+                covered |= hit
+                col_cubes.append(cube)
+            cubes[c] = col_cubes
+        return cubes
+
+    @staticmethod
+    def _match(cube, key) -> bool:
+        for pos, val in cube:
+            kv = key[pos]
+            if val == 10:                       # fixed pad literal
+                if kv != PAD:
+                    return False
+            elif kv != val:
+                return False
+        return True
+
+    def apply(self, spec, grid):
+        K, cubes = spec["K"], spec["cubes"]
+        H, Wd = len(grid), len(grid[0])
+        out = [[0] * Wd for _ in range(H)]
+        for r in range(H):
+            for c in range(Wd):
+                key = _window_key(grid, r, c, K)
+                fired = [col for col, cl in cubes.items()
+                         if any(self._match(cb, key) for cb in cl)]
+                if len(fired) != 1:
+                    return None
+                out[r][c] = fired[0]
+        return out
+
+    def build_onnx(self, spec):
+        K, cubes = spec["K"], spec["cubes"]
+        rad = K // 2
+        flat = [(col, cb) for col in sorted(cubes) for cb in cubes[col]]
+        P = len(flat)
+        W1 = np.zeros((P, 10, K, K), dtype=np.float32)
+        b = np.zeros((P,), dtype=np.float32)
+        W2 = np.zeros((10, P, 1, 1), dtype=np.float32)
+        for p, (col, cube) in enumerate(flat):
+            n_real = 0
+            for pos, val in cube:
+                dy, dx = divmod(pos, K)
+                if val == 10:                       # fixed pad literal
+                    W1[p, :, dy, dx] = -4.0
+                else:
+                    W1[p, val, dy, dx] = 2.0
+                    n_real += 1
+            b[p] = -(2.0 * n_real - 1.0)
+            W2[col, p, 0, 0] = 1.0
+
+        x, y = _io()
+        op = [h.make_opsetid("", 13)]
+        w1 = h.make_tensor("W1", TensorProto.FLOAT, [P, 10, K, K],
+                           W1.flatten().tolist())
+        bt = h.make_tensor("b", TensorProto.FLOAT, [P], b.tolist())
+        w2 = h.make_tensor("W2", TensorProto.FLOAT, [10, P, 1, 1],
+                           W2.flatten().tolist())
+        lo = h.make_tensor("lo", TensorProto.FLOAT, [], [0.0])
+        hi = h.make_tensor("hi", TensorProto.FLOAT, [], [1.0])
+        nodes = [
+            h.make_node("Conv", ["input", "W1", "b"], ["m"],
+                        kernel_shape=[K, K], pads=[rad, rad, rad, rad]),
+            h.make_node("Relu", ["m"], ["mr"]),
+            h.make_node("Conv", ["mr", "W2"], ["z"],
+                        kernel_shape=[1, 1], pads=[0, 0, 0, 0]),
+            h.make_node("Clip", ["z", "lo", "hi"], ["output"]),
+        ]
+        return h.make_model(
+            h.make_graph(nodes, "local_conv_min", [x], [y],
+                         [w1, bt, w2, lo, hi]),
+            ir_version=IR_VERSION, opset_imports=op)
+
+
 # Ordered cheapest-correct-first (highest est_points first).
 REGISTRY: List[Family] = [Identity(), ColorPermute(), ColorLUT(), Fractal3(),
-                          LinearLocalConv(), LocalNeighborhood()]
+                          LinearLocalConv(), LocalConvMin(),
+                          LocalNeighborhood()]

@@ -1,6 +1,6 @@
 # NeuroGolf 2026 — Solve Log
 
-Projected **463.5/10000** from **35** solved tasks. One section per task: what it is, what we used, how we solved it.
+Projected **510.5/10000** from **35** solved tasks. One section per task: what it is, what we used, how we solved it.
 
 ## task001
 
@@ -95,9 +95,9 @@ Train example 0 (input → output):
 - **Examples:** 265 (train 2, test 1, arc-gen 262)
 - **Shapes:** input [[8, 8], [8, 9], [8, 10], [8, 11], [8, 12], [8, 13], [8, 14], [8, 15], [8, 16], [9, 8], [9, 9], [9, 10], [9, 11], [9, 12], [9, 13], [9, 14], [9, 15], [9, 16], [10, 8], [10, 9], [10, 10], [10, 12], [10, 13], [10, 14], [10, 16], [11, 8], [11, 9], [11, 10], [11, 11], [11, 12], [11, 13], [11, 14], [11, 15], [11, 16], [12, 8], [12, 9], [12, 10], [12, 11], [12, 12], [12, 13], [12, 14], [12, 15], [12, 16], [13, 8], [13, 9], [13, 10], [13, 11], [13, 12], [13, 13], [13, 14], [13, 15], [13, 16], [14, 8], [14, 9], [14, 10], [14, 11], [14, 12], [14, 13], [14, 14], [14, 15], [14, 16], [15, 8], [15, 9], [15, 10], [15, 11], [15, 12], [15, 13], [15, 14], [15, 15], [15, 16], [16, 9], [16, 10], [16, 11], [16, 12], [16, 13], [16, 14], [16, 15], [16, 16]] → output [[8, 8], [8, 9], [8, 10], [8, 11], [8, 12], [8, 13], [8, 14], [8, 15], [8, 16], [9, 8], [9, 9], [9, 10], [9, 11], [9, 12], [9, 13], [9, 14], [9, 15], [9, 16], [10, 8], [10, 9], [10, 10], [10, 12], [10, 13], [10, 14], [10, 16], [11, 8], [11, 9], [11, 10], [11, 11], [11, 12], [11, 13], [11, 14], [11, 15], [11, 16], [12, 8], [12, 9], [12, 10], [12, 11], [12, 12], [12, 13], [12, 14], [12, 15], [12, 16], [13, 8], [13, 9], [13, 10], [13, 11], [13, 12], [13, 13], [13, 14], [13, 15], [13, 16], [14, 8], [14, 9], [14, 10], [14, 11], [14, 12], [14, 13], [14, 14], [14, 15], [14, 16], [15, 8], [15, 9], [15, 10], [15, 11], [15, 12], [15, 13], [15, 14], [15, 15], [15, 16], [16, 9], [16, 10], [16, 11], [16, 12], [16, 13], [16, 14], [16, 15], [16, 16]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** local_neighborhood
-- **Score:** 8.933 pts  (memory 9367200, params 131401)
-- **How solved:** local_neighborhood: passes all 265 examples
+- **Family used:** local_conv_min
+- **Score:** 11.423 pts  (memory 777600, params 10405)
+- **How solved:** local_conv_min: passes all 265 examples
 
 Train example 0 (input → output):
 
@@ -428,9 +428,9 @@ Train example 0 (input → output):
 - **Examples:** 265 (train 3, test 1, arc-gen 261)
 - **Shapes:** input [[9, 9]] → output [[9, 9]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 6, 8] → output [0, 1, 2, 4, 6, 7, 8]
-- **Family used:** local_neighborhood
-- **Score:** 10.054 pts  (memory 3052800, params 42824)
-- **How solved:** local_neighborhood: passes all 265 examples
+- **Family used:** local_conv_min
+- **Score:** 11.404 pts  (memory 792000, params 10607)
+- **How solved:** local_conv_min: passes all 265 examples
 
 Train example 0 (input → output):
 
@@ -1540,9 +1540,9 @@ Train example 0 (input → output):
 - **Examples:** 60 (train 4, test 2, arc-gen 54)
 - **Shapes:** input [[3, 3]] → output [[3, 3]]  | same-shape: True
 - **Colors:** input [0, 1, 2] → output [0, 1, 2]
-- **Family used:** local_neighborhood
-- **Score:** 10.628 pts  (memory 1720800, params 24139)
-- **How solved:** local_neighborhood: passes all 60 examples
+- **Family used:** local_conv_min
+- **Score:** 12.929 pts  (memory 172800, params 1921)
+- **How solved:** local_conv_min: passes all 60 examples
 
 Train example 0 (input → output):
 
@@ -2101,9 +2101,9 @@ Train example 0 (input → output):
 - **Examples:** 15 (train 3, test 1, arc-gen 11)
 - **Shapes:** input [[5, 5]] → output [[5, 5]]  | same-shape: True
 - **Colors:** input [0, 1, 5] → output [0, 1, 5]
-- **Family used:** local_neighborhood
-- **Score:** 12.32 pts  (memory 316800, params 4444)
-- **How solved:** local_neighborhood: passes all 15 examples
+- **Family used:** local_conv_min
+- **Score:** 13.713 pts  (memory 79200, params 608)
+- **How solved:** local_conv_min: passes all 15 examples
 
 Train example 0 (input → output):
 
@@ -2326,9 +2326,9 @@ Train example 0 (input → output):
 - **Examples:** 264 (train 2, test 1, arc-gen 261)
 - **Shapes:** input [[7, 7]] → output [[7, 7]]  | same-shape: True
 - **Colors:** input [0, 8] → output [0, 1, 8]
-- **Family used:** local_neighborhood
-- **Score:** 10.649 pts  (memory 1684800, params 23634)
-- **How solved:** local_neighborhood: passes all 264 examples
+- **Family used:** local_conv_min
+- **Score:** 12.929 pts  (memory 172800, params 1921)
+- **How solved:** local_conv_min: passes all 264 examples
 
 Train example 0 (input → output):
 
@@ -2813,9 +2813,9 @@ Train example 0 (input → output):
 - **Examples:** 267 (train 4, test 1, arc-gen 262)
 - **Shapes:** input [[5, 6], [5, 9], [5, 10], [5, 11], [5, 13], [5, 14], [5, 17], [6, 5], [6, 9], [6, 10], [6, 11], [6, 12], [6, 13], [6, 15], [6, 16], [6, 17], [6, 18], [6, 19], [6, 20], [7, 5], [7, 6], [7, 7], [7, 8], [7, 10], [7, 11], [7, 13], [7, 14], [7, 16], [7, 17], [7, 18], [8, 5], [8, 6], [8, 7], [8, 8], [8, 9], [8, 10], [8, 11], [8, 12], [8, 13], [8, 14], [8, 15], [8, 16], [8, 17], [8, 19], [8, 20], [9, 5], [9, 7], [9, 12], [9, 14], [9, 15], [9, 17], [9, 18], [9, 19], [10, 5], [10, 7], [10, 9], [10, 10], [10, 13], [10, 14], [10, 15], [10, 16], [10, 17], [11, 5], [11, 6], [11, 7], [11, 8], [11, 10], [11, 11], [11, 12], [11, 13], [11, 14], [11, 15], [11, 16], [11, 17], [11, 18], [11, 19], [11, 20], [12, 5], [12, 7], [12, 8], [12, 9], [12, 13], [12, 15], [12, 16], [12, 17], [12, 18], [12, 19], [12, 20], [13, 5], [13, 6], [13, 7], [13, 8], [13, 10], [13, 11], [13, 14], [13, 16], [13, 18], [13, 19], [14, 6], [14, 8], [14, 11], [14, 12], [14, 13], [14, 16], [14, 18], [14, 19], [15, 6], [15, 7], [15, 8], [15, 9], [15, 10], [15, 13], [15, 14], [15, 16], [15, 17], [15, 19], [16, 6], [16, 7], [16, 8], [16, 10], [16, 11], [16, 12], [16, 13], [16, 14], [16, 16], [16, 17], [16, 18], [17, 6], [17, 7], [17, 9], [17, 12], [17, 14], [17, 15], [17, 16], [17, 18], [17, 19], [18, 6], [18, 7], [18, 8], [18, 9], [18, 10], [18, 11], [18, 12], [18, 13], [18, 14], [18, 17], [18, 18], [18, 19], [19, 5], [19, 6], [19, 7], [19, 8], [19, 13], [19, 14], [19, 15], [19, 17], [19, 20], [20, 7], [20, 8], [20, 9], [20, 11], [20, 12], [20, 13], [20, 14], [20, 16], [20, 19], [20, 20]] → output [[5, 6], [5, 9], [5, 10], [5, 11], [5, 13], [5, 14], [5, 17], [6, 5], [6, 9], [6, 10], [6, 11], [6, 12], [6, 13], [6, 15], [6, 16], [6, 17], [6, 18], [6, 19], [6, 20], [7, 5], [7, 6], [7, 7], [7, 8], [7, 10], [7, 11], [7, 13], [7, 14], [7, 16], [7, 17], [7, 18], [8, 5], [8, 6], [8, 7], [8, 8], [8, 9], [8, 10], [8, 11], [8, 12], [8, 13], [8, 14], [8, 15], [8, 16], [8, 17], [8, 19], [8, 20], [9, 5], [9, 7], [9, 12], [9, 14], [9, 15], [9, 17], [9, 18], [9, 19], [10, 5], [10, 7], [10, 9], [10, 10], [10, 13], [10, 14], [10, 15], [10, 16], [10, 17], [11, 5], [11, 6], [11, 7], [11, 8], [11, 10], [11, 11], [11, 12], [11, 13], [11, 14], [11, 15], [11, 16], [11, 17], [11, 18], [11, 19], [11, 20], [12, 5], [12, 7], [12, 8], [12, 9], [12, 13], [12, 15], [12, 16], [12, 17], [12, 18], [12, 19], [12, 20], [13, 5], [13, 6], [13, 7], [13, 8], [13, 10], [13, 11], [13, 14], [13, 16], [13, 18], [13, 19], [14, 6], [14, 8], [14, 11], [14, 12], [14, 13], [14, 16], [14, 18], [14, 19], [15, 6], [15, 7], [15, 8], [15, 9], [15, 10], [15, 13], [15, 14], [15, 16], [15, 17], [15, 19], [16, 6], [16, 7], [16, 8], [16, 10], [16, 11], [16, 12], [16, 13], [16, 14], [16, 16], [16, 17], [16, 18], [17, 6], [17, 7], [17, 9], [17, 12], [17, 14], [17, 15], [17, 16], [17, 18], [17, 19], [18, 6], [18, 7], [18, 8], [18, 9], [18, 10], [18, 11], [18, 12], [18, 13], [18, 14], [18, 17], [18, 18], [18, 19], [19, 5], [19, 6], [19, 7], [19, 8], [19, 13], [19, 14], [19, 15], [19, 17], [19, 20], [20, 7], [20, 8], [20, 9], [20, 11], [20, 12], [20, 13], [20, 14], [20, 16], [20, 19], [20, 20]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** local_neighborhood
-- **Score:** 8.361 pts  (memory 16610400, params 233007)
-- **How solved:** local_neighborhood: passes all 267 examples
+- **Family used:** local_conv_min
+- **Score:** 11.074 pts  (memory 1101600, params 14950)
+- **How solved:** local_conv_min: passes all 267 examples
 
 Train example 0 (input → output):
 
@@ -3507,9 +3507,9 @@ Train example 0 (input → output):
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[10, 12], [11, 12], [11, 13], [12, 11], [12, 12], [12, 13], [12, 14], [13, 12], [13, 13], [13, 14], [13, 15], [14, 12], [14, 13], [14, 14], [15, 13], [15, 14], [16, 14]] → output [[10, 12], [11, 12], [11, 13], [12, 11], [12, 12], [12, 13], [12, 14], [13, 12], [13, 13], [13, 14], [13, 15], [14, 12], [14, 13], [14, 14], [15, 13], [15, 14], [16, 14]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3] → output [0, 1, 2, 3, 8]
-- **Family used:** local_neighborhood
-- **Score:** 9.63 pts  (memory 4665600, params 65448)
-- **How solved:** local_neighborhood: passes all 266 examples
+- **Family used:** local_conv_min
+- **Score:** 12.929 pts  (memory 172800, params 1921)
+- **How solved:** local_conv_min: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -3581,9 +3581,9 @@ Train example 0 (input → output):
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[7, 7], [7, 8], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 17], [7, 18], [7, 19], [8, 7], [8, 8], [8, 9], [8, 10], [8, 12], [8, 13], [8, 14], [8, 15], [8, 17], [8, 18], [8, 20], [9, 7], [9, 8], [9, 9], [9, 10], [9, 12], [9, 16], [9, 20], [9, 21], [10, 7], [10, 8], [10, 9], [10, 10], [10, 11], [10, 12], [10, 13], [10, 14], [10, 15], [10, 17], [10, 21], [11, 7], [11, 8], [11, 9], [11, 10], [11, 11], [11, 12], [11, 15], [11, 16], [11, 17], [11, 19], [11, 21], [12, 8], [12, 10], [12, 12], [12, 13], [12, 14], [12, 16], [12, 17], [12, 19], [13, 7], [13, 8], [13, 9], [13, 11], [13, 12], [13, 13], [13, 17], [13, 20], [13, 21], [14, 7], [14, 9], [14, 10], [14, 13], [14, 14], [14, 15], [14, 16], [14, 18], [15, 7], [15, 8], [15, 9], [15, 10], [15, 11], [15, 13], [15, 14], [15, 15], [15, 17], [15, 18], [15, 19], [15, 21], [16, 7], [16, 8], [16, 11], [16, 12], [16, 14], [16, 15], [16, 16], [16, 17], [16, 21], [17, 9], [17, 10], [17, 11], [17, 13], [17, 17], [17, 18], [17, 21], [18, 7], [18, 8], [18, 10], [18, 11], [18, 15], [18, 16], [18, 18], [18, 19], [18, 20], [18, 21], [19, 8], [19, 9], [19, 11], [19, 17], [19, 18], [19, 20], [19, 21], [20, 7], [20, 8], [20, 10], [20, 11], [20, 18], [20, 19], [20, 20], [21, 8], [21, 12], [21, 13], [21, 14], [21, 18], [21, 19], [21, 20], [21, 21]] → output [[7, 7], [7, 8], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 17], [7, 18], [7, 19], [8, 7], [8, 8], [8, 9], [8, 10], [8, 12], [8, 13], [8, 14], [8, 15], [8, 17], [8, 18], [8, 20], [9, 7], [9, 8], [9, 9], [9, 10], [9, 12], [9, 16], [9, 20], [9, 21], [10, 7], [10, 8], [10, 9], [10, 10], [10, 11], [10, 12], [10, 13], [10, 14], [10, 15], [10, 17], [10, 21], [11, 7], [11, 8], [11, 9], [11, 10], [11, 11], [11, 12], [11, 15], [11, 16], [11, 17], [11, 19], [11, 21], [12, 8], [12, 10], [12, 12], [12, 13], [12, 14], [12, 16], [12, 17], [12, 19], [13, 7], [13, 8], [13, 9], [13, 11], [13, 12], [13, 13], [13, 17], [13, 20], [13, 21], [14, 7], [14, 9], [14, 10], [14, 13], [14, 14], [14, 15], [14, 16], [14, 18], [15, 7], [15, 8], [15, 9], [15, 10], [15, 11], [15, 13], [15, 14], [15, 15], [15, 17], [15, 18], [15, 19], [15, 21], [16, 7], [16, 8], [16, 11], [16, 12], [16, 14], [16, 15], [16, 16], [16, 17], [16, 21], [17, 9], [17, 10], [17, 11], [17, 13], [17, 17], [17, 18], [17, 21], [18, 7], [18, 8], [18, 10], [18, 11], [18, 15], [18, 16], [18, 18], [18, 19], [18, 20], [18, 21], [19, 8], [19, 9], [19, 11], [19, 17], [19, 18], [19, 20], [19, 21], [20, 7], [20, 8], [20, 10], [20, 11], [20, 18], [20, 19], [20, 20], [21, 8], [21, 12], [21, 13], [21, 14], [21, 18], [21, 19], [21, 20], [21, 21]]  | same-shape: True
 - **Colors:** input [0, 2, 3] → output [0, 2, 3]
-- **Family used:** local_neighborhood
-- **Score:** 9.26 pts  (memory 6609600, params 239598)
-- **How solved:** local_neighborhood: passes all 266 examples
+- **Family used:** local_conv_min
+- **Score:** 11.754 pts  (memory 547200, params 18533)
+- **How solved:** local_conv_min: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -4350,9 +4350,9 @@ Train example 0 (input → output):
 - **Examples:** 267 (train 4, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3], [3, 4], [3, 5], [3, 6], [4, 3], [4, 4], [4, 5], [4, 6], [5, 3], [5, 4], [5, 5], [5, 6], [6, 3], [6, 4], [6, 5], [6, 6]] → output [[3, 3], [3, 4], [3, 5], [3, 6], [4, 3], [4, 4], [4, 5], [4, 6], [5, 3], [5, 4], [5, 5], [5, 6], [6, 3], [6, 4], [6, 5], [6, 6]]  | same-shape: True
 - **Colors:** input [0, 3] → output [0, 3, 8]
-- **Family used:** local_neighborhood
-- **Score:** 9.408 pts  (memory 5824800, params 81709)
-- **How solved:** local_neighborhood: passes all 267 examples
+- **Family used:** local_conv_min
+- **Score:** 13.112 pts  (memory 144000, params 1517)
+- **How solved:** local_conv_min: passes all 267 examples
 
 Train example 0 (input → output):
 
@@ -4444,9 +4444,9 @@ Train example 0 (input → output):
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [11, 11], [12, 12]] → output [[4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [11, 11], [12, 12]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** local_neighborhood
-- **Score:** 8.744 pts  (memory 11318400, params 158772)
-- **How solved:** local_neighborhood: passes all 266 examples
+- **Family used:** local_conv_min
+- **Score:** 9.59 pts  (memory 4860000, params 67672)
+- **How solved:** local_conv_min: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -5556,9 +5556,9 @@ Train example 0 (input → output):
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[7, 7], [8, 8], [9, 9], [10, 10], [11, 11], [12, 12], [13, 13], [14, 14], [15, 15], [16, 16], [17, 17], [18, 18], [19, 19], [20, 20]] → output [[7, 7], [8, 8], [9, 9], [10, 10], [11, 11], [12, 12], [13, 13], [14, 14], [15, 15], [16, 16], [17, 17], [18, 18], [19, 19], [20, 20]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** local_neighborhood
-- **Score:** 8.223 pts  (memory 19058400, params 267347)
-- **How solved:** local_neighborhood: passes all 266 examples
+- **Family used:** local_conv_min
+- **Score:** 11.343 pts  (memory 842400, params 11314)
+- **How solved:** local_conv_min: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -6335,9 +6335,9 @@ Train example 0 (input → output):
 - **Examples:** 267 (train 4, test 1, arc-gen 262)
 - **Shapes:** input [[6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [11, 11], [12, 12], [13, 13], [14, 14], [15, 15], [16, 16]] → output [[6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [11, 11], [12, 12], [13, 13], [14, 14], [15, 15], [16, 16]]  | same-shape: True
 - **Colors:** input [0, 2, 3, 8] → output [0, 1, 2, 3, 4, 6, 8]
-- **Family used:** local_neighborhood
-- **Score:** 11.673 pts  (memory 604800, params 8484)
-- **How solved:** local_neighborhood: passes all 267 examples
+- **Family used:** local_conv_min
+- **Score:** 12.392 pts  (memory 295200, params 3638)
+- **How solved:** local_conv_min: passes all 267 examples
 
 Train example 0 (input → output):
 
@@ -6672,9 +6672,9 @@ Train example 0 (input → output):
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[10, 10], [15, 15]] → output [[10, 10], [15, 15]]  | same-shape: True
 - **Colors:** input [0, 5] → output [0, 1, 2, 3, 4, 5]
-- **Family used:** local_neighborhood
-- **Score:** 12.467 pts  (memory 273600, params 3838)
-- **How solved:** local_neighborhood: passes all 266 examples
+- **Family used:** local_conv_min
+- **Score:** 13.063 pts  (memory 151200, params 1618)
+- **How solved:** local_conv_min: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -7484,9 +7484,9 @@ Train example 0 (input → output):
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10]] → output [[5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10]]  | same-shape: True
 - **Colors:** input [0, 1] → output [0, 1, 2]
-- **Family used:** local_neighborhood
-- **Score:** 10.906 pts  (memory 1303200, params 18281)
-- **How solved:** local_neighborhood: passes all 266 examples
+- **Family used:** local_conv_min
+- **Score:** 13.545 pts  (memory 93600, params 810)
+- **How solved:** local_conv_min: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -7570,9 +7570,9 @@ Train example 0 (input → output):
 - **Examples:** 265 (train 3, test 1, arc-gen 261)
 - **Shapes:** input [[3, 3], [4, 4], [5, 5], [6, 6], [7, 7]] → output [[3, 3], [4, 4], [5, 5], [6, 6], [7, 7]]  | same-shape: True
 - **Colors:** input [0, 8] → output [0, 2]
-- **Family used:** local_neighborhood
-- **Score:** 9.848 pts  (memory 3751200, params 52621)
-- **How solved:** local_neighborhood: passes all 265 examples
+- **Family used:** local_conv_min
+- **Score:** 13.47 pts  (memory 100800, params 911)
+- **How solved:** local_conv_min: passes all 265 examples
 
 Train example 0 (input → output):
 
@@ -7596,9 +7596,9 @@ Train example 0 (input → output):
 - **Examples:** 11 (train 4, test 1, arc-gen 6)
 - **Shapes:** input [[3, 3]] → output [[3, 3]]  | same-shape: True
 - **Colors:** input [0, 5] → output [2, 3, 4]
-- **Family used:** local_neighborhood
-- **Score:** 11.87 pts  (memory 496800, params 6969)
-- **How solved:** local_neighborhood: passes all 11 examples
+- **Family used:** local_conv_min
+- **Score:** 12.929 pts  (memory 172800, params 1921)
+- **How solved:** local_conv_min: passes all 11 examples
 
 Train example 0 (input → output):
 
@@ -7703,9 +7703,9 @@ Train example 0 (input → output):
 - **Examples:** 20 (train 4, test 1, arc-gen 15)
 - **Shapes:** input [[3, 5]] → output [[3, 5]]  | same-shape: True
 - **Colors:** input [0, 2] → output [0, 3, 6, 7, 8]
-- **Family used:** local_neighborhood
-- **Score:** 12.044 pts  (memory 417600, params 5858)
-- **How solved:** local_neighborhood: passes all 20 examples
+- **Family used:** local_conv_min
+- **Score:** 12.972 pts  (memory 165600, params 1820)
+- **How solved:** local_conv_min: passes all 20 examples
 
 Train example 0 (input → output):
 
@@ -7884,9 +7884,9 @@ Train example 0 (input → output):
 - **Examples:** 267 (train 4, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5], [5, 3], [5, 4], [5, 5]] → output [[3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5], [5, 3], [5, 4], [5, 5]]  | same-shape: True
 - **Colors:** input [0, 2] → output [0, 1, 2]
-- **Family used:** local_neighborhood
-- **Score:** 9.458 pts  (memory 5544000, params 77770)
-- **How solved:** local_neighborhood: passes all 267 examples
+- **Family used:** local_conv_min
+- **Score:** 13.163 pts  (memory 136800, params 1416)
+- **How solved:** local_conv_min: passes all 267 examples
 
 Train example 0 (input → output):
 
@@ -8179,9 +8179,9 @@ Train example 0 (input → output):
 - **Examples:** 265 (train 2, test 1, arc-gen 262)
 - **Shapes:** input [[9, 9]] → output [[9, 9]]  | same-shape: True
 - **Colors:** input [0, 5] → output [0, 1, 5]
-- **Family used:** local_neighborhood
-- **Score:** 12.578 pts  (memory 244800, params 3434)
-- **How solved:** local_neighborhood: passes all 265 examples
+- **Family used:** local_conv_min
+- **Score:** 12.972 pts  (memory 165600, params 1820)
+- **How solved:** local_conv_min: passes all 265 examples
 
 Train example 0 (input → output):
 
@@ -8510,9 +8510,9 @@ Train example 0 (input → output):
 - **Examples:** 267 (train 4, test 1, arc-gen 262)
 - **Shapes:** input [[5, 5], [5, 6], [5, 7], [5, 9], [5, 11], [5, 12], [5, 13], [5, 14], [5, 15], [6, 5], [6, 6], [6, 8], [6, 9], [6, 10], [6, 11], [6, 12], [6, 13], [6, 14], [6, 15], [7, 5], [7, 6], [7, 7], [7, 9], [7, 10], [7, 11], [7, 13], [7, 14], [7, 15], [8, 5], [8, 6], [8, 7], [8, 8], [8, 10], [8, 11], [8, 12], [8, 13], [8, 15], [9, 5], [9, 6], [9, 7], [9, 8], [9, 9], [9, 10], [9, 11], [9, 12], [9, 13], [9, 14], [9, 15], [10, 5], [10, 6], [10, 7], [10, 9], [10, 10], [10, 11], [10, 12], [10, 14], [10, 15], [11, 5], [11, 6], [11, 7], [11, 8], [11, 9], [11, 10], [11, 11], [11, 12], [11, 13], [11, 15], [12, 5], [12, 6], [12, 7], [12, 8], [12, 9], [12, 10], [12, 11], [12, 12], [12, 13], [12, 14], [13, 6], [13, 7], [13, 8], [13, 9], [13, 10], [13, 11], [13, 12], [13, 13], [13, 14], [14, 5], [14, 6], [14, 7], [14, 8], [14, 9], [14, 10], [14, 12], [14, 13], [14, 14], [14, 15], [15, 5], [15, 6], [15, 7], [15, 9], [15, 10], [15, 11], [15, 13], [15, 15]] → output [[5, 5], [5, 6], [5, 7], [5, 9], [5, 11], [5, 12], [5, 13], [5, 14], [5, 15], [6, 5], [6, 6], [6, 8], [6, 9], [6, 10], [6, 11], [6, 12], [6, 13], [6, 14], [6, 15], [7, 5], [7, 6], [7, 7], [7, 9], [7, 10], [7, 11], [7, 13], [7, 14], [7, 15], [8, 5], [8, 6], [8, 7], [8, 8], [8, 10], [8, 11], [8, 12], [8, 13], [8, 15], [9, 5], [9, 6], [9, 7], [9, 8], [9, 9], [9, 10], [9, 11], [9, 12], [9, 13], [9, 14], [9, 15], [10, 5], [10, 6], [10, 7], [10, 9], [10, 10], [10, 11], [10, 12], [10, 14], [10, 15], [11, 5], [11, 6], [11, 7], [11, 8], [11, 9], [11, 10], [11, 11], [11, 12], [11, 13], [11, 15], [12, 5], [12, 6], [12, 7], [12, 8], [12, 9], [12, 10], [12, 11], [12, 12], [12, 13], [12, 14], [13, 6], [13, 7], [13, 8], [13, 9], [13, 10], [13, 11], [13, 12], [13, 13], [13, 14], [14, 5], [14, 6], [14, 7], [14, 8], [14, 9], [14, 10], [14, 12], [14, 13], [14, 14], [14, 15], [15, 5], [15, 6], [15, 7], [15, 9], [15, 10], [15, 11], [15, 13], [15, 15]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** local_neighborhood
-- **Score:** 8.189 pts  (memory 19713600, params 276538)
-- **How solved:** local_neighborhood: passes all 267 examples
+- **Family used:** local_conv_min
+- **Score:** 10.275 pts  (memory 2448000, params 33837)
+- **How solved:** local_conv_min: passes all 267 examples
 
 Train example 0 (input → output):
 
@@ -9628,9 +9628,9 @@ Train example 0 (input → output):
 - **Examples:** 265 (train 2, test 1, arc-gen 262)
 - **Shapes:** input [[10, 10]] → output [[10, 10]]  | same-shape: True
 - **Colors:** input [0, 1] → output [0, 1, 2, 6, 7, 8]
-- **Family used:** local_neighborhood
-- **Score:** 12.027 pts  (memory 424800, params 5959)
-- **How solved:** local_neighborhood: passes all 265 examples
+- **Family used:** local_conv_min
+- **Score:** 13.163 pts  (memory 136800, params 1416)
+- **How solved:** local_conv_min: passes all 265 examples
 
 Train example 0 (input → output):
 
@@ -10034,9 +10034,9 @@ Train example 0 (input → output):
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3], [3, 4], [3, 5], [3, 6], [3, 7], [3, 8], [3, 9], [3, 10], [4, 3], [4, 4], [4, 5], [4, 6], [4, 7], [4, 8], [4, 9], [4, 10], [5, 3], [5, 4], [5, 5], [5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 3], [6, 4], [6, 5], [6, 6], [6, 7], [6, 8], [6, 9], [6, 10], [7, 3], [7, 4], [7, 5], [7, 6], [7, 7], [7, 8], [7, 9], [7, 10], [8, 3], [8, 4], [8, 5], [8, 6], [8, 7], [8, 8], [8, 9], [8, 10], [9, 3], [9, 4], [9, 5], [9, 6], [9, 7], [9, 8], [9, 9], [9, 10], [10, 3], [10, 4], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]] → output [[3, 3], [3, 4], [3, 5], [3, 6], [3, 7], [3, 8], [3, 9], [3, 10], [4, 3], [4, 4], [4, 5], [4, 6], [4, 7], [4, 8], [4, 9], [4, 10], [5, 3], [5, 4], [5, 5], [5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 3], [6, 4], [6, 5], [6, 6], [6, 7], [6, 8], [6, 9], [6, 10], [7, 3], [7, 4], [7, 5], [7, 6], [7, 7], [7, 8], [7, 9], [7, 10], [8, 3], [8, 4], [8, 5], [8, 6], [8, 7], [8, 8], [8, 9], [8, 10], [9, 3], [9, 4], [9, 5], [9, 6], [9, 7], [9, 8], [9, 9], [9, 10], [10, 3], [10, 4], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]]  | same-shape: True
 - **Colors:** input [0, 2, 3, 5] → output [0, 2, 3, 5, 8]
-- **Family used:** local_neighborhood
-- **Score:** 8.749 pts  (memory 11260800, params 157964)
-- **How solved:** local_neighborhood: passes all 266 examples
+- **Family used:** local_conv_min
+- **Score:** 11.994 pts  (memory 439200, params 5658)
+- **How solved:** local_conv_min: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -10269,11 +10269,11 @@ Train example 0 (input → output):
 
 - **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
-- **Shapes:** input [(4, 5), (5, 5), (5, 6), (6, 6), (6, 7), (7, 7), (7, 8), (8, 8), (8, 9), (9, 9), (9, 10), (10, 10)] → output [(4, 5), (5, 5), (5, 6), (6, 6), (6, 7), (7, 7), (7, 8), (8, 8), (8, 9), (9, 9), (9, 10), (10, 10)]  | same-shape: True
+- **Shapes:** input [[4, 5], [5, 5], [5, 6], [6, 6], [6, 7], [7, 7], [7, 8], [8, 8], [8, 9], [9, 9], [9, 10], [10, 10]] → output [[4, 5], [5, 5], [5, 6], [6, 6], [6, 7], [7, 7], [7, 8], [8, 8], [8, 9], [9, 9], [9, 10], [10, 10]]  | same-shape: True
 - **Colors:** input [0, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** local_neighborhood
-- **Score:** 9.75 pts  (memory 4140000, params 58075)
-- **How solved:** local_neighborhood: passes all 266 examples
+- **Family used:** local_conv_min
+- **Score:** 10.666 pts  (memory 1656000, params 22727)
+- **How solved:** local_conv_min: passes all 266 examples
 
 Train example 0 (input → output):
 
