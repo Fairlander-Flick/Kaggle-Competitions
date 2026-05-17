@@ -58,18 +58,18 @@
     "task": 1
   },
   "002": {
-    "family": null,
-    "memory": null,
-    "n_fail": 268,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "flood_fill",
+    "memory": 248504,
+    "n_fail": 0,
+    "n_pass": 268,
+    "note": "flood_fill: passes all 268 examples",
+    "params": 923,
+    "points": 12.573,
     "sample": {
       "in": "000000\n003000\n030300\n003030\n000300\n000000",
       "out": "000000\n003000\n034300\n003430\n000300\n000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -59189,18 +59189,18 @@
     "task": 250
   },
   "251": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "flood_fill",
+    "memory": 169304,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "flood_fill: passes all 266 examples",
+    "params": 923,
+    "points": 12.955,
     "sample": {
       "in": "00000000\n02222200\n02000200\n02020200\n02000200\n02222200\n00000000\n00000000",
       "out": "00000000\n02222200\n02111200\n02121200\n02111200\n02222200\n00000000\n00000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,

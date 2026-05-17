@@ -1,76 +1,89 @@
-# Resume pointer (autonomous grind)
+# Resume pointer (autonomous grind) — FINAL PROTOCOL (user-locked 2026-05-17)
 
-Mode: **pure-local grind** (local==Kaggle PROVEN, see logs/CALIB.md). No
-per-task submits. Submit only the accumulated best `out/submission.zip`
-(filename MUST be exactly `submission.zip`) when local projection beats the
-current best real LB (5480.41). Truth = `logs/results.json`. Checkpoint
-report every ~15-25 tasks. Atomic commit + push per family batch.
+Mode: **pure-local grind** (local==Kaggle PROVEN, logs/CALIB.md). No per-task
+submits. Submit accumulated best `out/submission.zip` (name MUST be exactly
+that) only when local projection beats best real LB (5480.41). Truth =
+`logs/results.json`. Architect does ALL reasoning (analysis + canvas-safe
+ONNX design + golf + debug + acceptance) — NEVER delegate to a subagent
+(memory delegation-no-reasoning-to-subagents). NO internet/known-algorithm
+search (user removed it 2026-05-17).
 
-Working style: **Architect does ALL reasoning** (analysis + canvas-safe ONNX
-design + debugging + acceptance) — do NOT delegate any reasoning to a Sonnet
-subagent (user directive 2026-05-17; see memory delegation-no-reasoning-to-
-subagents). Acceptance gate is ALWAYS the official grader (verify.verify,
-n_fail==0 over train+test+arc-gen, measurable) plus an independent fresh
-engine.verify re-run on a sample + a full re-solve regression sweep.
+## Goal
+Competition score floor **7000** (avg 17.5/400), stretch **7200** (18.0).
+Cost model (memory neurogolf-cost-model): `points=25−ln(memory+params)`,
+memory = Σ every intermediate tensor's bytes, `input`/`output` exempt.
+Coverage-only caps ~5400 → compaction is mandatory, golf-as-you-go.
 
-## State (2026-05-17, after 5 shape/position families)
-- Solved **53/400 → projected 768.81 pts** (was 631.72; +137.09 this
-  session). Trajectory (real, monotone, every family double-gated):
-  418.5 → 463.5 → 510.5 → 631.7 → **768.8**.
-- Regression check: re-solved ALL 42 prior tasks → **0 changes** (same
-  family+points). 6 of the 11 new ONNX independently re-verified via a fresh
-  engine.verify (official path), n_fail==0. local==Kaggle still holds.
-- New families (all opset-10 except int_scale opset-13; all canvas-safe via
-  the GlobalGeom data-dependent permutation/translation-matmul trick — fixed
-  [30,30]/[.,.,30,30] shapes, data-dep VALUES; existing 8 families left
-  byte-identical, REGISTRY: new ones after GlobalGeom, before conv trio):
-  - **symmetry_fill x2** (113,385) ~12.78 — same-shape; bg(0) cell filled by
-    vertically-mirrored cell. `flip=MatMul(flip_rows_P,in)`;
-    `out=flip+(in-flip)*tile(mask)`, mask=Σ ch1..9 (real-colour ⇒ keep in).
-  - **crop_bbox x1** (31) 13.37 — crop to non-bg(colour≥1) bbox. r/c min,max
-    from non-bg occupancy → row-select Pr & col-select Pc → MatMul(MatMul
-    (Pr,in),Pc).
-  - **quadrant_upscale x5** (083,142,152 mirror; 106,194 rot) ~11.85-12.09 —
-    2× block. mirror=[[A,fliplr],[flipud,rot180]], rot=[[A,rot90cw],
-    [rot90ccw,rot180]]. flips reuse GlobalGeom perms; shift-right-W /
-    shift-down-H translation matrices place 4 disjoint quadrants → sum =
-    valid one-hot. fit() disambiguates variant over ALL pairs (train ex0
-    can match both for symmetric inputs).
-  - **int_scale x2** (223 k=3, 307 k=2) ~12.3-13.1 — Resize(nearest,floor,
-    scale [1,1,k,k]) then Slice back to 30×30 (opset-13, Fractal3 skeleton).
-  - **tiling x1** (249 1×2) ~12.78 — Σ over (p,q) of shift(in, pH, qW) via
-    translation matmuls; q=0/p=0 ⇒ identity.
-- Best prior real public LB to beat: 5480.41 (we are at 768.8 → no submit).
+## Per-task good-enough (the stop rule)
+`G(task) = min(18.0, p_max(task) − 1.0)` where `p_max` = Architect-computed
+theoretical ceiling from the rule-class's mandatory-intermediate cost floor
+(compute BEFORE constructing). Golf until `pts ≥ G`, then **STOP** (never
+chase G→25 on a solo task; only family-template lifts that raise N members
+are always taken). Self-balances: naturally-cheap tasks (identity/transpose/
+recolor ~22-25) subsidize ceiling-capped ones. Every checkpoint report
+running **Σp_max projection**; if < 7200 → structural alarm → paradigm-shift
+that family's construction, not blind grind.
 
-## Exact next action (highest leverage first)
-1. **Sub-groups N + P (6 tasks, cheap, do FIRST):** N=116,172,210 (out 2×
-   height only), P=164,231,311 (out 2× width only). These are likely a
-   tiling/mirror variant of the just-built families — INSPECT ex0 each
-   (arc-pattern-analysis), then EXTEND `tiling` (or a 2-pane mirror) to
-   cover them. ~6 tasks ≈ +75 pts for one small family extension.
-2. **Sub-group I leftovers (defer, low yield):** task327 (3×3→6×6 diagonal
-   self-shift — custom convolution placement) and task108 (2× size but a
-   sparse-cell COMPACTION/relocation, not a quadrant rule). 2 singletons,
-   build only if a cheap construction emerges; otherwise skip for the mass.
-3. **The mass — Sub-group A x111** (5,8,9,12,... shape-eq, identical
-   palette, spatially conditional; NOT ≤5×5-local else conv caught them).
-   Need GLOBAL structure. Cluster via arc-pattern-analysis; build ONE
-   canvas-safe family per recurring pattern (enclosure / flood-fill —
-   task002 _TASK_ZERO class — connectivity, object move/recolor). Highest
-   total pool; tackle after the cheap N/P win.
-4. **Sub-groups D/E/F/G (colour-gained marking, ~41 tasks):** same-shape,
-   one new colour at structured positions — likely object/contour marking;
-   a single "mark cells satisfying a local+global predicate" family may
-   clear a cluster. arc-pattern-analysis per sub-group.
+## Stuck budget (unit = a distinct verified/disproven skeleton, not a tweak)
+- Coverage (0→solved): ≤ **3** distinct canvas-safe constructions. Fail →
+  `deferred + reason`, revisit pass-2.
+- Golf (solved→G): ≤ **3** measured golf iterations on the FAMILY TEMPLATE
+  (amortized over members). Still < G → accept best, flag `golf-capped`,
+  move on; revisit only via a later family-template multiplier.
+- Max **2 full passes** (pass-2 = deferred + golf-capped w/ cross-family
+  insight), then submit best.
 
-## How to resume
-`python run.py render` to refresh logs from results.json. Read
-logs/TRIAGE.md for full unsolved buckets + task-id lists; logs/FAMILY_SPEC.md
-for the canvas-safe construction patterns already proven (reuse the helper
-emitters in engine/families.py: `_idx`,`_occ_all`,`_occ_nz`,`_flip_rows_P`,
-`_flip_cols_P`,`_shift_mat`). Per new family: Architect writes the exact
-canvas-safe ONNX recipe AND implements it in engine/families.py (insert into
-REGISTRY ordered by est_points; exact detect so no regression), runs
-`python run.py solve <n>` per task, independently re-runs engine.verify on a
-sample + a full re-solve regression sweep, then commit+push per family batch
-+ checkpoint report. Do NOT delegate reasoning to subagents.
+## Work order (ordered, family-templated)
+Process by ascending task index, BUT when you reach a task resolve its
+WHOLE family/template at once: compute p_max → construct/golf the template
+once (≤3+3) → apply template to ALL its members wherever they currently sit
+(0 or fat-solved) → per-member official grader + independent fresh
+engine.verify + atomic commit + one-line report + **next-step prompt**.
+Full regression sweep per family-batch (not per task: a single change can
+only regress via REGISTRY-shadow, provable by inspection). Already-solved
+fat tasks (local_conv_min x40 @11.5, etc.) are NOT a separate phase — they
+are the golf branch of this same ordered pass.
+
+## State (2026-05-17, pass-1: flood_fill family done)
+**77/400 solved, projected 1039.14 pts**, avg/solved 13.49.
+- flood_fill family RESOLVED (N=2): task002 fill=4 K=25 → **12.573**
+  (mem 248504, p 923); task251 fill=1 K=14 → **12.955** (mem 169304,
+  p 923). Both: 1 coverage construction, 0 golf (first build ≥ G).
+- p_max(flood, honest Conv-flood floor) ≈ 12.7/13.0 → G ≈ 11.7/12.0;
+  both cleared on first build → stop-rule satisfied, golf skipped.
+- Family Δpts = **+25.53** (0→25.53). Intrinsically ceiling-capped
+  family (Conv forces float, K rounds mandatory); expected, subsidized
+  by identity/geom (22-25) per self-balancing — NOT a structural alarm
+  on its own (2/400).
+- Regression: zero — FloodFill.detect=None on all 73 other solved
+  (no REGISTRY-shadow possible, proven by code, no grader sweep needed).
+- Σp_max projection: indeterminate at 19% resolved (77/400); flood is
+  capped but the cheap high-pt families (identity/transpose/recolor)
+  are still unresolved (ascending pass just started). Recheck at next
+  family batch; 7000 floor still reachable IF bulk of 323 unsolved fall
+  into cheap families + 40 fat local_conv_min get golfed. Not on a
+  proven 7000 trajectory yet — depends on family mix of low indices.
+
+### Prior baseline (pre-protocol, ref)
+75/400 solved, projected 1013.61 pts. Commit 4f789a0 pushed.
+Families: local_conv_min x40 (avg 11.5 — biggest+fattest, median mem 316KB,
+PRIME golf target), linear_local_conv x7 (18.0), global_geom x7 (17.3 —
+transpose subset → single Transpose node = 25, +~8/task), mirror_double x5
+(13.3), quadrant_upscale x5 (12.0), color_permute x2 (22.7), color_lut x2
+(20.4), symmetry_fill/int_scale x2, fractal3/crop_bbox/tiling x1. 325
+unsolved. Reusable helpers in engine/families.py (`_idx`,`_occ_all`,
+`_occ_nz`,`_flip_rows_P`,`_flip_cols_P`,`_shift_mat`); patterns
+logs/FAMILY_SPEC.md; unsolved buckets logs/TRIAGE.md.
+
+## Exact next action (pass-1 continue)
+Lowest task index with `pts < G` is now **task 003** (unsolved, pts=0;
+2 & 251 done). Go there: `dataio.grid_shapes` + eyeball train ex0,
+identify its family/template, scan all 400 for family membership N,
+compute honest `p_max` (rule-class mandatory-intermediate floor),
+G=min(18, p_max−1). Budget by N (N≤2→3/2, 3≤N≤10→4/4, N>10→6/8).
+Construct cheapest-correct canvas-safe ONNX, golf only until pts≥G
+(ROI early-stop: Δpts×N < 1.0 → stop). Apply template to all members.
+Per-member: `python run.py solve <n>` (official grader, n_fail==0) +
+independent cold-reload engine.verify + atomic commit + one-line report.
+Regression: prove no REGISTRY-shadow by inspection (detect=None on all
+prior-solved). Update this file's State + next action at family-batch end.
