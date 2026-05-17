@@ -64,6 +64,16 @@ Triage probes (`triage_probe.py`/`triage_gen2.py`) were built on the WRONG
 (float) feasibility model — informational only, not the plan. ALL reasoning
 stays with Architect; subagents mechanical only ([[delegation-no-reasoning-to-subagents]]).
 
+## Bootstrap (REQUIRED on a fresh git clone — repo excludes data/ & sources/)
+The repo is code-only. Before anything runs, restore from `Better_Golf/`:
+1. Python deps: `pip install onnx onnxruntime scipy numpy pandas kaggle`
+2. kaggle creds at `~/.kaggle/kaggle.json` (chmod 600).
+3. Competition data (task JSONs + grader):
+   `kaggle competitions download -c neurogolf-2026 -p data && cd data && unzip -o neurogolf-2026.zip && cd ..`
+   → must yield `data/task001.json`..`data/task400.json` + `data/neurogolf_utils/neurogolf_utils.py`.
+   Sanity: `python -c "from engine import dataio,verify; dataio.load_task(2)"`
+4. (memory is host-local, not in repo; NEXT.md + the prompt are self-contained.)
+
 ## Exact next action
 1. Finish fetching Phase-1 sources into `Better_Golf/sources/` (jonathanchan
    ngc26 + afr1ste highest open artifact + 2-3 svanikkolli ensemble datasets).
