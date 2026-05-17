@@ -7,8 +7,8 @@ out/calib/
 *.pyc
 bg_*/
 
-Better_Golf/sources/
-Better_Golf/out/submission.zip
-Better_Golf/logs/TRIAGE_PROBE.json
-Better_Golf/logs/TRIAGE_GEN2.json
-Better_Golf/logs/blend_results.json
+# Phase-1/2 scratch: large external artifacts + regenerable probe/blend outputs
+sources/
+logs/TRIAGE_PROBE.json
+logs/TRIAGE_GEN2.json
+logs/blend_results.json
