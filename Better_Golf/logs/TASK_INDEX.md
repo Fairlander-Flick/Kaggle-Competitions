@@ -1,8 +1,8 @@
 # NeuroGolf 2026 — Task Index
 
 - Tasks attempted: **400/400**
-- Tasks solved (full match, scored): **42**
-- Projected points: **631.7 / 10000**  (target ≥ 7500)
+- Tasks solved (full match, scored): **53**
+- Projected points: **768.8 / 10000**  (target ≥ 7500)
 
 Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md).
 
@@ -38,7 +38,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task028 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task028](SOLVE_LOG.md#task028) |
 | task029 | ⬜ unsolved | — | — | — | — | var→var | [task029](SOLVE_LOG.md#task029) |
 | task030 | ⬜ unsolved | — | — | — | — | var→var | [task030](SOLVE_LOG.md#task030) |
-| task031 | ⬜ unsolved | — | — | — | — | var→var | [task031](SOLVE_LOG.md#task031) |
+| task031 | ✅ solved | crop_bbox | 13.37 | 112316 | 65 | var→var | [task031](SOLVE_LOG.md#task031) |
 | task032 | ⬜ unsolved | — | — | — | — | var→var | [task032](SOLVE_LOG.md#task032) |
 | task033 | ⬜ unsolved | — | — | — | — | [17, 17]→[17, 17] | [task033](SOLVE_LOG.md#task033) |
 | task034 | ⬜ unsolved | — | — | — | — | [9, 9]→[9, 9] | [task034](SOLVE_LOG.md#task034) |
@@ -90,7 +90,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task080 | ⬜ unsolved | — | — | — | — | var→var | [task080](SOLVE_LOG.md#task080) |
 | task081 | ✅ solved | local_conv_min | 12.929 | 172800 | 1921 | [7, 7]→[7, 7] | [task081](SOLVE_LOG.md#task081) |
 | task082 | ⬜ unsolved | — | — | — | — | var→var | [task082](SOLVE_LOG.md#task082) |
-| task083 | ⬜ unsolved | — | — | — | — | [3, 4]→[6, 8] | [task083](SOLVE_LOG.md#task083) |
+| task083 | ✅ solved | quadrant_upscale | 12.085 | 406080 | 95 | [3, 4]→[6, 8] | [task083](SOLVE_LOG.md#task083) |
 | task084 | ⬜ unsolved | — | — | — | — | var→var | [task084](SOLVE_LOG.md#task084) |
 | task085 | ⬜ unsolved | — | — | — | — | var→var | [task085](SOLVE_LOG.md#task085) |
 | task086 | ⬜ unsolved | — | — | — | — | var→var | [task086](SOLVE_LOG.md#task086) |
@@ -113,14 +113,14 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task103 | ⬜ unsolved | — | — | — | — | [3, 3]→[1, 1] | [task103](SOLVE_LOG.md#task103) |
 | task104 | ⬜ unsolved | — | — | — | — | [3, 3]→[9, 9] | [task104](SOLVE_LOG.md#task104) |
 | task105 | ⬜ unsolved | — | — | — | — | var→var | [task105](SOLVE_LOG.md#task105) |
-| task106 | ⬜ unsolved | — | — | — | — | var→var | [task106](SOLVE_LOG.md#task106) |
+| task106 | ✅ solved | quadrant_upscale | 11.85 | 514080 | 95 | var→var | [task106](SOLVE_LOG.md#task106) |
 | task107 | ⬜ unsolved | — | — | — | — | [5, 5]→var | [task107](SOLVE_LOG.md#task107) |
 | task108 | ⬜ unsolved | — | — | — | — | [10, 10]→[20, 20] | [task108](SOLVE_LOG.md#task108) |
 | task109 | ⬜ unsolved | — | — | — | — | var→var | [task109](SOLVE_LOG.md#task109) |
 | task110 | ⬜ unsolved | — | — | — | — | [29, 29]→[29, 29] | [task110](SOLVE_LOG.md#task110) |
 | task111 | ⬜ unsolved | — | — | — | — | [10, 10]→[3, 3] | [task111](SOLVE_LOG.md#task111) |
 | task112 | ⬜ unsolved | — | — | — | — | var→var | [task112](SOLVE_LOG.md#task112) |
-| task113 | ⬜ unsolved | — | — | — | — | var→var | [task113](SOLVE_LOG.md#task113) |
+| task113 | ✅ solved | symmetry_fill | 12.776 | 203566 | 39 | var→var | [task113](SOLVE_LOG.md#task113) |
 | task114 | ⬜ unsolved | — | — | — | — | var→var | [task114](SOLVE_LOG.md#task114) |
 | task115 | ⬜ unsolved | — | — | — | — | var→var | [task115](SOLVE_LOG.md#task115) |
 | task116 | ⬜ unsolved | — | — | — | — | [3, 4]→[6, 4] | [task116](SOLVE_LOG.md#task116) |
@@ -149,7 +149,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task139 | ⬜ unsolved | — | — | — | — | [9, 9]→[9, 9] | [task139](SOLVE_LOG.md#task139) |
 | task140 | ✅ solved | global_geom | 13.672 | 83020 | 64 | [3, 3]→[3, 3] | [task140](SOLVE_LOG.md#task140) |
 | task141 | ⬜ unsolved | — | — | — | — | var→var | [task141](SOLVE_LOG.md#task141) |
-| task142 | ⬜ unsolved | — | — | — | — | [3, 3]→[6, 6] | [task142](SOLVE_LOG.md#task142) |
+| task142 | ✅ solved | quadrant_upscale | 12.085 | 406080 | 95 | [3, 3]→[6, 6] | [task142](SOLVE_LOG.md#task142) |
 | task143 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task143](SOLVE_LOG.md#task143) |
 | task144 | ⬜ unsolved | — | — | — | — | [9, 4]→[4, 4] | [task144](SOLVE_LOG.md#task144) |
 | task145 | ⬜ unsolved | — | — | — | — | var→var | [task145](SOLVE_LOG.md#task145) |
@@ -159,7 +159,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task149 | ⬜ unsolved | — | — | — | — | [11, 11]→[3, 3] | [task149](SOLVE_LOG.md#task149) |
 | task150 | ✅ solved | global_geom | 14.933 | 23510 | 32 | var→var | [task150](SOLVE_LOG.md#task150) |
 | task151 | ✅ solved | local_conv_min | 9.59 | 4860000 | 67672 | var→var | [task151](SOLVE_LOG.md#task151) |
-| task152 | ⬜ unsolved | — | — | — | — | [3, 3]→[6, 6] | [task152](SOLVE_LOG.md#task152) |
+| task152 | ✅ solved | quadrant_upscale | 12.085 | 406080 | 95 | [3, 3]→[6, 6] | [task152](SOLVE_LOG.md#task152) |
 | task153 | ⬜ unsolved | — | — | — | — | [10, 10]→[3, 3] | [task153](SOLVE_LOG.md#task153) |
 | task154 | ⬜ unsolved | — | — | — | — | [15, 15]→[15, 15] | [task154](SOLVE_LOG.md#task154) |
 | task155 | ✅ solved | global_geom | 14.933 | 23510 | 32 | var→var | [task155](SOLVE_LOG.md#task155) |
@@ -201,7 +201,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task191 | ⬜ unsolved | — | — | — | — | [23, 23]→[23, 23] | [task191](SOLVE_LOG.md#task191) |
 | task192 | ⬜ unsolved | — | — | — | — | var→var | [task192](SOLVE_LOG.md#task192) |
 | task193 | ✅ solved | local_conv_min | 11.343 | 842400 | 11314 | var→var | [task193](SOLVE_LOG.md#task193) |
-| task194 | ⬜ unsolved | — | — | — | — | [3, 3]→[6, 6] | [task194](SOLVE_LOG.md#task194) |
+| task194 | ✅ solved | quadrant_upscale | 11.85 | 514080 | 95 | [3, 3]→[6, 6] | [task194](SOLVE_LOG.md#task194) |
 | task195 | ⬜ unsolved | — | — | — | — | var→[9, 9] | [task195](SOLVE_LOG.md#task195) |
 | task196 | ⬜ unsolved | — | — | — | — | var→var | [task196](SOLVE_LOG.md#task196) |
 | task197 | ⬜ unsolved | — | — | — | — | var→var | [task197](SOLVE_LOG.md#task197) |
@@ -230,7 +230,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task220 | ✅ solved | local_conv_min | 12.392 | 295200 | 3638 | var→var | [task220](SOLVE_LOG.md#task220) |
 | task221 | ⬜ unsolved | — | — | — | — | [3, 3]→var | [task221](SOLVE_LOG.md#task221) |
 | task222 | ⬜ unsolved | — | — | — | — | [16, 16]→[16, 16] | [task222](SOLVE_LOG.md#task222) |
-| task223 | ⬜ unsolved | — | — | — | — | [3, 3]→[9, 9] | [task223](SOLVE_LOG.md#task223) |
+| task223 | ✅ solved | int_scale | 12.311 | 324000 | 10 | [3, 3]→[9, 9] | [task223](SOLVE_LOG.md#task223) |
 | task224 | ⬜ unsolved | — | — | — | — | var→var | [task224](SOLVE_LOG.md#task224) |
 | task225 | ⬜ unsolved | — | — | — | — | [6, 6]→[6, 6] | [task225](SOLVE_LOG.md#task225) |
 | task226 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task226](SOLVE_LOG.md#task226) |
@@ -256,7 +256,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task246 | ⬜ unsolved | — | — | — | — | var→var | [task246](SOLVE_LOG.md#task246) |
 | task247 | ⬜ unsolved | — | — | — | — | [10, 10]→var | [task247](SOLVE_LOG.md#task247) |
 | task248 | ⬜ unsolved | — | — | — | — | var→var | [task248](SOLVE_LOG.md#task248) |
-| task249 | ⬜ unsolved | — | — | — | — | var→var | [task249](SOLVE_LOG.md#task249) |
+| task249 | ✅ solved | tiling | 12.781 | 202492 | 35 | var→var | [task249](SOLVE_LOG.md#task249) |
 | task250 | ⬜ unsolved | — | — | — | — | [10, 10]→[10, 10] | [task250](SOLVE_LOG.md#task250) |
 | task251 | ⬜ unsolved | — | — | — | — | var→var | [task251](SOLVE_LOG.md#task251) |
 | task252 | ⬜ unsolved | — | — | — | — | var→var | [task252](SOLVE_LOG.md#task252) |
@@ -314,7 +314,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task304 | ⬜ unsolved | — | — | — | — | [3, 3]→[9, 9] | [task304](SOLVE_LOG.md#task304) |
 | task305 | ⬜ unsolved | — | — | — | — | [16, 16]→[16, 16] | [task305](SOLVE_LOG.md#task305) |
 | task306 | ⬜ unsolved | — | — | — | — | var→var | [task306](SOLVE_LOG.md#task306) |
-| task307 | ⬜ unsolved | — | — | — | — | var→var | [task307](SOLVE_LOG.md#task307) |
+| task307 | ✅ solved | int_scale | 13.122 | 144000 | 10 | var→var | [task307](SOLVE_LOG.md#task307) |
 | task308 | ⬜ unsolved | — | — | — | — | var→var | [task308](SOLVE_LOG.md#task308) |
 | task309 | ✅ solved | color_lut | 20.395 | 0 | 100 | var→var | [task309](SOLVE_LOG.md#task309) |
 | task310 | ⬜ unsolved | — | — | — | — | var→var | [task310](SOLVE_LOG.md#task310) |
@@ -392,7 +392,7 @@ Click a task to jump to its analysis + solution in [`SOLVE_LOG.md`](SOLVE_LOG.md
 | task382 | ⬜ unsolved | — | — | — | — | var→var | [task382](SOLVE_LOG.md#task382) |
 | task383 | ⬜ unsolved | — | — | — | — | var→var | [task383](SOLVE_LOG.md#task383) |
 | task384 | ⬜ unsolved | — | — | — | — | [9, 9]→var | [task384](SOLVE_LOG.md#task384) |
-| task385 | ⬜ unsolved | — | — | — | — | [10, 4]→[10, 4] | [task385](SOLVE_LOG.md#task385) |
+| task385 | ✅ solved | symmetry_fill | 12.776 | 203566 | 39 | [10, 4]→[10, 4] | [task385](SOLVE_LOG.md#task385) |
 | task386 | ⬜ unsolved | — | — | — | — | [4, 7]→[4, 3] | [task386](SOLVE_LOG.md#task386) |
 | task387 | ⬜ unsolved | — | — | — | — | var→var | [task387](SOLVE_LOG.md#task387) |
 | task388 | ⬜ unsolved | — | — | — | — | var→var | [task388](SOLVE_LOG.md#task388) |

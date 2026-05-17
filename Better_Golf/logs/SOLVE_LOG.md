@@ -1,6 +1,6 @@
 # NeuroGolf 2026 — Solve Log
 
-Projected **631.7/10000** from **42** solved tasks. One section per task: what it is, what we used, how we solved it.
+Projected **768.8/10000** from **53** solved tasks. One section per task: what it is, what we used, how we solved it.
 
 ## task001
 
@@ -870,13 +870,13 @@ Train example 0 (input → output):
 
 ## task031
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[10, 12], [11, 12], [12, 12]] → output [[3, 4], [3, 5], [3, 6], [3, 7], [3, 8], [4, 3], [4, 4], [4, 5], [4, 6], [4, 7], [4, 8], [5, 3], [5, 4], [5, 5], [5, 6], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6], [6, 7], [7, 4], [7, 5]]  | same-shape: False
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** crop_bbox
+- **Score:** 13.37 pts  (memory 112316, params 65)
+- **How solved:** crop_bbox: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -2380,13 +2380,13 @@ Train example 0 (input → output):
 
 ## task083
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[3, 4]] → output [[6, 8]]  | same-shape: False
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** quadrant_upscale
+- **Score:** 12.085 pts  (memory 406080, params 95)
+- **How solved:** quadrant_upscale: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -3105,13 +3105,13 @@ Train example 0 (input → output):
 
 ## task106
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[2, 2], [3, 3]] → output [[4, 4], [6, 6]]  | same-shape: False
 - **Colors:** input [1, 2, 3, 4, 5, 6, 7, 8, 9] → output [1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** quadrant_upscale
+- **Score:** 11.85 pts  (memory 514080, params 95)
+- **How solved:** quadrant_upscale: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -3287,13 +3287,13 @@ Train example 0 (input → output):
 
 ## task113
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 265 (train 2, test 1, arc-gen 262)
 - **Shapes:** input [[10, 2], [10, 3], [10, 4], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]] → output [[10, 2], [10, 3], [10, 4], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** symmetry_fill
+- **Score:** 12.776 pts  (memory 203566, params 39)
+- **How solved:** symmetry_fill: passes all 265 examples
 
 Train example 0 (input → output):
 
@@ -4210,13 +4210,13 @@ Train example 0 (input → output):
 
 ## task142
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3]] → output [[6, 6]]  | same-shape: False
 - **Colors:** input [0, 1, 2, 3] → output [0, 1, 2, 3]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** quadrant_upscale
+- **Score:** 12.085 pts  (memory 406080, params 95)
+- **How solved:** quadrant_upscale: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -4464,13 +4464,13 @@ Train example 0 (input → output):
 
 ## task152
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 267 (train 4, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3]] → output [[6, 6]]  | same-shape: False
 - **Colors:** input [1, 2, 3, 4, 5, 6, 7, 8, 9] → output [1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** quadrant_upscale
+- **Score:** 12.085 pts  (memory 406080, params 95)
+- **How solved:** quadrant_upscale: passes all 267 examples
 
 Train example 0 (input → output):
 
@@ -5594,13 +5594,13 @@ Train example 0 (input → output):
 
 ## task194
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3]] → output [[6, 6]]  | same-shape: False
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** quadrant_upscale
+- **Score:** 11.85 pts  (memory 514080, params 95)
+- **How solved:** quadrant_upscale: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -6450,13 +6450,13 @@ Train example 0 (input → output):
 
 ## task223
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 265 (train 2, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3]] → output [[9, 9]]  | same-shape: False
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** int_scale
+- **Score:** 12.311 pts  (memory 324000, params 10)
+- **How solved:** int_scale: passes all 265 examples
 
 Train example 0 (input → output):
 
@@ -7224,13 +7224,13 @@ Train example 0 (input → output):
 
 ## task249
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 265 (train 3, test 1, arc-gen 261)
-- **Shapes:** input [[3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5], [5, 3], [5, 4], [5, 5]] → output [[3, 6], [3, 8], [3, 10], [4, 6], [4, 8], [4, 10], [5, 6], [5, 8], [5, 10]]  | same-shape: False
+- **Shapes:** input [(3, 3), (3, 4), (3, 5), (4, 3), (4, 4), (4, 5), (5, 3), (5, 4), (5, 5)] → output [(3, 6), (3, 8), (3, 10), (4, 6), (4, 8), (4, 10), (5, 6), (5, 8), (5, 10)]  | same-shape: False
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** tiling
+- **Score:** 12.781 pts  (memory 202492, params 35)
+- **How solved:** tiling: passes all 265 examples
 
 Train example 0 (input → output):
 
@@ -8931,13 +8931,13 @@ Train example 0 (input → output):
 
 ## task307
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[2, 2], [3, 3], [4, 4], [5, 5]] → output [[4, 4], [6, 6], [8, 8], [10, 10]]  | same-shape: False
 - **Colors:** input [0, 1, 2, 3, 5, 6, 7, 8] → output [0, 1, 2, 3, 5, 6, 7, 8]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** int_scale
+- **Score:** 13.122 pts  (memory 144000, params 10)
+- **How solved:** int_scale: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -11221,13 +11221,13 @@ Train example 0 (input → output):
 
 ## task385
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 265 (train 2, test 1, arc-gen 262)
 - **Shapes:** input [[10, 4]] → output [[10, 4]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** symmetry_fill
+- **Score:** 12.776 pts  (memory 203566, params 39)
+- **How solved:** symmetry_fill: passes all 265 examples
 
 Train example 0 (input → output):
 

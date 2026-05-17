@@ -77,6 +77,164 @@ def _same_shape(p: Pair) -> bool:
 
 
 # --------------------------------------------------------------------------- #
+# Shared opset-10 node emitters for the position/shape-changing families.
+# Each appends Constant/op nodes into `nodes` (unique names via `pfx`) and
+# returns output tensor name(s). The flip-permutation builders are the EXACT
+# node sequence proven canvas-safe in GlobalGeom (data-dependent VALUES, fixed
+# [30,30] / [.,.,30,30] SHAPES so the grader's strict shape_inference passes).
+# GlobalGeom itself is left byte-identical — these are independent copies.
+# --------------------------------------------------------------------------- #
+def _cf(nodes, name, shape, vals):
+    nodes.append(h.make_node(
+        "Constant", [], [name],
+        value=h.make_tensor(name + "_v", TensorProto.FLOAT, shape, vals)))
+    return name
+
+
+def _ci(nodes, name, shape, vals):
+    nodes.append(h.make_node(
+        "Constant", [], [name],
+        value=h.make_tensor(name + "_v", TensorProto.INT64, shape, vals)))
+    return name
+
+
+def _idx(nodes, pfx):
+    """range(30) index tensors: arf[30] float, ai[30,1], aj[1,30]."""
+    ar = _ci(nodes, f"{pfx}_ar", [30], list(range(30)))
+    arf = f"{pfx}_arf"
+    nodes.append(h.make_node("Cast", [ar], [arf], to=TensorProto.FLOAT))
+    ai = f"{pfx}_ai"
+    nodes.append(h.make_node("Unsqueeze", [arf], [ai], axes=[1]))
+    aj = f"{pfx}_aj"
+    nodes.append(h.make_node("Unsqueeze", [arf], [aj], axes=[0]))
+    return arf, ai, aj
+
+
+def _occ_all(nodes, src, pfx):
+    """True grid extent (counts colour-0 cells too): Hs,Ws as float [1,1]."""
+    cha = f"{pfx}_cha"
+    nodes.append(h.make_node("ReduceSum", [src], [cha], axes=[1], keepdims=1))
+    co = f"{pfx}_co"
+    nodes.append(h.make_node("ReduceMax", [cha], [co], axes=[2], keepdims=1))
+    wt = f"{pfx}_wt"
+    nodes.append(h.make_node("ReduceSum", [co], [wt], axes=[3], keepdims=1))
+    ws = f"{pfx}_ws"
+    nodes.append(h.make_node("Squeeze", [wt], [ws], axes=[0, 1]))
+    ro = f"{pfx}_ro"
+    nodes.append(h.make_node("ReduceMax", [cha], [ro], axes=[3], keepdims=1))
+    ht = f"{pfx}_ht"
+    nodes.append(h.make_node("ReduceSum", [ro], [ht], axes=[2], keepdims=1))
+    hs = f"{pfx}_hs"
+    nodes.append(h.make_node("Squeeze", [ht], [hs], axes=[0, 1]))
+    return hs, ws  # each [1,1]
+
+
+def _occ_nz(nodes, src, pfx):
+    """Non-background (colour>=1) occupancy: rvec[30], cvec[30] float."""
+    s0 = _ci(nodes, f"{pfx}_s0", [1], [1])
+    e0 = _ci(nodes, f"{pfx}_e0", [1], [10])
+    a0 = _ci(nodes, f"{pfx}_a0", [1], [1])
+    sl = f"{pfx}_sl"
+    nodes.append(h.make_node("Slice", [src, s0, e0, a0], [sl]))
+    nz = f"{pfx}_nz"
+    nodes.append(h.make_node("ReduceSum", [sl], [nz], axes=[1], keepdims=1))
+    rm = f"{pfx}_rm"
+    nodes.append(h.make_node("ReduceMax", [nz], [rm], axes=[3], keepdims=1))
+    rvec = f"{pfx}_rvec"
+    nodes.append(h.make_node("Squeeze", [rm], [rvec], axes=[0, 1, 3]))
+    cm = f"{pfx}_cm"
+    nodes.append(h.make_node("ReduceMax", [nz], [cm], axes=[2], keepdims=1))
+    cvec = f"{pfx}_cvec"
+    nodes.append(h.make_node("Squeeze", [cm], [cvec], axes=[0, 1, 2]))
+    return rvec, cvec  # each [30]
+
+
+def _flip_rows_P(nodes, src, pfx):
+    """Permutation P[30,30]: MatMul(P,src) flips rows within data-dep H."""
+    cs = f"{pfx}_cs"
+    nodes.append(h.make_node("ReduceSum", [src], [cs], axes=[1], keepdims=1))
+    ro = f"{pfx}_ro"
+    nodes.append(h.make_node("ReduceMax", [cs], [ro], axes=[3], keepdims=1))
+    ht = f"{pfx}_ht"
+    nodes.append(h.make_node("ReduceSum", [ro], [ht], axes=[2], keepdims=1))
+    hsq = f"{pfx}_hsq"
+    nodes.append(h.make_node("Squeeze", [ht], [hsq], axes=[0, 1]))
+    one = _cf(nodes, f"{pfx}_one", [1, 1], [1.0])
+    hm1 = f"{pfx}_hm1"
+    nodes.append(h.make_node("Sub", [hsq, one], [hm1]))
+    arf, ak, ac = _idx(nodes, f"{pfx}_i")
+    A = f"{pfx}_A"
+    nodes.append(h.make_node("Add", [ak, ac], [A]))
+    half = _cf(nodes, f"{pfx}_half", [1, 1], [0.5])
+    deq = f"{pfx}_deq"
+    nodes.append(h.make_node("Sub", [A, hm1], [deq]))
+    ab = f"{pfx}_ab"
+    nodes.append(h.make_node("Abs", [deq], [ab]))
+    eq = f"{pfx}_eq"
+    nodes.append(h.make_node("Less", [ab, half], [eq]))
+    kf = f"{pfx}_kf"
+    nodes.append(h.make_node("Unsqueeze", [arf], [kf], axes=[0]))
+    lt = f"{pfx}_lt"
+    nodes.append(h.make_node("Less", [kf, hsq], [lt]))
+    eqf = f"{pfx}_eqf"
+    nodes.append(h.make_node("Cast", [eq], [eqf], to=TensorProto.FLOAT))
+    ltf = f"{pfx}_ltf"
+    nodes.append(h.make_node("Cast", [lt], [ltf], to=TensorProto.FLOAT))
+    P = f"{pfx}_P"
+    nodes.append(h.make_node("Mul", [eqf, ltf], [P]))
+    return P
+
+
+def _flip_cols_P(nodes, src, pfx):
+    """Permutation P[30,30]: MatMul(src,P) flips cols within data-dep W."""
+    cs = f"{pfx}_cs"
+    nodes.append(h.make_node("ReduceSum", [src], [cs], axes=[1], keepdims=1))
+    co = f"{pfx}_co"
+    nodes.append(h.make_node("ReduceMax", [cs], [co], axes=[2], keepdims=1))
+    wt = f"{pfx}_wt"
+    nodes.append(h.make_node("ReduceSum", [co], [wt], axes=[3], keepdims=1))
+    wsq = f"{pfx}_wsq"
+    nodes.append(h.make_node("Squeeze", [wt], [wsq], axes=[0, 1]))
+    one = _cf(nodes, f"{pfx}_one", [1, 1], [1.0])
+    wm1 = f"{pfx}_wm1"
+    nodes.append(h.make_node("Sub", [wsq, one], [wm1]))
+    arf, ak, ac = _idx(nodes, f"{pfx}_i")
+    A = f"{pfx}_A"
+    nodes.append(h.make_node("Add", [ak, ac], [A]))
+    half = _cf(nodes, f"{pfx}_half", [1, 1], [0.5])
+    deq = f"{pfx}_deq"
+    nodes.append(h.make_node("Sub", [A, wm1], [deq]))
+    ab = f"{pfx}_ab"
+    nodes.append(h.make_node("Abs", [deq], [ab]))
+    eq = f"{pfx}_eq"
+    nodes.append(h.make_node("Less", [ab, half], [eq]))
+    kf = f"{pfx}_kf"
+    nodes.append(h.make_node("Unsqueeze", [arf], [kf], axes=[1]))
+    lt = f"{pfx}_lt"
+    nodes.append(h.make_node("Less", [kf, wsq], [lt]))
+    eqf = f"{pfx}_eqf"
+    nodes.append(h.make_node("Cast", [eq], [eqf], to=TensorProto.FLOAT))
+    ltf = f"{pfx}_ltf"
+    nodes.append(h.make_node("Cast", [lt], [ltf], to=TensorProto.FLOAT))
+    P = f"{pfx}_P"
+    nodes.append(h.make_node("Mul", [eqf, ltf], [P]))
+    return P
+
+
+def _shift_mat(nodes, diff, off, half, pfx):
+    """[30,30] float matrix M with M[a,b]=1 iff (diff)[a,b]==off (a [1,1])."""
+    d = f"{pfx}_d"
+    nodes.append(h.make_node("Sub", [diff, off], [d]))
+    ad = f"{pfx}_ad"
+    nodes.append(h.make_node("Abs", [d], [ad]))
+    lt = f"{pfx}_lt"
+    nodes.append(h.make_node("Less", [ad, half], [lt]))
+    mf = f"{pfx}_mf"
+    nodes.append(h.make_node("Cast", [lt], [mf], to=TensorProto.FLOAT))
+    return mf
+
+
+# --------------------------------------------------------------------------- #
 # 1. Identity  — output == input.  1 node, 0 params, 0 memory => 25.000 pts
 # --------------------------------------------------------------------------- #
 class Identity(Family):
@@ -945,8 +1103,366 @@ class LocalConvMin(Family):
             ir_version=IR_VERSION, opset_imports=op)
 
 
-# Ordered cheapest-correct-first (highest est_points first).
+# --------------------------------------------------------------------------- #
+# 8. SymmetryFill — same-shape: a background (colour 0) cell is filled by the
+#    vertically-mirrored cell; real-colour cells are kept.  Canvas-safe:
+#    flipud uses the GlobalGeom row-permutation (within data-dependent H);
+#    selection mask = sum of colour channels 1..9 (1 iff real colour, 0 at
+#    colour-0 / padding) tiled to 10 channels.  out = flip + (in-flip)*mask.
+# --------------------------------------------------------------------------- #
+class SymmetryFill(Family):
+    name = "symmetry_fill"
+    est_points = 14.0
+
+    @staticmethod
+    def _fill(a: np.ndarray) -> np.ndarray:
+        return np.where(a != 0, a, np.flipud(a))
+
+    def detect(self, train):
+        for i, o in train:
+            if not _same_shape((i, o)):
+                return None
+            A = np.array(i)
+            if self._fill(A).tolist() != o:
+                return None
+        return {"axis": "v"}
+
+    def apply(self, spec, grid):
+        return self._fill(np.array(grid)).tolist()
+
+    def build_onnx(self, spec):
+        x, y = _io()
+        nodes: List = []
+        Pr = _flip_rows_P(nodes, "input", "sf")
+        flip = "sf_flip"
+        nodes.append(h.make_node("MatMul", [Pr, "input"], [flip]))
+        s0 = _ci(nodes, "sf_s0", [1], [1])
+        e0 = _ci(nodes, "sf_e0", [1], [10])
+        a0 = _ci(nodes, "sf_a0", [1], [1])
+        sl = "sf_sl"
+        nodes.append(h.make_node("Slice", ["input", s0, e0, a0], [sl]))
+        mask = "sf_mask"
+        nodes.append(h.make_node("ReduceSum", [sl], [mask], axes=[1],
+                                 keepdims=1))
+        rep = _ci(nodes, "sf_rep", [4], [1, 10, 1, 1])
+        m10 = "sf_m10"
+        nodes.append(h.make_node("Tile", [mask, rep], [m10]))
+        diff = "sf_diff"
+        nodes.append(h.make_node("Sub", ["input", flip], [diff]))
+        sel = "sf_sel"
+        nodes.append(h.make_node("Mul", [diff, m10], [sel]))
+        nodes.append(h.make_node("Add", [flip, sel], ["output"]))
+        return _model(h.make_graph(nodes, "symmetry_fill", [x], [y]))
+
+
+# --------------------------------------------------------------------------- #
+# 9. CropBBox — output = input cropped to the bounding box of non-background
+#    (colour>=1) cells, re-embedded top-left.  Row-select matrix Pr and
+#    col-select matrix Pc are built data-dependently from the non-bg occupancy
+#    (r_min..r_max, c_min..c_max); out = MatMul(MatMul(Pr,input),Pc).
+# --------------------------------------------------------------------------- #
+class CropBBox(Family):
+    name = "crop_bbox"
+    est_points = 14.0
+
+    @staticmethod
+    def _crop(a: np.ndarray):
+        nz = np.argwhere(a != 0)
+        if len(nz) == 0:
+            return a
+        r0, c0 = nz.min(0)
+        r1, c1 = nz.max(0)
+        return a[r0:r1 + 1, c0:c1 + 1]
+
+    def detect(self, train):
+        for i, o in train:
+            if self._crop(np.array(i)).tolist() != o:
+                return None
+        return {}
+
+    def apply(self, spec, grid):
+        return self._crop(np.array(grid)).tolist()
+
+    def build_onnx(self, spec):
+        x, y = _io()
+        nodes: List = []
+        arf, ai, aj = _idx(nodes, "cb")
+        rvec, cvec = _occ_nz(nodes, "input", "cb")
+        BIG = _cf(nodes, "cb_big", [1], [1000.0])
+        oneV = _cf(nodes, "cb_oneV", [30], [1.0] * 30)
+        half = _cf(nodes, "cb_half", [1], [0.5])
+
+        def bounds(vec, tag):
+            sub = f"cb_{tag}_sub"
+            nodes.append(h.make_node("Sub", [oneV, vec], [sub]))
+            sc = f"cb_{tag}_sc"
+            nodes.append(h.make_node("Mul", [sub, BIG], [sc]))
+            cand = f"cb_{tag}_cand"
+            nodes.append(h.make_node("Add", [arf, sc], [cand]))
+            vmin = f"cb_{tag}_min"
+            nodes.append(h.make_node("ReduceMin", [cand], [vmin], axes=[0],
+                                     keepdims=1))
+            mx_in = f"cb_{tag}_mxin"
+            nodes.append(h.make_node("Mul", [arf, vec], [mx_in]))
+            vmax = f"cb_{tag}_max"
+            nodes.append(h.make_node("ReduceMax", [mx_in], [vmax], axes=[0],
+                                     keepdims=1))
+            return vmin, vmax  # each [1]
+
+        r_min, r_max = bounds(rvec, "r")
+        c_min, c_max = bounds(cvec, "c")
+        # Pr[k,j]=1 iff (j-k)==r_min and j<=r_max
+        jmk = "cb_jmk"
+        nodes.append(h.make_node("Sub", [aj, ai], [jmk]))
+        eqr = _shift_mat(nodes, jmk, r_min, half, "cb_eqr")
+        rmh = "cb_rmh"
+        nodes.append(h.make_node("Add", [r_max, half], [rmh]))
+        jle = "cb_jle"
+        nodes.append(h.make_node("Less", [aj, rmh], [jle]))
+        jlef = "cb_jlef"
+        nodes.append(h.make_node("Cast", [jle], [jlef], to=TensorProto.FLOAT))
+        Pr = "cb_Pr"
+        nodes.append(h.make_node("Mul", [eqr, jlef], [Pr]))
+        # Pc[c,m]=1 iff (c-m)==c_min and c<=c_max  (ai=c[30,1], aj=m[1,30])
+        cmm = "cb_cmm"
+        nodes.append(h.make_node("Sub", [ai, aj], [cmm]))
+        eqc = _shift_mat(nodes, cmm, c_min, half, "cb_eqc")
+        cmh = "cb_cmh"
+        nodes.append(h.make_node("Add", [c_max, half], [cmh]))
+        cle = "cb_cle"
+        nodes.append(h.make_node("Less", [ai, cmh], [cle]))
+        clef = "cb_clef"
+        nodes.append(h.make_node("Cast", [cle], [clef], to=TensorProto.FLOAT))
+        Pc = "cb_Pc"
+        nodes.append(h.make_node("Mul", [eqc, clef], [Pc]))
+        T = "cb_T"
+        nodes.append(h.make_node("MatMul", [Pr, "input"], [T]))
+        nodes.append(h.make_node("MatMul", [T, Pc], ["output"]))
+        return _model(h.make_graph(nodes, "crop_bbox", [x], [y]))
+
+
+# --------------------------------------------------------------------------- #
+# 10. QuadrantUpscale — 2x block: mirror = [[A,fliplrA],[flipudA,rot180A]];
+#     rot = [[A,rot90cwA],[rot90ccwA,rot180A]].  Flips reuse the GlobalGeom
+#     permutations; shift-right-by-W / shift-down-by-H translation matrices
+#     place the 4 disjoint quadrants, so the sum stays a valid one-hot.
+# --------------------------------------------------------------------------- #
+class QuadrantUpscale(Family):
+    name = "quadrant_upscale"
+    est_points = 13.0
+
+    @staticmethod
+    def _mirror(a):
+        return np.block([[a, np.fliplr(a)],
+                         [np.flipud(a), np.flipud(np.fliplr(a))]])
+
+    @staticmethod
+    def _rot(a):
+        return np.block([[a, np.rot90(a, -1)],
+                         [np.rot90(a, 1), np.rot90(a, 2)]])
+
+    def detect(self, train):
+        for i, o in train:
+            if not (len(o) == 2 * len(i) and len(o[0]) == 2 * len(i[0])):
+                return None
+        return {"_qu": True}
+
+    def fit(self, spec, pairs):
+        small = [(i, o) for i, o in pairs
+                 if max(len(i), len(i[0])) <= 30]
+        if not small:
+            return None
+        for mode, fn, need_sq in (("mirror", self._mirror, False),
+                                  ("rot", self._rot, True)):
+            ok = True
+            for i, o in small:
+                A = np.array(i)
+                if need_sq and A.shape[0] != A.shape[1]:
+                    ok = False
+                    break
+                r = fn(A)
+                if r.shape != (len(o), len(o[0])) or r.tolist() != o:
+                    ok = False
+                    break
+            if ok:
+                return {"mode": mode}
+        return None
+
+    def apply(self, spec, grid):
+        A = np.array(grid)
+        if spec["mode"] == "rot" and A.shape[0] != A.shape[1]:
+            return None
+        fn = self._mirror if spec["mode"] == "mirror" else self._rot
+        return fn(A).tolist()
+
+    def build_onnx(self, spec):
+        x, y = _io()
+        nodes: List = []
+        arf, ai, aj = _idx(nodes, "qu")
+        Hs, Ws = _occ_all(nodes, "input", "qu")
+        Prf = _flip_rows_P(nodes, "input", "qufr")   # flipud
+        Pcf = _flip_cols_P(nodes, "input", "qufc")   # fliplr
+        half = _cf(nodes, "qu_half", [1, 1], [0.5])
+        jmc = "qu_jmc"
+        nodes.append(h.make_node("Sub", [aj, ai], [jmc]))     # j-c
+        rms = "qu_rms"
+        nodes.append(h.make_node("Sub", [ai, aj], [rms]))     # r-s
+        Trgt = _shift_mat(nodes, jmc, Ws, half, "qu_tr")      # cols +W
+        Tdwn = _shift_mat(nodes, rms, Hs, half, "qu_td")      # rows +H
+        flrA = "qu_flrA"
+        nodes.append(h.make_node("MatMul", ["input", Pcf], [flrA]))
+        fudA = "qu_fudA"
+        nodes.append(h.make_node("MatMul", [Prf, "input"], [fudA]))
+        r180 = "qu_r180"
+        nodes.append(h.make_node("MatMul", [Prf, flrA], [r180]))
+        if spec["mode"] == "mirror":
+            tl, q_tr_src, q_bl_src = "input", flrA, fudA
+        else:
+            tp = "qu_tp"
+            nodes.append(h.make_node("Transpose", ["input"], [tp],
+                                     perm=[0, 1, 3, 2]))
+            cw = "qu_cw"
+            nodes.append(h.make_node("MatMul", [tp, Pcf], [cw]))
+            ccw = "qu_ccw"
+            nodes.append(h.make_node("MatMul", [Prf, tp], [ccw]))
+            tl, q_tr_src, q_bl_src = "input", cw, ccw
+        TR = "qu_TR"
+        nodes.append(h.make_node("MatMul", [q_tr_src, Trgt], [TR]))
+        BL = "qu_BL"
+        nodes.append(h.make_node("MatMul", [Tdwn, q_bl_src], [BL]))
+        brm = "qu_brm"
+        nodes.append(h.make_node("MatMul", [r180, Trgt], [brm]))
+        BR = "qu_BR"
+        nodes.append(h.make_node("MatMul", [Tdwn, brm], [BR]))
+        s1 = "qu_s1"
+        nodes.append(h.make_node("Add", [tl, TR], [s1]))
+        s2 = "qu_s2"
+        nodes.append(h.make_node("Add", [BL, BR], [s2]))
+        nodes.append(h.make_node("Add", [s1, s2], ["output"]))
+        return _model(h.make_graph(nodes, "quadrant_upscale", [x], [y]))
+
+
+# --------------------------------------------------------------------------- #
+# 11. IntScale — each cell -> k x k block (k constant). Resize(nearest,floor)
+#     upsamples the whole canvas k-fold; Slice back to 30x30 keeps the kHxkW
+#     grid top-left (padding stays zero -> canvas-safe). opset-13 (like
+#     Fractal3): one big Resize intermediate but tiny params.
+# --------------------------------------------------------------------------- #
+class IntScale(Family):
+    name = "int_scale"
+    est_points = 13.0
+
+    def detect(self, train):
+        k = None
+        for i, o in train:
+            if len(i) == 0 or len(o) % len(i) or len(o[0]) % len(i[0]):
+                return None
+            kr, kc = len(o) // len(i), len(o[0]) // len(i[0])
+            if kr != kc or kr < 2 or (k is not None and k != kr):
+                return None
+            k = kr
+            if np.kron(np.array(i), np.ones((k, k), int)).tolist() != o:
+                return None
+        return {"k": k} if k else None
+
+    def apply(self, spec, grid):
+        k = spec["k"]
+        return np.kron(np.array(grid),
+                       np.ones((k, k), int)).tolist()
+
+    def build_onnx(self, spec):
+        k = spec["k"]
+        x = h.make_tensor_value_info("input", TensorProto.FLOAT, SHAPE)
+        y = h.make_tensor_value_info("output", TensorProto.FLOAT, SHAPE)
+        op = [h.make_opsetid("", 13)]
+        inits = [
+            h.make_tensor("scales", TensorProto.FLOAT, [4],
+                          [1.0, 1.0, float(k), float(k)]),
+            h.make_tensor("sl_s", TensorProto.INT64, [2], [0, 0]),
+            h.make_tensor("sl_e", TensorProto.INT64, [2], [30, 30]),
+            h.make_tensor("sl_ax", TensorProto.INT64, [2], [2, 3]),
+        ]
+        nodes = [
+            h.make_node("Resize", ["input", "", "scales"], ["R"],
+                        mode="nearest",
+                        coordinate_transformation_mode="asymmetric",
+                        nearest_mode="floor"),
+            h.make_node("Slice", ["R", "sl_s", "sl_e", "sl_ax"], ["output"]),
+        ]
+        return h.make_model(
+            h.make_graph(nodes, "int_scale", [x], [y], inits),
+            ir_version=IR_VERSION, opset_imports=op)
+
+
+# --------------------------------------------------------------------------- #
+# 12. Tiling — output = input tiled tr x tc.  Each copy is placed by a
+#     shift-by-(p*H rows, q*W cols) translation matrix into a disjoint block,
+#     so summing the copies stays a valid one-hot. (q=0/p=0 -> identity.)
+# --------------------------------------------------------------------------- #
+class Tiling(Family):
+    name = "tiling"
+    est_points = 13.0
+
+    def detect(self, train):
+        tr = tc = None
+        for i, o in train:
+            if len(o) % len(i) or len(o[0]) % len(i[0]):
+                return None
+            a, b = len(o) // len(i), len(o[0]) // len(i[0])
+            if (a, b) == (1, 1) or (tr is not None and (a, b) != (tr, tc)):
+                return None
+            tr, tc = a, b
+            if np.tile(np.array(i), (tr, tc)).tolist() != o:
+                return None
+        return {"tr": tr, "tc": tc} if tr else None
+
+    def apply(self, spec, grid):
+        return np.tile(np.array(grid),
+                       (spec["tr"], spec["tc"])).tolist()
+
+    def build_onnx(self, spec):
+        tr, tc = spec["tr"], spec["tc"]
+        x, y = _io()
+        nodes: List = []
+        arf, ai, aj = _idx(nodes, "tl")
+        Hs, Ws = _occ_all(nodes, "input", "tl")
+        half = _cf(nodes, "tl_half", [1, 1], [0.5])
+        jmc = "tl_jmc"
+        nodes.append(h.make_node("Sub", [aj, ai], [jmc]))   # j-c
+        rms = "tl_rms"
+        nodes.append(h.make_node("Sub", [ai, aj], [rms]))   # r-s
+        terms = []
+        for p in range(tr):
+            for q in range(tc):
+                qc = _cf(nodes, f"tl_qc_{p}_{q}", [1, 1], [float(q)])
+                qW = f"tl_qW_{p}_{q}"
+                nodes.append(h.make_node("Mul", [Ws, qc], [qW]))
+                Tq = _shift_mat(nodes, jmc, qW, half, f"tl_tq_{p}_{q}")
+                pc = _cf(nodes, f"tl_pc_{p}_{q}", [1, 1], [float(p)])
+                pH = f"tl_pH_{p}_{q}"
+                nodes.append(h.make_node("Mul", [Hs, pc], [pH]))
+                Tp = _shift_mat(nodes, rms, pH, half, f"tl_tp_{p}_{q}")
+                colsh = f"tl_cs_{p}_{q}"
+                nodes.append(h.make_node("MatMul", ["input", Tq], [colsh]))
+                term = f"tl_t_{p}_{q}"
+                nodes.append(h.make_node("MatMul", [Tp, colsh], [term]))
+                terms.append(term)
+        acc = terms[0]
+        for idx, t in enumerate(terms[1:]):
+            nxt = "output" if idx == len(terms) - 2 else f"tl_acc_{idx}"
+            nodes.append(h.make_node("Add", [acc, t], [nxt]))
+            acc = nxt
+        return _model(h.make_graph(nodes, "tiling", [x], [y]))
+
+
+# Ordered cheapest-correct-first (highest est_points first). The new
+# position/shape families go after GlobalGeom, before the conv trio:
+# shape-changing detects are disjoint from same-shape families;
+# SymmetryFill is same-shape but its detect is exact (out == fill(in,
+# flipud(in)) for all train) so it never shadows the conv families.
 REGISTRY: List[Family] = [Identity(), ColorPermute(), ColorLUT(), Fractal3(),
                           GlobalGeom(),
+                          SymmetryFill(), CropBBox(), QuadrantUpscale(),
+                          IntScale(), Tiling(),
                           LinearLocalConv(), LocalConvMin(),
                           LocalNeighborhood()]
