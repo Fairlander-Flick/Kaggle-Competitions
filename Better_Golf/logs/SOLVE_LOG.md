@@ -1,6 +1,6 @@
 # NeuroGolf 2026 — Solve Log
 
-Projected **510.5/10000** from **35** solved tasks. One section per task: what it is, what we used, how we solved it.
+Projected **631.7/10000** from **42** solved tasks. One section per task: what it is, what we used, how we solved it.
 
 ## task001
 
@@ -2505,13 +2505,13 @@ Train example 0 (input → output):
 
 ## task087
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 4, test 1, arc-gen 261)
 - **Shapes:** input [[3, 3]] → output [[3, 3]]  | same-shape: True
 - **Colors:** input [1, 2, 3, 4, 5, 6, 7, 8, 9] → output [1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** global_geom
+- **Score:** 13.672 pts  (memory 83020, params 64)
+- **How solved:** global_geom: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -4142,13 +4142,13 @@ Train example 0 (input → output):
 
 ## task140
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 265 (train 2, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3]] → output [[3, 3]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** global_geom
+- **Score:** 13.672 pts  (memory 83020, params 64)
+- **How solved:** global_geom: passes all 265 examples
 
 Train example 0 (input → output):
 
@@ -4416,13 +4416,13 @@ Train example 0 (input → output):
 
 ## task150
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9]] → output [[3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9]]  | same-shape: True
 - **Colors:** input [1, 2, 6, 7] → output [1, 2, 6, 7]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** global_geom
+- **Score:** 14.933 pts  (memory 23510, params 32)
+- **How solved:** global_geom: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -4564,13 +4564,13 @@ Train example 0 (input → output):
 
 ## task155
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[4, 4], [5, 5], [6, 6], [7, 7], [8, 8]] → output [[4, 4], [5, 5], [6, 6], [7, 7], [8, 8]]  | same-shape: True
 - **Colors:** input [1, 2, 3, 4, 7, 8] → output [1, 2, 3, 4, 7, 8]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** global_geom
+- **Score:** 14.933 pts  (memory 23510, params 32)
+- **How solved:** global_geom: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -5198,13 +5198,13 @@ Train example 0 (input → output):
 
 ## task179
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 267 (train 4, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3]] → output [[3, 3]]  | same-shape: True
 - **Colors:** input [1, 2, 3, 4, 5, 6, 7, 8, 9] → output [1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** global_geom
+- **Score:** 25.0 pts  (memory 0, params 0)
+- **How solved:** global_geom: passes all 267 examples
 
 Train example 0 (input → output):
 
@@ -6961,13 +6961,13 @@ Train example 0 (input → output):
 
 ## task241
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 266 (train 3, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9]] → output [[3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** global_geom
+- **Score:** 25.0 pts  (memory 0, params 0)
+- **How solved:** global_geom: passes all 266 examples
 
 Train example 0 (input → output):
 
@@ -11096,13 +11096,13 @@ Train example 0 (input → output):
 
 ## task380
 
-- **Status:** unsolved
+- **Status:** solved
 - **Examples:** 267 (train 4, test 1, arc-gen 262)
 - **Shapes:** input [[3, 3]] → output [[3, 3]]  | same-shape: True
 - **Colors:** input [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] → output [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-- **Family used:** — (none yet)
-- **Score:** 0.0 pts  (memory None, params None)
-- **How solved:** no family fit
+- **Family used:** global_geom
+- **Score:** 14.006 pts  (memory 59510, params 32)
+- **How solved:** global_geom: passes all 267 examples
 
 Train example 0 (input → output):
 

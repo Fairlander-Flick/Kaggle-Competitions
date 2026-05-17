@@ -257,6 +257,238 @@ class Fractal3(Family):
 
 
 # --------------------------------------------------------------------------- #
+# 5. GlobalGeom — global geometric transformations (transpose, flips, rotations)
+#    transpose: single Transpose node, 0 memory, 0 params => 25.000 pts
+#    others: matrix-multiply permutation via data-dependent W/H => some params
+# --------------------------------------------------------------------------- #
+class GlobalGeom(Family):
+    name = "global_geom"
+    est_points = 25.0
+
+    _OPS = ["transpose", "flip_h", "flip_v", "rot180", "rot90", "rot270"]
+
+    def _np(self, op: str, grid: "Grid") -> "Grid":
+        arr = np.array(grid, dtype=int)
+        if op == "transpose":
+            arr = arr.T
+        elif op == "flip_h":
+            arr = np.fliplr(arr)
+        elif op == "flip_v":
+            arr = np.flipud(arr)
+        elif op == "rot180":
+            arr = np.rot90(arr, 2)
+        elif op == "rot90":
+            arr = np.rot90(arr, 1)
+        elif op == "rot270":
+            arr = np.rot90(arr, 3)
+        return arr.tolist()
+
+    def detect(self, train):
+        for op in self._OPS:
+            if all(self._np(op, i) == o for i, o in train):
+                return {"op": op}
+        return None
+
+    def apply(self, spec, grid):
+        return self._np(spec["op"], grid)
+
+    def build_onnx(self, spec):
+        op_name = spec["op"]
+        x, y = _io()
+
+        nodes = []
+        inits = []
+        _uid = [0]
+
+        def _fresh(prefix):
+            _uid[0] += 1
+            return f"{prefix}_{_uid[0]}"
+
+        def _const_f(name, shape, vals):
+            """Add a float32 Constant node, return its output name."""
+            out = name
+            nodes.append(h.make_node(
+                "Constant", [], [out],
+                value=h.make_tensor(name + "_val", TensorProto.FLOAT, shape, vals)
+            ))
+            return out
+
+        def _const_i64(name, shape, vals):
+            """Add an INT64 Constant node, return its output name."""
+            out = name
+            nodes.append(h.make_node(
+                "Constant", [], [out],
+                value=h.make_tensor(name + "_val", TensorProto.INT64, shape, vals)
+            ))
+            return out
+
+        def flip_cols(src, dst):
+            """Mirror columns within data-dependent width W, keep top-left.
+            dst is the output tensor name (must be 'output' if final node)."""
+            pfx = _fresh("fc")
+
+            # 1. ch_sum = ReduceSum(src, axes=[1], keepdims=1)  -> [1,1,30,30]
+            ch_sum = f"{pfx}_ch_sum"
+            nodes.append(h.make_node("ReduceSum", [src], [ch_sum], axes=[1], keepdims=1))
+
+            # 2. col_occ = ReduceMax(ch_sum, axes=[2], keepdims=1)  -> [1,1,1,30]
+            col_occ = f"{pfx}_col_occ"
+            nodes.append(h.make_node("ReduceMax", [ch_sum], [col_occ], axes=[2], keepdims=1))
+
+            # 3. Wts = ReduceSum(col_occ, axes=[3], keepdims=1)  -> [1,1,1,1] = W (float)
+            Wts = f"{pfx}_Wts"
+            nodes.append(h.make_node("ReduceSum", [col_occ], [Wts], axes=[3], keepdims=1))
+
+            # 4. Wsq = Squeeze(Wts, axes=[0,1])  -> [1,1]
+            #    Wm1 = Sub(Wsq, oneC)  where oneC = Constant float shape [1,1] val [[1.0]]
+            Wsq = f"{pfx}_Wsq"
+            nodes.append(h.make_node("Squeeze", [Wts], [Wsq], axes=[0, 1]))
+
+            oneC = _const_f(f"{pfx}_oneC", [1, 1], [1.0])
+            Wm1 = f"{pfx}_Wm1"
+            nodes.append(h.make_node("Sub", [Wsq, oneC], [Wm1]))
+
+            # 5. arange: Constant INT64 [30] = list(range(30)) -> "ar"
+            #    arf = Cast(ar) to FLOAT -> [30]
+            ar = _const_i64(f"{pfx}_ar", [30], list(range(30)))
+            arf = f"{pfx}_arf"
+            nodes.append(h.make_node("Cast", [ar], [arf], to=TensorProto.FLOAT))
+
+            # 6. ak = Unsqueeze(arf, axes=[1])  -> [30,1]
+            #    ac = Unsqueeze(arf, axes=[0])  -> [1,30]
+            #    A  = Add(ak, ac)               -> [30,30]   A[k,c]=k+c
+            ak = f"{pfx}_ak"
+            nodes.append(h.make_node("Unsqueeze", [arf], [ak], axes=[1]))
+            ac = f"{pfx}_ac"
+            nodes.append(h.make_node("Unsqueeze", [arf], [ac], axes=[0]))
+            A = f"{pfx}_A"
+            nodes.append(h.make_node("Add", [ak, ac], [A]))
+
+            # 7. eq = comparison using float subtraction (opset-10 compatible)
+            #    Wm1 is float [1,1]; A is float [30,30]
+            #    d = Sub(A, Wm1) -> [30,30];  eq = Less(Abs(d), halfC)
+            halfC = _const_f(f"{pfx}_halfC", [1, 1], [0.5])
+            d_eq = f"{pfx}_d_eq"
+            nodes.append(h.make_node("Sub", [A, Wm1], [d_eq]))
+            abs_d = f"{pfx}_abs_d"
+            nodes.append(h.make_node("Abs", [d_eq], [abs_d]))
+            eq = f"{pfx}_eq"
+            nodes.append(h.make_node("Less", [abs_d, halfC], [eq]))
+
+            # 8. kmask: kf = Unsqueeze(arf, axes=[1])  -> [30,1]
+            #    Wf = Wsq as float [1,1] (already float, just use Wsq)
+            #    lt = Less(kf, Wsq)  -> [30,1] bool broadcast
+            kf = f"{pfx}_kf"
+            nodes.append(h.make_node("Unsqueeze", [arf], [kf], axes=[1]))
+            lt = f"{pfx}_lt"
+            nodes.append(h.make_node("Less", [kf, Wsq], [lt]))
+
+            # 9. P = Mul(Cast(eq->FLOAT), Cast(lt->FLOAT))  -> [30,30]·[30,1] -> [30,30]
+            eq_f = f"{pfx}_eq_f"
+            nodes.append(h.make_node("Cast", [eq], [eq_f], to=TensorProto.FLOAT))
+            lt_f = f"{pfx}_lt_f"
+            nodes.append(h.make_node("Cast", [lt], [lt_f], to=TensorProto.FLOAT))
+            Pc = f"{pfx}_Pc"
+            nodes.append(h.make_node("Mul", [eq_f, lt_f], [Pc]))
+
+            # 10. dst = MatMul(src, Pc)
+            nodes.append(h.make_node("MatMul", [src, Pc], [dst]))
+
+        def flip_rows(src, dst):
+            """Mirror rows within data-dependent height H, keep top-left."""
+            pfx = _fresh("fr")
+
+            # 1. ch_sum = ReduceSum(src, axes=[1], keepdims=1)  -> [1,1,30,30]
+            ch_sum = f"{pfx}_ch_sum"
+            nodes.append(h.make_node("ReduceSum", [src], [ch_sum], axes=[1], keepdims=1))
+
+            # 2. row_occ = ReduceMax(ch_sum, axes=[3], keepdims=1)  -> [1,1,30,1]
+            row_occ = f"{pfx}_row_occ"
+            nodes.append(h.make_node("ReduceMax", [ch_sum], [row_occ], axes=[3], keepdims=1))
+
+            # 3. Hts = ReduceSum(row_occ, axes=[2], keepdims=1)  -> [1,1,1,1] = H (float)
+            Hts = f"{pfx}_Hts"
+            nodes.append(h.make_node("ReduceSum", [row_occ], [Hts], axes=[2], keepdims=1))
+
+            # 4. Hsq = Squeeze(Hts, axes=[0,1])  -> [1,1]
+            #    Hm1 = Sub(Hsq, oneC)
+            Hsq = f"{pfx}_Hsq"
+            nodes.append(h.make_node("Squeeze", [Hts], [Hsq], axes=[0, 1]))
+
+            oneC = _const_f(f"{pfx}_oneC", [1, 1], [1.0])
+            Hm1 = f"{pfx}_Hm1"
+            nodes.append(h.make_node("Sub", [Hsq, oneC], [Hm1]))
+
+            # 5. arange: Constant INT64 [30] -> cast to float
+            ar = _const_i64(f"{pfx}_ar", [30], list(range(30)))
+            arf = f"{pfx}_arf"
+            nodes.append(h.make_node("Cast", [ar], [arf], to=TensorProto.FLOAT))
+
+            # 6. ak = Unsqueeze(arf, axes=[1])  -> [30,1]
+            #    ac = Unsqueeze(arf, axes=[0])  -> [1,30]
+            #    A  = Add(ak, ac)               -> [30,30]   A[r,k]=r+k
+            ak = f"{pfx}_ak"
+            nodes.append(h.make_node("Unsqueeze", [arf], [ak], axes=[1]))
+            ac = f"{pfx}_ac"
+            nodes.append(h.make_node("Unsqueeze", [arf], [ac], axes=[0]))
+            A = f"{pfx}_A"
+            nodes.append(h.make_node("Add", [ak, ac], [A]))
+
+            # 7. eq (float comparison approach)
+            halfC = _const_f(f"{pfx}_halfC", [1, 1], [0.5])
+            d_eq = f"{pfx}_d_eq"
+            nodes.append(h.make_node("Sub", [A, Hm1], [d_eq]))
+            abs_d = f"{pfx}_abs_d"
+            nodes.append(h.make_node("Abs", [d_eq], [abs_d]))
+            eq = f"{pfx}_eq"
+            nodes.append(h.make_node("Less", [abs_d, halfC], [eq]))
+
+            # 8. kmask: kf = Unsqueeze(arf, axes=[0])  -> [1,30]
+            #    lt = Less(kf, Hsq)  -> [1,30] bool
+            kf = f"{pfx}_kf"
+            nodes.append(h.make_node("Unsqueeze", [arf], [kf], axes=[0]))
+            lt = f"{pfx}_lt"
+            nodes.append(h.make_node("Less", [kf, Hsq], [lt]))
+
+            # 9. Pr = Mul(Cast(eq->FLOAT), Cast(lt->FLOAT))  -> [30,30]
+            eq_f = f"{pfx}_eq_f"
+            nodes.append(h.make_node("Cast", [eq], [eq_f], to=TensorProto.FLOAT))
+            lt_f = f"{pfx}_lt_f"
+            nodes.append(h.make_node("Cast", [lt], [lt_f], to=TensorProto.FLOAT))
+            Pr = f"{pfx}_Pr"
+            nodes.append(h.make_node("Mul", [eq_f, lt_f], [Pr]))
+
+            # 10. dst = MatMul(Pr, src)  -> [30,30]@[1,10,30,30] -> [1,10,30,30]
+            nodes.append(h.make_node("MatMul", [Pr, src], [dst]))
+
+        if op_name == "transpose":
+            nodes.append(h.make_node("Transpose", ["input"], ["output"], perm=[0, 1, 3, 2]))
+
+        elif op_name == "flip_h":
+            flip_cols("input", "output")
+
+        elif op_name == "flip_v":
+            flip_rows("input", "output")
+
+        elif op_name == "rot180":
+            t1 = "rot180_t1"
+            flip_cols("input", t1)
+            flip_rows(t1, "output")
+
+        elif op_name == "rot90":
+            t1 = "rot90_t1"
+            nodes.append(h.make_node("Transpose", ["input"], [t1], perm=[0, 1, 3, 2]))
+            flip_rows(t1, "output")
+
+        elif op_name == "rot270":
+            t1 = "rot270_t1"
+            flip_rows("input", t1)
+            nodes.append(h.make_node("Transpose", [t1], ["output"], perm=[0, 1, 3, 2]))
+
+        return _model(h.make_graph(nodes, f"global_geom_{op_name}", [x], [y], inits))
+
+
+# --------------------------------------------------------------------------- #
 # 5. LocalNeighborhood — same-shape rule where out[r,c] is an EXACT function of
 #    the KxK input window centred on (r,c) (K in {1,3,5}), out-of-grid cells
 #    treated as a distinct PAD symbol. This is *construction*, not prediction:
@@ -715,5 +947,6 @@ class LocalConvMin(Family):
 
 # Ordered cheapest-correct-first (highest est_points first).
 REGISTRY: List[Family] = [Identity(), ColorPermute(), ColorLUT(), Fractal3(),
+                          GlobalGeom(),
                           LinearLocalConv(), LocalConvMin(),
                           LocalNeighborhood()]

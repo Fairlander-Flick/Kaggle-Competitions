@@ -20037,18 +20037,18 @@
     "task": 86
   },
   "087": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "global_geom",
+    "memory": 83020,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "global_geom: passes all 266 examples",
+    "params": 64,
+    "points": 13.672,
     "sample": {
       "in": "221\n212\n281",
       "out": "182\n212\n122"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
@@ -35161,18 +35161,18 @@
     "task": 139
   },
   "140": {
-    "family": null,
-    "memory": null,
-    "n_fail": 265,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "global_geom",
+    "memory": 83020,
+    "n_fail": 0,
+    "n_pass": 265,
+    "note": "global_geom: passes all 265 examples",
+    "params": 64,
+    "points": 13.672,
     "sample": {
       "in": "338\n370\n500",
       "out": "005\n073\n833"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -37008,18 +37008,18 @@
     "task": 149
   },
   "150": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "global_geom",
+    "memory": 23510,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "global_geom: passes all 266 examples",
+    "params": 32,
+    "points": 14.933,
     "sample": {
       "in": "6662\n6162\n7272\n1722",
       "out": "2666\n2616\n2727\n2271"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
@@ -37380,18 +37380,18 @@
     "task": 154
   },
   "155": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "global_geom",
+    "memory": 23510,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "global_geom: passes all 266 examples",
+    "params": 32,
+    "points": 14.933,
     "sample": {
       "in": "81214\n44248\n37248\n27787\n87748",
       "out": "87748\n27787\n37248\n44248\n81214"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
@@ -43794,18 +43794,18 @@
     "task": 178
   },
   "179": {
-    "family": null,
-    "memory": null,
-    "n_fail": 267,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "global_geom",
+    "memory": 0,
+    "n_fail": 0,
+    "n_pass": 267,
+    "note": "global_geom: passes all 267 examples",
+    "params": 0,
+    "points": 25.0,
     "sample": {
       "in": "221\n151\n522",
       "out": "215\n252\n112"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
@@ -57432,18 +57432,18 @@
     "task": 240
   },
   "241": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "global_geom",
+    "memory": 0,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "global_geom: passes all 266 examples",
+    "params": 0,
+    "points": 25.0,
     "sample": {
       "in": "500\n350\n005",
       "out": "530\n050\n005"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -84059,18 +84059,18 @@
     "task": 379
   },
   "380": {
-    "family": null,
-    "memory": null,
-    "n_fail": 267,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "global_geom",
+    "memory": 59510,
+    "n_fail": 0,
+    "n_pass": 267,
+    "note": "global_geom: passes all 267 examples",
+    "params": 32,
+    "points": 14.006,
     "sample": {
       "in": "900\n999\n999",
       "out": "099\n099\n999"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
