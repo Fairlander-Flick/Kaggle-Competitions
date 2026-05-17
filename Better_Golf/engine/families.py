@@ -1455,6 +1455,125 @@ class Tiling(Family):
         return _model(h.make_graph(nodes, "tiling", [x], [y]))
 
 
+# --------------------------------------------------------------------------- #
+# 13. MirrorDouble — output is the grid doubled along ONE axis: the original
+#     pane plus a mirrored (or plain) copy. 5 variants:
+#       v_mir_down  = [[A],[flipud A]]      (tasks 172, 210)
+#       v_mir_up    = [[flipud A],[A]]      (task 116)
+#       h_mir_right = [A | fliplr A]        (tasks 164, 311)
+#       h_mir_left  = [fliplr A | A]
+#       v_tile/h_tile = plain doubling      (kept for fit robustness; the
+#                       exact-tile Tiling family runs first so pure tiles
+#                       never reach here)
+#     Construction reuses only proven canvas-safe primitives: the original
+#     pane is `input`; the second pane is a _flip_rows_P / _flip_cols_P
+#     reflection optionally translated by exactly H rows / W cols via a
+#     _shift_mat matrix. The two panes occupy disjoint regions, so summing
+#     the [1,10,30,30] one-hot tensors stays valid; out-of-grid cells remain
+#     all-zero -> decode trims to the exact (2H,W) / (H,2W) output.
+# --------------------------------------------------------------------------- #
+class MirrorDouble(Family):
+    name = "mirror_double"
+    est_points = 13.0
+
+    _V = ["v_mir_down", "v_mir_up", "v_tile"]
+    _H = ["h_mir_right", "h_mir_left", "h_tile"]
+
+    @staticmethod
+    def _xform(mode, a):
+        if mode == "v_mir_down":
+            return np.vstack([a, np.flipud(a)])
+        if mode == "v_mir_up":
+            return np.vstack([np.flipud(a), a])
+        if mode == "v_tile":
+            return np.vstack([a, a])
+        if mode == "h_mir_right":
+            return np.hstack([a, np.fliplr(a)])
+        if mode == "h_mir_left":
+            return np.hstack([np.fliplr(a), a])
+        return np.hstack([a, a])  # h_tile
+
+    def detect(self, train):
+        axis = None
+        for i, o in train:
+            hi, wi, ho, wo = len(i), len(i[0]), len(o), len(o[0])
+            if ho == 2 * hi and wo == wi:
+                a = "v"
+            elif ho == hi and wo == 2 * wi:
+                a = "h"
+            else:
+                return None
+            if axis is not None and a != axis:
+                return None
+            axis = a
+        return {"axis": axis} if axis else None
+
+    def fit(self, spec, pairs):
+        small = [(i, o) for i, o in pairs if max(len(i), len(i[0])) <= 30]
+        if not small:
+            return None
+        cands = self._V if spec["axis"] == "v" else self._H
+        for mode in cands:
+            if all(self._xform(mode, np.array(i)).tolist() == o
+                   for i, o in small):
+                return {"mode": mode}
+        return None
+
+    def apply(self, spec, grid):
+        return self._xform(spec["mode"], np.array(grid)).tolist()
+
+    def build_onnx(self, spec):
+        mode = spec["mode"]
+        x, y = _io()
+        nodes: List = []
+        arf, ai, aj = _idx(nodes, "md")
+        Hs, Ws = _occ_all(nodes, "input", "md")
+        half = _cf(nodes, "md_half", [1, 1], [0.5])
+        if mode.startswith("v"):
+            rms = "md_rms"
+            nodes.append(h.make_node("Sub", [ai, aj], [rms]))   # a-b
+            Tdwn = _shift_mat(nodes, rms, Hs, half, "md_td")     # rows +H
+            if mode == "v_tile":
+                top, bot_src = "input", "input"
+            elif mode == "v_mir_down":
+                fud = "md_fud"
+                nodes.append(h.make_node(
+                    "MatMul", [_flip_rows_P(nodes, "input", "mdfr"),
+                               "input"], [fud]))
+                top, bot_src = "input", fud
+            else:  # v_mir_up
+                fud = "md_fud"
+                nodes.append(h.make_node(
+                    "MatMul", [_flip_rows_P(nodes, "input", "mdfr"),
+                               "input"], [fud]))
+                top, bot_src = fud, "input"
+            bot = "md_bot"
+            nodes.append(h.make_node("MatMul", [Tdwn, bot_src], [bot]))
+            nodes.append(h.make_node("Add", [top, bot], ["output"]))
+        else:
+            jmc = "md_jmc"
+            nodes.append(h.make_node("Sub", [aj, ai], [jmc]))   # b-a
+            Trgt = _shift_mat(nodes, jmc, Ws, half, "md_tr")     # cols +W
+            if mode == "h_tile":
+                left, right_src = "input", "input"
+            elif mode == "h_mir_right":
+                flr = "md_flr"
+                nodes.append(h.make_node(
+                    "MatMul", ["input",
+                               _flip_cols_P(nodes, "input", "mdfc")], [flr]))
+                left, right_src = "input", flr
+            else:  # h_mir_left
+                flr = "md_flr"
+                nodes.append(h.make_node(
+                    "MatMul", ["input",
+                               _flip_cols_P(nodes, "input", "mdfc")], [flr]))
+                left, right_src = flr, "input"
+            right = "md_right"
+            nodes.append(h.make_node("MatMul", [right_src, Trgt], [right]))
+            nodes.append(h.make_node("Add", [left, right], ["output"]))
+        return _model(h.make_graph(nodes, "mirror_double", [x], [y]))
+
+
 # Ordered cheapest-correct-first (highest est_points first). The new
 # position/shape families go after GlobalGeom, before the conv trio:
 # shape-changing detects are disjoint from same-shape families;
@@ -1463,6 +1582,6 @@ class Tiling(Family):
 REGISTRY: List[Family] = [Identity(), ColorPermute(), ColorLUT(), Fractal3(),
                           GlobalGeom(),
                           SymmetryFill(), CropBBox(), QuadrantUpscale(),
-                          IntScale(), Tiling(),
+                          IntScale(), Tiling(), MirrorDouble(),
                           LinearLocalConv(), LocalConvMin(),
                           LocalNeighborhood()]

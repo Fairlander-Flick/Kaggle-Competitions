@@ -1941,18 +1941,18 @@
     "task": 11
   },
   "012": {
-    "family": null,
-    "memory": null,
-    "n_fail": 265,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 5407200,
+    "n_fail": 0,
+    "n_pass": 265,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 194708,
+    "points": 9.461,
     "sample": {
       "in": "000000000000\n000000000000\n007000000000\n072700000000\n007000000000\n000000000000\n000000007000\n000000072700\n000000007000\n000000000000\n000000000000\n000000000000",
       "out": "000000000000\n207020000000\n027200000000\n772770000000\n027200000000\n207020207020\n000000027200\n000000772770\n000000027200\n000000207020\n000000000000\n000000000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -14512,18 +14512,18 @@
     "task": 51
   },
   "052": {
-    "family": null,
-    "memory": null,
-    "n_fail": 267,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 3765600,
+    "n_fail": 0,
+    "n_pass": 267,
+    "note": "local_conv_min: passes all 267 examples",
+    "params": 135200,
+    "points": 9.823,
     "sample": {
       "in": "444\n232\n233",
       "out": "555\n000\n000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
@@ -18527,18 +18527,18 @@
     "task": 69
   },
   "070": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 2620800,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 93701,
+    "points": 10.186,
     "sample": {
       "in": "<17x17 grid>",
       "out": "<17x17 grid>"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -27815,18 +27815,18 @@
     "task": 115
   },
   "116": {
-    "family": null,
-    "memory": null,
-    "n_fail": 267,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "mirror_double",
+    "memory": 115270,
+    "n_fail": 0,
+    "n_pass": 267,
+    "note": "mirror_double: passes all 267 examples",
+    "params": 63,
+    "points": 13.344,
     "sample": {
       "in": "9959\n5599\n9599",
       "out": "9599\n5599\n9959\n9959\n5599\n9599"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
@@ -35118,18 +35118,18 @@
     "task": 138
   },
   "139": {
-    "family": null,
-    "memory": null,
-    "n_fail": 265,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 504000,
+    "n_fail": 0,
+    "n_pass": 265,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 16967,
+    "points": 11.837,
     "sample": {
       "in": "000000000\n444000000\n404000000\n004000000\n000004400\n000000440\n000004040\n000000000\n000000000",
       "out": "000000000\n444000000\n474000000\n774000000\n000004470\n000007440\n000004740\n000000000\n000000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -38592,18 +38592,18 @@
     "task": 159
   },
   "160": {
-    "family": null,
-    "memory": null,
-    "n_fail": 265,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 410400,
+    "n_fail": 0,
+    "n_pass": 265,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 13574,
+    "points": 12.043,
     "sample": {
       "in": "1110000000\n1010000100\n1110001110\n0000000100\n0100000000\n1110000000\n0101110000\n0001010011\n0001110000\n0000000000",
       "out": "0200000000\n2220000100\n0200001110\n0000000100\n0100000000\n1110000000\n0100200000\n0002220011\n0000200000\n0000000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -39509,18 +39509,18 @@
     "task": 161
   },
   "162": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 8179200,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 295193,
+    "points": 9.047,
     "sample": {
       "in": "<20x20 grid>",
       "out": "<20x20 grid>"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -39624,18 +39624,18 @@
     "task": 163
   },
   "164": {
-    "family": null,
-    "memory": null,
-    "n_fail": 267,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "mirror_double",
+    "memory": 115270,
+    "n_fail": 0,
+    "n_pass": 267,
+    "note": "mirror_double: passes all 267 examples",
+    "params": 63,
+    "points": 13.344,
     "sample": {
       "in": "666\n161\n886",
       "out": "666666\n161161\n886688"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
@@ -40169,18 +40169,18 @@
     "task": 166
   },
   "167": {
-    "family": null,
-    "memory": null,
-    "n_fail": 268,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 4888800,
+    "n_fail": 0,
+    "n_pass": 268,
+    "note": "local_conv_min: passes all 268 examples",
+    "params": 175916,
+    "points": 9.562,
     "sample": {
       "in": "222\n323\n333",
       "out": "500\n050\n005"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         2,
@@ -41053,18 +41053,18 @@
     "task": 171
   },
   "172": {
-    "family": null,
-    "memory": null,
-    "n_fail": 267,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "mirror_double",
+    "memory": 115270,
+    "n_fail": 0,
+    "n_pass": 267,
+    "note": "mirror_double: passes all 267 examples",
+    "params": 63,
+    "points": 13.344,
     "sample": {
       "in": "914\n914\n211",
       "out": "914\n914\n211\n211\n914\n914"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
@@ -45093,18 +45093,18 @@
     "task": 185
   },
   "186": {
-    "family": null,
-    "memory": null,
-    "n_fail": 267,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 2829600,
+    "n_fail": 0,
+    "n_pass": 267,
+    "note": "local_conv_min: passes all 267 examples",
+    "params": 101270,
+    "points": 10.109,
     "sample": {
       "in": "000\n100\n000",
       "out": "200\n000\n000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -45780,18 +45780,18 @@
     "task": 191
   },
   "192": {
-    "family": null,
-    "memory": null,
-    "n_fail": 265,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 3996000,
+    "n_fail": 0,
+    "n_pass": 265,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 55552,
+    "points": 9.785,
     "sample": {
       "in": "80008033333800\n00000033333000\n00000033838000\n00333033333000\n00333038333000\n00338000000000\n00000000033333\n08033383033383\n00038333033333\n00033333033333\n33338333800000\n33300000000000\n38308000000008",
       "out": "00000033333000\n00000033333000\n00000033333000\n00333033333000\n00333033333000\n00333000000000\n00000000033333\n00033333033333\n00033333033333\n00033333033333\n33333333000000\n33300000000000\n33300000000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -50987,18 +50987,18 @@
     "task": 209
   },
   "210": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "mirror_double",
+    "memory": 115270,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "mirror_double: passes all 266 examples",
+    "params": 63,
+    "points": 13.344,
     "sample": {
       "in": "110\n111\n000",
       "out": "110\n111\n000\n000\n111\n110"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -53376,18 +53376,18 @@
     "task": 221
   },
   "222": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 24415200,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 341988,
+    "points": 7.975,
     "sample": {
       "in": "0000114020000205\n0003500099804058\n1082800608500080\n0002220000060000\n0012220019500204\n0402220200700000\n3062220003507000\n7046004773020071\n0700000977000852\n1564930300000946\n0240000000201600\n0005000000000024\n0060000060020000\n0300702079000000\n0050700000006530\n1009000200010090",
       "out": "0000000000000000\n0000000000000000\n0000000000000000\n0002220000000000\n0002220000000000\n0002220000000000\n0002220000000000\n0000000000000000\n0000000000000000\n0000000000000000\n0000000000000000\n0000000000000000\n0000000000000000\n0000000000000000\n0000000000000000\n0000000000000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -54034,18 +54034,18 @@
     "task": 228
   },
   "229": {
-    "family": null,
-    "memory": null,
-    "n_fail": 267,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 9957600,
+    "n_fail": 0,
+    "n_pass": 267,
+    "note": "local_conv_min: passes all 267 examples",
+    "params": 359660,
+    "points": 8.851,
     "sample": {
       "in": "222\n218\n288",
       "out": "222\n255\n255"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
@@ -60648,18 +60648,18 @@
     "task": 264
   },
   "265": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 496800,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 16706,
+    "points": 11.851,
     "sample": {
       "in": "<18x18 grid>",
       "out": "<18x18 grid>"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -61764,18 +61764,18 @@
     "task": 277
   },
   "278": {
-    "family": null,
-    "memory": null,
-    "n_fail": 265,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 1879200,
+    "n_fail": 0,
+    "n_pass": 265,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 66818,
+    "points": 10.519,
     "sample": {
       "in": "<15x18 grid>",
       "out": "<15x18 grid>"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -67581,18 +67581,18 @@
     "task": 301
   },
   "302": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 309600,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 9920,
+    "points": 12.325,
     "sample": {
       "in": "000000055555\n000000050005\n005550050005\n005050050005\n005550055555\n000000000000\n000000555500\n000000500500\n000000500500\n000000555500\n000000000000\n000000000000",
       "out": "000000055555\n000000058885\n005550058885\n005650058885\n005550055555\n000000000000\n000000555500\n000000577500\n000000577500\n000000555500\n000000000000\n000000000000"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -69993,18 +69993,18 @@
     "task": 310
   },
   "311": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "mirror_double",
+    "memory": 115270,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "mirror_double: passes all 266 examples",
+    "params": 63,
+    "points": 13.344,
     "sample": {
       "in": "070\n007\n077",
       "out": "070070\n007700\n077770"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -70836,18 +70836,18 @@
     "task": 321
   },
   "322": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 489600,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 16445,
+    "points": 11.866,
     "sample": {
       "in": "006\n040\n300",
       "out": "006\n046\n346"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -81315,18 +81315,18 @@
     "task": 368
   },
   "369": {
-    "family": null,
-    "memory": null,
-    "n_fail": 265,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 900000,
+    "n_fail": 0,
+    "n_pass": 265,
+    "note": "local_conv_min: passes all 265 examples",
+    "params": 31322,
+    "points": 11.256,
     "sample": {
       "in": "5555055505\n0055555555\n0555550050\n5505555050\n5555005555\n0505555050\n0555005550\n5555555555\n5555555550\n0555555050",
       "out": "5555355535\n1155555555\n1555551152\n5535555152\n5555225555\n2535555352\n2555225552\n5555555555\n5555555552\n3555555352"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         0,
@@ -86600,18 +86600,18 @@
     "task": 388
   },
   "389": {
-    "family": null,
-    "memory": null,
-    "n_fail": 266,
-    "n_pass": 0,
-    "note": "no family fit",
-    "params": null,
-    "points": 0.0,
+    "family": "local_conv_min",
+    "memory": 648000,
+    "n_fail": 0,
+    "n_pass": 266,
+    "note": "local_conv_min: passes all 266 examples",
+    "params": 22187,
+    "points": 11.585,
     "sample": {
       "in": "454\n555\n454",
       "out": "040\n444\n040"
     },
-    "status": "unsolved",
+    "status": "solved",
     "summary": {
       "input_colors": [
         1,
