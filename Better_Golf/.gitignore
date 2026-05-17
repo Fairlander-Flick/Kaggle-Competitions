@@ -6,3 +6,9 @@ out/calib/
 **/__pycache__/
 *.pyc
 bg_*/
+
+Better_Golf/sources/
+Better_Golf/out/submission.zip
+Better_Golf/logs/TRIAGE_PROBE.json
+Better_Golf/logs/TRIAGE_GEN2.json
+Better_Golf/logs/blend_results.json
