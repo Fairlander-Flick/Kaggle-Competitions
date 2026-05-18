@@ -86,14 +86,37 @@ real LB. Budget 100/day; A/B single changes; never spray.
    / `kaggle datasets download` then `python blend.py`.
 5. Sanity: `python -c "from engine import dataio,verify; dataio.load_task(2)"`
 
+## Phase-2 FAMILY #1 — neighbour-conditioned recolor (DONE 2026-05-18)
+`scalar_onnx.build_neighbor_recolor(target,src,newc,conn)` BUILT + wired as
+detector D3 (data-driven, self-rejecting). Construction (canvas-safe, 2
+intermediates): `Conv(input,W[1,10,3,3])` W[target]center=9 ("is-target") +
+W[src]ring=1 over conn offsets, zero-pad → `cnt`[1,1,30,30]f32; `Greater(
+cnt,9)`→`chg`[1,1,30,30]bool; `Where(chg,NEWC[1,10,1,1],input)`→output.
+Cost EXACT: mem 4500 (3600 cnt + 900 chg) + par 101 (90 W + 1 thr + 10 NEWC)
+→ **16.566 pts** (Where multidir-broadcast infers static [1,10,30,30] — no
+Tile needed). **Proven correct: n_fail=0 on ALL 265 arc-gen pairs for 3
+independent tasks (095, 147, 352).**
+- Sweep result: detector fires honestly on few — 095/147 already compiled
+  ≤16.57 by public banks (no win); **only task352 WIN +0.36** (16.20→16.566,
+  banked out/onnx/task352.onnx). `blend.py` → 400/400 valid,
+  **projected 6149.18** (was 6148.81). Gate 6150 NOT cleared; +0.37 proj
+  (~+0.34 actual) is spray → **NOT submitted** (no-spray; matches policy).
+- KEY FINDING: task363/157 (the expected first targets) are **NOT** single-
+  pass — ex1 row5 `5222250000→5222252222` (colour-2 crosses a `5` barrier)
+  ⇒ iterative flood / enclosed-region fill. Detector returned None
+  correctly (no false positive). They belong to the flood family below.
+
 ## Exact next action
-1. Build `scalar_onnx.build_neighbor_recolor(target,src,newc,conn)` —
-   Conv [1,1,3,3] ones kernel on source-colour channel → has-neighbour
-   mask → Where(mask & is-target, newc, input). Data-derive (target,src,
-   newc,conn∈{4,8}) per task; verify vs arc-gen. First targets: task363
-   (14.10), task157 (13.71). Expect ~17-20 → +3-6 each.
-2. Sweep the builder across all SS low-pts tasks; write winners to
-   out/onnx/; `python blend.py` (auto-merge cheapest); when projected
-   ≳6150 → submit; gate with the ~7% margin (memory: projected↔actual).
-3. Then port flood_fill (commit 9102448) to scalar/bool for enclosed-fill
-   (task070/102/156). Repeat the loop on the expensive tail.
+1. **Port flood_fill (commit 9102448, task002/251) to scalar/bool FAMILY.**
+   This is now the high-leverage path: covers task363 (14.10), task157
+   (13.71) AND the enclosed-fill set task070/102/156. Build the minimal
+   static-bool flood/enclosed-region ONNX (iterative spread can't use
+   Loop/Scan — banned; use a fixed unrolled Conv-relax depth ≤ grid
+   diameter, or a closed-form enclosed-region test: a 0-region is filled
+   iff it does NOT reach the canvas-grid border). Data-derive
+   (region-colour, fill-colour, conn) per task; official-verify vs
+   arc-gen; write winners to out/onnx/.
+2. `python blend.py` (auto-merge cheapest); resubmit ONLY when projected
+   ≳6150 AND it beats 5480.41 with the ~7% realization margin.
+3. Then resume the expensive-tail loop (task366 8.24 biggest single win,
+   382/138/182/133/077 …). New families one task at a time.

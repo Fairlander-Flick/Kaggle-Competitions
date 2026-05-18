@@ -72,6 +72,46 @@ def build_recolor_conv(mp):
     return _model([n], [w])
 
 
+_OFF4 = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+_OFF8 = _OFF4 + [(-1, -1), (-1, 1), (1, -1), (1, 1)]
+
+
+def build_neighbor_recolor(target, src, newc, conn):
+    """Morphological neighbour-conditioned recolor (FAMILY, not one-off):
+    a cell of colour `target` that has >=1 conn-neighbour of colour `src`
+    becomes colour `newc`; everything else is unchanged.
+
+    Construction (2 small intermediates → ~16.6 pts, canvas-safe):
+      cnt  = Conv(input, W[1,10,3,3])  W[target] center = 9 ("is-target"),
+             W[src] ring = 1 over the conn offsets, zero-pad → float [1,1,30,30]
+             cnt = 9*[cell is target] + (#src conn-neighbours), max ring 8 < 9
+      chg  = Greater(cnt, 9)  bool [1,1,30,30]  (strict > : target & >=1 src)
+      out  = Where(chg, NEWC[1,10,1,1], input)  → output (free, final node)
+    Padding columns are all-zero (channel `target` = 0 there) so they never
+    flip and Conv zero-pad never invents a `src` neighbour → canvas-safe.
+    params = 90(W) + 1(thr) + 10(NEWC) = 101 ; memory = 3600(cnt)+900(chg)."""
+    W = np.zeros((1, 10, 3, 3), dtype=np.float32)
+    W[0, target, 1, 1] = 9.0
+    off = _OFF8 if conn == 8 else _OFF4
+    for dr, dc in off:
+        W[0, src, dr + 1, dc + 1] = 1.0
+    w = helper.make_tensor("W", TensorProto.FLOAT, [1, 10, 3, 3],
+                           W.flatten().tolist())
+    thr = helper.make_tensor("T", TensorProto.FLOAT, [], [9.0])
+    NEW = np.zeros((1, 10, 1, 1), dtype=np.float32)
+    NEW[0, newc, 0, 0] = 1.0
+    nw = helper.make_tensor("NEWC", TensorProto.FLOAT, [1, 10, 1, 1],
+                            NEW.flatten().tolist())
+    nodes = [
+        helper.make_node("Conv", ["input", "W"], ["cnt"],
+                          kernel_shape=[3, 3], pads=[1, 1, 1, 1],
+                          strides=[1, 1]),
+        helper.make_node("Greater", ["cnt", "T"], ["chg"]),
+        helper.make_node("Where", ["chg", "NEWC", "input"], ["output"]),
+    ]
+    return _model(nodes, [w, thr, nw])
+
+
 # ---- data-driven detector cascade ---------------------------------------
 
 def _pairs(task):
@@ -83,6 +123,53 @@ def _pairs(task):
                 continue  # grader skips >30
             out.append((i, o))
     return out
+
+
+def _nbr_any(mask, off):
+    """bool[H,W]: cell has >=1 in-grid neighbour (per `off`) that is True.
+    Zero-pad outside the grid — byte-identical to the ONNX Conv zero-pad."""
+    H, W = mask.shape
+    pad = np.zeros((H + 2, W + 2), dtype=bool)
+    pad[1:-1, 1:-1] = mask
+    acc = np.zeros((H, W), dtype=bool)
+    for dr, dc in off:
+        acc |= pad[1 + dr:1 + dr + H, 1 + dc:1 + dc + W]
+    return acc
+
+
+def _detect_neighbor_recolor(ps):
+    """Pure data: find (target, src, newc, conn) s.t. every pair is exactly
+    'cell==target AND has a conn-neighbour==src  ->  newc, else unchanged'.
+    Returns the tuple or None. (Single-pass on the INPUT grid — an iterative
+    flood will mismatch arc-gen here and correctly fall through.)"""
+    arrs = [(np.array(i), np.array(o)) for i, o in ps]
+    tgt, new = set(), set()
+    any_chg = False
+    for ia, oa in arrs:
+        d = ia != oa
+        if d.any():
+            any_chg = True
+            tgt.update(ia[d].tolist())
+            new.update(oa[d].tolist())
+    if not any_chg or len(tgt) != 1 or len(new) != 1:
+        return None
+    target, newc = tgt.pop(), new.pop()
+    if target == newc:
+        return None
+    for conn, off in ((4, _OFF4), (8, _OFF8)):
+        for src in range(10):
+            good = True
+            for ia, oa in arrs:
+                pred = (ia == target) & _nbr_any(ia == src, off)
+                # predicted-change cells must become exactly newc; every
+                # other cell must be untouched.
+                if not (np.array_equal(oa[pred], np.full(pred.sum(), newc))
+                        and np.array_equal(oa[~pred], ia[~pred])):
+                    good = False
+                    break
+            if good:
+                return (target, src, newc, conn)
+    return None
 
 
 def detect(task_num):
@@ -138,5 +225,15 @@ def detect(task_num):
                         inv[d] = free_in.pop()
                 return ("recolor_gather", build_recolor_gather(inv), 10)
             return ("recolor_conv", build_recolor_conv(mp), 100)
+
+    # D3 morphological neighbour-conditioned recolor (FAMILY ~16.6 pts).
+    # Only reachable when no cheaper exact rule above fit (a conditional
+    # recolor breaks D2's consistent global map, so it falls through here).
+    if same:
+        nr = _detect_neighbor_recolor(ps)
+        if nr:
+            t, s, nc, cn = nr
+            return (f"nbr_recolor[{t}<{s}>{nc}/{cn}]",
+                    build_neighbor_recolor(t, s, nc, cn), 101)
 
     return None
