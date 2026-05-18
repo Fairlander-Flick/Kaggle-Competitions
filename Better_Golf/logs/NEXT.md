@@ -4,9 +4,11 @@
 - **Phase-1 BASE blend SHIPPED.** 5 public banks + logic/karnak + our 77
   → official-grader cheapest-valid per task → **400/400 valid,
   projected 6148.81 pts**, `out/submission.zip` 1064 KB.
-- **First real submit done** ("v2 base blend ... 6148.81"). Score read:
-  see `logs/blend_results.json` + `kaggle competitions submissions`.
-  Reference: a direct 6225 source scored real LB **5480.41**; top-10 ≈7000.
+- **First real submit COMPLETE: actual 5706.97** (projected 6148.81 →
+  ~92.8% realization; +226.56 vs prior best real LB 5480.41). Calibration:
+  gate Phase-2 submits with the ~7% margin (memory: projected↔actual gap).
+  LB rank: outside top-10 (cutoff ≈7001; field shown 6784–7426); need
+  ≈+1295 actual / projected ≳7550 for top-10.
 - Sources in `sources/` (gitignored, fresh-clone must refetch): ngc26,
   afr5689, vyanktesh, karnak_xse (each ~400 onnx), karnak_map (75),
   logic/submission (204) + `logic/arc_explanations.csv` = **400-task
