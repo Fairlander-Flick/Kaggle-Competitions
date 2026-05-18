@@ -31,6 +31,28 @@
   900 B → ~18 pts. Minimize count & dtype of intermediates. p_task ~17-18
   achievable ⇒ ~7000+ is mathematically consistent.
 
+## Phase-2 finding (2026-05-18) — trivial detectors capped; go family
+`engine/scalar_onnx.py` + `phase2.py` BUILT (committed). Data-driven
+detector cascade (identity / transpose / global-recolor) is honest but
+**fires on only 6/400** — the ecosystem already compiled all trivial
+tasks optimally; English "recolor"/"identity" tags are noisy (rejected
+correctly by data check). Net trivial gain only +3.22 (task016 +1.61,
+task337 +1.61 → written to out/onnx; 276/309/179/241 tie). NOT submitting
+(no-spray; gate not cleared).
+**Real points = the expensive tail** the blend leaves at ~12-17 (108
+tasks <14, 214 in 14-17) because public banks compile them with float
+[1,10,30,30]. Ceiling math: lift all→17 ⇒ proj 6930 (~actual 6430);
+→18 ⇒ 7270 (~6750); →20 ⇒ 8030 (~7450 = TOP-10).
+**Highest-leverage next: reusable boolean-conv FAMILY builders** (not
+one-off per task):
+- morphological neighbour-conditioned recolor (Conv [1,1,3,3] kernel=9
+  → ~17-20): covers task157, task363, many of the 41 adjacency/line
+  tasks ("color-0 cell with neighbour of color X → color Y").
+- extend existing flood_fill family (commit 9102448, task002/251) in
+  scalar/boolean repr to enclosed-fill tasks: task070, task102, task156.
+- skip connected-component-size tasks (330/374/169/277) — need CC
+  labelling, banned-op territory; low feasibility.
+
 ## Phase-2 — DIFFERENTIAL recompile (active; the real points)
 Loop, greedy on points-Δ:
 1. Pick highest-cost task from `logs/blend_results.json` (lowest points).
@@ -65,8 +87,13 @@ real LB. Budget 100/day; A/B single changes; never spray.
 5. Sanity: `python -c "from engine import dataio,verify; dataio.load_task(2)"`
 
 ## Exact next action
-1. Read real Kaggle score (`kaggle competitions submissions`) — confirm
-   actual ≈ projected 6148.81, log LB rank.
-2. Build `engine/scalar_onnx.py` (static-shape helpers per cost model above).
-3. Start Phase-2 loop at task366 (8.24 → target ~17): read arc_explanations
-   rule, minimal scalar/bool graph, official-verify, A/B merge if cheaper.
+1. Build `scalar_onnx.build_neighbor_recolor(target,src,newc,conn)` —
+   Conv [1,1,3,3] ones kernel on source-colour channel → has-neighbour
+   mask → Where(mask & is-target, newc, input). Data-derive (target,src,
+   newc,conn∈{4,8}) per task; verify vs arc-gen. First targets: task363
+   (14.10), task157 (13.71). Expect ~17-20 → +3-6 each.
+2. Sweep the builder across all SS low-pts tasks; write winners to
+   out/onnx/; `python blend.py` (auto-merge cheapest); when projected
+   ≳6150 → submit; gate with the ~7% margin (memory: projected↔actual).
+3. Then port flood_fill (commit 9102448) to scalar/bool for enclosed-fill
+   (task070/102/156). Repeat the loop on the expensive tail.
