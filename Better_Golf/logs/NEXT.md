@@ -106,17 +106,40 @@ independent tasks (095, 147, 352).**
   ⇒ iterative flood / enclosed-region fill. Detector returned None
   correctly (no false positive). They belong to the flood family below.
 
-## Exact next action
-1. **Port flood_fill (commit 9102448, task002/251) to scalar/bool FAMILY.**
-   This is now the high-leverage path: covers task363 (14.10), task157
-   (13.71) AND the enclosed-fill set task070/102/156. Build the minimal
-   static-bool flood/enclosed-region ONNX (iterative spread can't use
-   Loop/Scan — banned; use a fixed unrolled Conv-relax depth ≤ grid
-   diameter, or a closed-form enclosed-region test: a 0-region is filled
-   iff it does NOT reach the canvas-grid border). Data-derive
-   (region-colour, fill-colour, conn) per task; official-verify vs
-   arc-gen; write winners to out/onnx/.
-2. `python blend.py` (auto-merge cheapest); resubmit ONLY when projected
-   ≳6150 AND it beats 5480.41 with the ~7% realization margin.
-3. Then resume the expensive-tail loop (task366 8.24 biggest single win,
-   382/138/182/133/077 …). New families one task at a time.
+## Phase-2 LEVERAGE AUDIT (2026-05-18) — data-falsified the flood plan
+Hard evidence gathered this session (all 400-task / 265-pair sweeps):
+- **Plain enclosed-flood fits ONLY task002/251** (already blended 13.47/
+  13.51; the flood ONNX needs K=14/25 rounds → ~12 pts, strictly WORSE →
+  no win anywhere). Conditioned-flood (seed = tgt adj src, spread newc
+  through tgt): only task243 (K=27 → ONNX too dear vs blend 13.88),
+  task147/276 (K=0/3, already cheap in blend). **Flood port leverage ≈ 0.**
+- **`arc_explanations.csv` is UNRELIABLE for arc-gen.** task363/157/070/
+  102/156 — every English rule, implemented faithfully, scores **0/265**
+  vs arc-gen (it describes only the 2-3 ARC-AGI train demos; arc-gen
+  generalises differently). The "Phase-2 English driver" premise is dead;
+  rules must be reverse-engineered purely from arc-gen data.
+- The remaining sub-14 tail (363/157/070/102/156/243/366 …) are **global**
+  rules (connectivity / rectangle-interior / object-move) — verified NOT
+  expressible as a 3×3-window LUT. Loop/Scan banned ⇒ they need K-round
+  unrolled or large object constructions ⇒ structurally expensive ⇒ the
+  public banks' 12-17 pt compilations are already near the rule-class
+  floor. One-off recompiles seldom beat them.
+- Net: cheap-family space (identity/transpose/recolor/neighbour) is
+  EXHAUSTED — banks already optimal there; neighbor_recolor yielded only
+  task352 +0.36. Marginal recompiles ≈ +0.3 ea ≈ LB noise (~7% gap).
+
+## Exact next action (strategic fork — pick before grinding)
+The "cheap reusable family lifts the tail" thesis is largely falsified.
+Positive-EV paths, in order:
+1. **Cheap-SHAVE sweep (best systematic EV):** do NOT invent new rules —
+   for each blended task try to recompile its *existing, already-correct*
+   public-bank graph into the same logic with smaller dtype / fewer
+   constants (float[1,10,30,30]→int8/bool intermediates, drop redundant
+   initializers). Lower risk, bounded but real, broad.
+2. **task366 one big gamble** (8.24, mem 18.9M — biggest single delta):
+   "move non-border-touching objects to top-left". Even a crude 13-pt
+   object-move recompile = +5 pts (largest available). High effort,
+   uncertain feasibility (object labelling, Loop-free).
+3. Accept ship-state: proj 6149 / actual ~5707, already +227 over prior
+   best 5480.41. Stop optimising the tail.
+Resubmit ONLY when projected ≳6150 AND beats 5480.41 with the ~7% margin.
