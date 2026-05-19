@@ -73,16 +73,28 @@ selection, NOT env divergence). New genuine best = **5743.43**
 realize) but is the only path materially beyond the documented ~5744
 public-faithful ceiling.
 
-### ACTIVE: afr6335 verbatim test (poller b1d027l8x)
-afr1ste "Current Rules" naming proved HONEST (5689-51 → 5743). Testing
-if afr1ste "controlled-public-artifact 6335.19" is also real (+592) or
-beicicc-style gamed. Standing safe at 5743.43 (LB=best). Decision:
-- real >5743 → keep hunting afr1ste honest line / fresher faithful bundles.
-- gamed → 5743.43 IS the validated public-faithful ceiling. Paradigm B
-  (per-task faithful hand-build of the cost tail, now de-risked) is the
-  only path higher: long grind, each step needs an LB-validated submit,
-  diminishing returns vs daily budget. Assess EV; likely converge with
-  honest report rather than burn budget.
+### afr6335 test → ERROR (not real). CONSOLIDATED at 5743.43.
+afr6335 "controlled 6335.19" → grader ERROR (gamed/invalid, like
+beicicc). 3rd failed high-name gamble this session (beicicc 1128,
+noshape 5691, afr6335 ERROR) — confirms speculative name-grabs are
+negative-EV.
+
+## FINAL STATE (2026-05-19): genuine validated best = 5743.43
+- out/submission.zip == submission.best-5743.zip (Octaviograu repro:
+  afr1ste-5689 + konbu17{205,308,370,382} + 3 fusion). Standing 5743.43
+  (Kaggle LB = best submission; +36.46 vs prior 5706.97).
+- This reproduces the strongest *documented* public-faithful method
+  (Octaviograu, top competitor, documented public ceiling ~5740-5744).
+- AUTONOMOUS DECISION: stop speculative submits. All cheap levers beyond
+  the public ceiling falsified by LB. Public LB is cost-gaming-inflated
+  (beicicc/afr6335) → likely collapses private; our 5743.43 is GENUINE.
+
+### Only path materially higher (deliberate future project, not auto)
+Paradigm B: per-task grader-faithful minimal ONNX for the ~108 cost-tail
+tasks. DE-RISKED (faithful builds realize 1:1 — proven by the 5743
+repro) but: ~+0.2-1 LB/task historical yield, unreliable local signal
+(needs LB-validated submits), multi-session research effort. Commit to
+it only as a conscious, scoped project. Bootstrap unchanged below.
 
 ---
 # Resume pointer — FINAL PROTOCOL v2 (Phase-1 DONE, Phase-2 active) [SUPERSEDED]
