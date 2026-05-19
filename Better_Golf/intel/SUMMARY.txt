@@ -1,0 +1,445 @@
+
+================================================================================
+# aliafzal9323_neurogolf-2026-tiny-onnx-solver\neurogolf-2026-tiny-onnx-solver.ipynb  code_lines~28327
+================================================================================
+# NeuroGolf 2026: Tiny-ONNX Solver
+# Strategy: Ensemble multiple public notebooks + our own solver + dataset sources.
+# Keep smallest valid model per task for maximum score.
+## Detectors
+## Gather-index builders
+## Learned-conv fallbacks (multi-seed + MSE/BCE + ternary snap)
+## Main solver
+## Blend Pipeline: ZIP sources + dataset + automated solver
+--- first code cells ---
+!pip install -q onnx onnxruntime onnx-tool 2>&1 | tail -1
+import os, sys, json, math, re, zipfile, shutil, io, csv, copy, time, glob
+from pathlib import Path
+from collections import Counter
+import numpy as np
+import onnx
+import onnx.helper as oh
+import onnx.numpy_helper as onh
+import onnxruntime as ort
+from onnx import TensorProto
+ort.set_default_logger_severity(3)
+
+sys.path.insert(0, '/kaggle/input/competitions/neurogolf-2026/neurogolf_utils')
+try:
+    import neurogolf_utils as nu
+    HAS_NU = True
+    print('neurogolf_utils: OK')
+except ImportError:
+    HAS_NU = False
+    print('[WARN] neuro
+~~~
+def grid_to_tensor(grid):
+    g = np.array(grid, dtype=np.int32)
+    h, w = g.shape
+    t = np.zeros((1, C, H, W), dtype=np.float32)
+    for r in range(h):
+        for c in range(w):
+            v = int(g[r, c])
+            if 0 <= v < C: t[0, v, r, c] = 1.0
+    return t
+
+def verify_model(model, pairs):
+    try:
+        sess = ort.InferenceSession(model.SerializeToString(), providers=['CPUExecutionProvider'])
+        for p in pairs:
+            pred = sess.run(None, {'input': grid_to_tensor(p['input'])})[0]
+            if not np.array_equal((pred > 0.0).astype(np.float32), grid_to_tensor(p['ou
+~~~
+def same_size(pairs): return all(np.array(p['input']).shape == np.array(p['output']).shape for p in pairs)
+def const_input_size(pairs): return len({np.array(p['input']).shape for p in pairs}) == 1
+
+def detect_identity(pairs): return all(p['input'] == p['output'] for p in pairs)
+
+def detect_color_map(pairs):
+    if not same_size(pairs): return None
+    cmap = {}
+    for p in pairs:
+        for a, b in zip(np.array(p['input']).flatten(), np.array(p['output']).flatten()):
+            if int(a) in cmap and cmap[int(a)] != int(b): return None
+            cmap[int(a)] = int(b)
+    return cmap
+
+def d
+
+================================================================================
+# imaadmahmood_neurogolf-2026-rule-based-onnx-solver\neurogolf-2026-rule-based-onnx-solver.ipynb  code_lines~4618
+================================================================================
+<div style="background: linear-gradient(135deg, #0d0015 0%, #160028 45%, #0a001e 100%); padding: 52px 28px 44px; border-radius: 14px; text-align: center; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; box-shadow: 0 20px 60px rgba(0,0,0,0.8); border: 1px solid rgba(180,80,255,0.22); position: relative; overflow: hidden;">
+
+  <div style="position: absolute; top: -60px; left: -50px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(160,40,255,0.14) 0%, transparent 70%); border-radius: 50%;"></div>
+  <div style="position: absolute; bottom: -60px; right: -50px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(255,160,40,0.10) 0%, transparent 70%); border-radius: 50%;"></div>
+  <div style="position: absolute; top: 35%; left: 5%; width: 100px; height: 100px; background: radial-gradient(circle, rgba(40,200,255,0.08) 0%, transparent 70%); border-radius: 50%;"></div>
+  <div style="position: absolute; top: 20%; right: 8%; width: 80px; height: 80px; background: radial-gradient(circle, rgba(255,80,160,0.07) 0%, transparent 70%); border-radius: 50%;"></div>
+
+  <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(160,40,255,0.12); border: 1px solid rgba(180,80,255,0.30); border-radius: 20px; padding: 5px 18px; margin-bottom: 22px;">
+    <span style="width: 7px; height: 7px; background: #c060ff; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px rgba(180,60,255,0.9);"></span>
+    <span style="color: #d090ff; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600;">IJCAI-ECAI 2026 &middot; Kaggle Competition</span>
+  </div>
+
+  <div style="font-size: 50px; margin-bottom: 14px; line-height: 1;">🧠</div>
+
+  <h1 style="color: #f0e8ff; font-size: 40px; margin: 0 0 6px 0; font-weight: 800; letter-spacing: 1px; text-shadow: 0px 4px 20px rgba(160,40,255,0.5);">The 2026 NeuroGolf Championship</h1>
+
+  <div style="height: 3px; width: 100px; background: linear-gradient(to right, #a020ff, #ff9020, #20d0ff); margin: 14px auto 18px auto; border-radius: 2px; box-shadow: 0 0 12px rgba(160,40,255,0.6);"></div>
+
+  <p style="color: #9a78b8; font-size: 15px; margin: 0 0 30px 0; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500;">Minimum-Cost Neural Networks &middot; ARC-AGI Transformations &middot; ONNX</p>
+
+  <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px;">
+    <div style="background: rgba(160,40,255,0.13); border: 1px solid rgba(180,80,255,0.28); border-radius: 8px; padding: 12px 22px; min-width: 110px;">
+      <div style="color: #c878ff; font-size: 24px; font-weight: 700; line-height: 1;">400</div>
+      <div style="color: #7a5a9a; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;">ARC tasks</div>
+    </div>
+    <div style="background: rgba(255,160,40,0.11); border: 1px solid rgba(255,160,40,0.26); border-radius: 8px; padding: 12px 22px; min-width: 110px;">
+      <div style="color: #ffb840; font-size: 24px; font-weight: 700; line-height: 1;">429+</div>
+      <div style="color: #7a5a2a; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;">LB score</div>
+    </div>
+    <div style="background: rgba(40,200,255,0.10); border: 1px solid rgba(40,200,255,0.24); border-radius: 8px; padding: 12px 22px; min-width: 110px;">
+      <div style="color: #40d8ff; font-size: 24px; font-weight: 700; line-height: 1;">$50K</div>
+      <div style="color: #2a6a7a; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;">prize pool</div>
+    </div>
+    <div style="background: rgba(255,80,160,0.10); border: 1px solid rgba(255,80,160,0.24); border-radius: 8px; padding: 12px 22px; min-width: 110px;">
+      <div style="color: #ff70c0; font-size: 24px; font-weight: 700; line-height: 1;">~1.9h</div>
+      <div style="color: #7a2a5a; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;">runtime</div>
+    </div>
+  </div>
+
+  <p style="color: #6a4a8a; font-size: 13px; margin: 0; letter-spacing: 1.5px; text-transform: uppercase;">
+    Author &nbsp;&middot;&nbsp; <span style="color: #c878ff; font-weight: 600; letter-spacing: 0.5px;">Imaad Mahmood</span>
+  </p>
+
+</div>
+# 🧠 NeuroGolf 2026 — Submission Notebook · v10
+ 
+Smart two-source blend · Lowest-cost model wins per task · All 400 tasks submitted.
+ 
+**LB Score:** 5554.69  
+**Tasks:** 400 / 400  
+**Strategy:** Load two pre-solved datasets → pick cheapest model per task → pack zip → submit  
+**Author:** Imaad Mahmood
+ 
+---
+ 
+## Score Evolution
+ 
+| Version | Change | LB Score |
+|---|---|---|
+| v1 Rule-based standalone | Custom CNN solver | 432.42 |
+| v2 Patched solver | +more detectors | 504.57 |
+| v9 Standalone + fallback | All 400 submitted | 547.12 |
+| v10 Two-source blend | jonathanchan datasets | **5554.69** |
+ 
+---
+ 
+## Competition Overview
+ 
+`max(1, 25 − ln(params + bytes + MACs))` — smaller networks score higher.
+ 
+| Architecture | Cost | Score |
+|---|---|---|
+| Identity / Slice/Pad (cost=0) | 0 | **25.0** |
+| Channel Gather | ~36,000–45,000 | **14.5** |
+| Tiny logic (Mul, ReduceMax) | ~40,000–100,000 | **13–14.5** |
+| Small CNN | ~130,000–450,000 | **11.5–13** |
+| Dynamic shapes / banned ops | any | **0** |
+ 
+**Static shapes `[1,10,30,30]` required.** Dynamic shapes, Loop, Scan, NonZero, Unique are banned (score 0).
+ 
+---
+ 
+## Leaderboard Context
+ 
+| Rank | Team | Score |
+|---|---|---|
+| #1 | Pavel | 10000.00 |
+| #2 | Chris Deotte | 9950.00 |
+| #3 | Testing In Production | 8822.74 |
+| **Us** | **Imaad Mahmood** | **5554.69** |
+ 
+---
+ 
+## Pipeline
+ 
+```
+Two jonathanchan datasets (sub4971_98, sub4979_07)
+    ↓
+Load all task*.onnx from both sources
+    ↓
+Per task: pick model with lowest cost (= highest score)
+    ↓
+Fill missing tasks with identity fallback (cost=0)
+    ↓
+Pack submission.zip → download → File Upload → submit
+```
+ 
+Runtime: under 2 minutes.
+ 
+---
+ 
+## Dataset Analysis
+ 
+Bot
+--- first code cells ---
+"""
+NeuroGolf 2026 — Minimal Submission
+Only the two datasets that proved to give 5263.65
+NO validation, NO extra sources, NO complexity
+"""
+import math, zipfile, re, os
+from pathlib import Path
+from onnx import helper, TensorProto
+
+MAX_BYTES = int(1.44 * 1024 * 1024)
+BANNED    = {"Loop","Scan","NonZero","Unique"}
+TASK_RE   = re.compile(r"^task(\d{3})\.onnx$")
+
+try:
+    import onnx
+    import onnxruntime
+except ImportError:
+    os.system("pip install -q onnx onnxruntime")
+    import onnx
+
+# ── ONLY these two sources — proven to give 5263 ──────────
+SOURCES = [
+    Path("/kaggle/input/datasets/
+
+================================================================================
+# karnakbaevarthur_neurogolf-all-task-logic-complexity-map\neurogolf-all-task-logic-complexity-map.ipynb  code_lines~20103
+================================================================================
+# 🧩 ARC Logic Decoder
+
+This tool converts complex ARC-AGI grids into a **structured list of building blocks**. Instead of reading long descriptions, it helps you identify the exact logic needed to build the smallest, most efficient AI models for the competition.
+
+### 📋 Table of Contents
+1. [**Task Decoder**](#task-decoder) – Labels each task with its specific logic and transformation types.
+2. [**Output Preview**](#output-preview) – Shows the task list, transformation counts, difficulty scores, and grid size changes.
+3. [**Logic Visualizer**](#logic-visualizer) – Compares the produced logic results directly with the task images.
+
+---
+
+### 🚀 Why this is helpful
+* **Pick the Best Tools:** Identify which transformations (like "Mirror" or "Shift") are used. This helps you categorize tasks and see where your code succeeds or struggles.
+* **Win Faster:** Use the **Complexity (1-10)** score for a quick evaluation. It helps you find easy tasks and understand why the model might struggle with harder ones.
+* **Grid Changes:** Instantly track if a task changes dimensions, giving your model the right information to handle resizing.
+
+### 🔗 Dataset Link
+* 📊 **[Get the Full Logic Dataset](https://www.kaggle.com/datasets/karnakbaevarthur/neurogolf-2026-task-transformation-library)** – A single file containing all logic types, grid flags, and difficulty levels for 400 tasks.
+
+---
+
+<a id="task-decoder"></a>
+## 🧠 Task Decoder
+<a id="output-preview"></a>
+## 📊 Output Preview
+<a id="logic-visualizer"></a>
+## 🎨 Logic Visualizer
+### 🔗 Dataset Link
+* 📊 **[Get the Full Logic Dataset](https://www.kaggle.com/datasets/karnakbaevarthur/neurogolf-2026-task-transformation-library)** – A single file containing all logic types, grid flags, and difficulty levels for 400 tasks.
+
+---
+# 🚀 Final Submission
+--- first code cells ---
+import json, os, glob, time, csv
+from openai import OpenAI
+from kaggle_secrets import UserSecretsClient
+
+# --- Configuration ---
+START_TASK, END_TASK = 1, 1
+BATCH_SIZE = 1  
+JSON_OUTPUT = '/kaggle/working/arc_primitives.json'
+CSV_OUTPUT = '/kaggle/working/arc_primitives.csv'
+
+# --- API Setup ---
+user_secrets = UserSecretsClient()
+client = OpenAI(
+    api_key=user_secrets.get_secret("Deepseek_api_key"),
+    base_url="https://api.deepseek.com"
+)
+
+def format_grid(grid):
+    return "\n".join([f"R{i}: {row}" for i, row in enumerate(grid)])
+
+def save_dual_outputs(data_dict):
+    # Save Raw JSON
+    
+~~~
+import pandas as pd
+import json
+
+# 1. Display CSV shortly
+print("📊 CSV PREVIEW (Primitives Dataset):")
+try:
+    # Pointing to the new primitives CSV
+    df = pd.read_csv('/kaggle/working/arc_primitives.csv')
+    display(df.head(10)) 
+except Exception as e:
+    print(f"CSV not found: {e}")
+
+print("\n" + "="*50 + "\n")
+
+# 2. Display JSON shortly
+print("📄 JSON SNIPPET (First 3 entries):")
+try:
+    # Pointing to the new primitives JSON
+    with open('/kaggle/working/arc_primitives.json', 'r') as f:
+        data = json.load(f)
+        short_data = {k: data[k] for k in list(data.keys())[:3]}
+       
+~~~
+import json, os, numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import colors
+
+# --- Settings ---
+START_VIS, END_VIS = 1, 10
+JSON_INPUT = '/kaggle/working/arc_primitives.json'
+DATASET_PATH = '/kaggle/input/competitions/neurogolf-2026' 
+
+cmap = colors.ListedColormap(['#000', '#0074D9', '#FF4136', '#2ECC40', '#FFDC00', '#AAA', '#F012BE', '#FF851B', '#7FDBFF', '#870C25'])
+norm = colors.Normalize(vmin=0, vmax=9)
+
+with open(JSON_INPUT, 'r') as f:
+    primitives_data = json.load(f)
+
+for n in range(START_VIS, END_VIS + 1):
+    tid = f"task{n:03d}"
+    fpath = os.path.join(DATASET_PATH, f
+
+================================================================================
+# mmoffitt_the-2026-neurogolf-championship\the-2026-neurogolf-championship.ipynb  code_lines~966
+================================================================================
+This starter notebook for the [2026 NeuroGolf Championship](https://www.kaggle.com/competitions/neurogolf-2026) is designed to help contestants verify the functional correctness of their networks.  It allows one to load example pairs for a task, visualize them, and test whether a candidate network produces expected results across all public competition benchmarks.
+
+## Enter a task number (between 1 and 400):
+## Color legend
+## Example <input, output> pairs
+## Define your network to solve the task
+
+The code below uses a utility we've provided to help you create [single-layer convolutional networks](https://en.wikipedia.org/wiki/Convolutional_layer).  It may be possible to solve other tasks in a similar way, but most will require more complicated architectures!
+## Verify your network
+--- first code cells ---
+!pip install -q numpy==2.4.4 2>/dev/null
+!pip install -q onnx==1.21.0 2>/dev/null
+!pip install -q onnxruntime==1.24.4 2>/dev/null
+!pip install -q onnx-tool==1.0.1 2>/dev/null
+~~~
+task_num = 0  # Task 0 is just an illustrative example (and not eligible for points)
+~~~
+import sys
+sys.path.append("/kaggle/input/competitions/neurogolf-2026/neurogolf_utils")
+from neurogolf_utils import *
+show_legend()
+
+================================================================================
+# octaviograu_5743-35-canonical-onnx-fusions\5743-35-canonical-onnx-fusions.ipynb  code_lines~24352
+================================================================================
+# Canonical ONNX Fusions: +4.22 LB Beyond the Public-Source Ceiling
+
+**Public score: 5744.52** - extends the [Block-LB Drilling result (5740.30)](https://www.kaggle.com/code/octaviograu/neurogolf-2026-block-lb-drilling-5740-30) by another **+4.22 LB** using three graph-rewrite patterns applied locally to the public-bundle ONNX, with no extra source bundles and no human ONNX hand-building.
+
+The previous notebook stopped at 5740.30 because *per-task selection across the two strongest public bundles* (afr1ste 5689.51 + konbu17 4-task swap) hits a hard ceiling - block-LB drilling confirmed there are no further single-task wins available from public bundles. This notebook asks the next question: **can we rewrite individual ONNX files to be cheaper without changing what they compute?** The answer is yes for three specific pattern classes; the gains are bounded but the methodology is clean and grader-validated.
+
+Three things make this notebook potentially useful to a future reader:
+
+1. A **local oracle** that predicts the grader's cost to the hundredth, removing the need to spend submissions to validate each candidate rewrite once a technique class is established.
+2. Three **canonical fusion patterns** (ReduceSum-chain fusion, Cast-chain collapse, boolean-reduction dtype narrowing) with reproducible scanner + rewriter code that finds and applies them across a 400-task bundle.
+3. Two clear **negative results** (Or-tree restructure on `task158`, And-fusion across the bundle) that establish the boundary of the local oracle: rewrites that *remove* nodes or narrow dtypes within the same op vocabulary match the grader exactly; rewrites that *introduce* new op types (Or, And) in chains that did not previously exist can pass verification but get 0 LB credit on the grader.
+
+Sources reused verbatim from public CC0 bundles - no new ONNX created by hand:
+
+- [`afr1ste/neurogolf-5689-51-current-rules-open-artifact`](https://www.kaggle.com/datasets/afr1ste/neurogolf-5689-51-current-rules-open-artifact) - 396 task ONNX
+- [`konbu17/neurogolf-2026-blend-source-v3-6-0`](https://www.kaggle.com/datasets/konbu17/neurogolf-2026-blend-source-v3-6-0) - 4 task ONNX (205, 308, 370, 382) - per [Block-LB Drilling](https://www.kaggle.com/code/octaviograu/neurogolf-2026-block-lb-drilling-5740-30)
+
+Everything below is the recipe to take those 400 ONNX, scan them for three patterns, rewrite the matches in-place, and re-pack the submission zip. No private data, no hand-built ONNX, no models trained.
+## v5 changelog (2026-05-14)
+
+Adds **Pattern 3: boolean-reduction dtype narrowing** on top of v4 (5743.35).
+
+Many tasks promote a bool mask to fp16/fp32 just to feed `ReduceSum + Greater(0)` for an "any-true" reduction (or feed a chain of `ReduceMax`). The Cast intermediate is the dominant memory term. Pattern 3 keeps the algorithm identical but narrows the Cast to u8 and uses `ReduceMax` (opset 12+) instead of `ReduceSum + Greater`. Same node count, narrower intermediate dtype (1 byte vs 2-4).
+
+**Delta**: 5743.35 â†’ **5744.52** (+1.17 LB) on the grader. The scanner found 22 newly-rewritten tasks. Local cost prediction matched grader to the hundredth â€” same precision as Pattern 1 and Pattern 2 (consistent with the empirical rule that *removing nodes* or *narrowing dtypes within the same op vocabulary* is grader-faithful, while *introducing novel op chains* like Or-trees diverges).
+
+The notebook below is the full reproducible recipe for all three patterns end-to-end; no embedded ONNX bytes, no hand-built models.
+## The local oracle: predicting grader cost to the hundredth
+
+The grader scores each task ONNX with `cost = memory + params` and converts to points via `25 - ln(max(1, cost))`. Both terms are computable locally:
+
+- `params` counts the elements of every `initializer` in the graph (plus elements in `Constant` node values). This is purely structural - it's the same number wherever the model is loaded.
+- `memory` is the sum, over every intermediate tensor, of `max(static_inferred_size, ORT_runtime_size)`. The static size comes from `onnx.shape_inference`; the runtime size comes from running the model under `onnxruntime` with profiling enabled and reading `output_type_shape` out of the JSON trace.
+
+When both terms are computed exactly the same way the grader computes them, the local cost matches the grader's cost to the byte for any well-formed ONNX. This notebook leans on that as a *strong* oracle: we will trust local cost as a proxy for grader cost, and only consult the grader to validate a brand-new *technique class* (not every individual candidate within a class).
+## Pattern 1: ReduceSum-chain fusion
+
+ONNX shape inference and `onnxruntime` both materialize the output tensor of every node in the graph, with size taken from the worst-case observation across static analysis and runtime profiling. A pattern like:
+
+```
+ReduceSum(x, axes=[A], keepdims=0) -> intermediate   # full-size [..., D_kept_A, ...]
+ReduceSum(intermediate, axes=[B], keepdims=0) -> y    # smaller [..., D_kept_AB, ...]
+```
+
+produces an `intermediate` tensor that has the *full* original shape minus axis A, just to feed it to a second reduction that immediately collapses axis B. If `intermediate` has no other consumer, the equivalent single-op form is:
+
+```
+ReduceSum(x, axes=[A, B], keepdims=0) -> y           # same y, no intermediate
+```
+
+Eliminating `intermediate` saves the cost-memory contribution of that tensor entirely. The fusion is mathematically exact - summing over axis A then axis B is the same as summing over both at once - so the rewrite is semantics-preserving. The same fusion applies to other reductions (`ReduceMax`, `ReduceMin`, etc.) but `ReduceSum` is what shows up in the public bundle for variable-grid-size detection.
+## Pattern 2: Cast-chain collapse
+
+When a pipeline goes `x -> Cast(x, T1) -> Cast(T1, T2) -> downstream`, the intermediate `T1` tensor is allocated for one purpose only: to feed the second Cast. If the round-trip `T1` is wide enou
+--- first code cells ---
+import subprocess, sys
+try:
+    import onnxruntime as _ort  # noqa: F401
+except ImportError:
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-q', 'onnxruntime'])
+    import onnxruntime as _ort  # noqa: F401
+~~~
+import json
+import math
+import os
+import tempfile
+import zipfile
+from collections import defaultdict
+from pathlib import Path
+
+import numpy as np
+import onnx
+import onnxruntime as ort
+from onnx import TensorProto
+from onnx import helper as oh
+from onnx import numpy_helper as onh
+
+NUM_TASKS = 400
+INPUT_ROOT = Path('/kaggle/input')
+OUTPUT_ZIP = Path('/kaggle/working/submission.zip')
+
+AFR1STE_DATASET = 'neurogolf-5689-51-current-rules-open-artifact'
+KONBU17_DATASET = 'neurogolf-2026-blend-source-v3-6-0'
+KONBU17_TASKS = frozenset({205, 308, 370, 382})
+
+COMP_DIR = Path('/kaggle/input/competitions/n
+~~~
+def encode_grid(grid):
+    arr = np.array(grid, dtype=np.int32)
+    h, w = arr.shape
+    t = np.zeros((1, 10, 30, 30), dtype=np.float32)
+    for r in range(h):
+        for c in range(w):
+            v = int(arr[r, c])
+            if 0 <= v < 10:
+                t[0, v, r, c] = 1.0
+    return t
+
+def calculate_params(model):
+    n = 0
+    for init in model.graph.initializer:
+        n += int(math.prod(init.dims)) if init.dims else 1
+    for si in model.graph.sparse_initializer:
+        n += int(math.prod(si.values.dims)) if si.values.dims else 1
+    for node in model.graph.node:
+        if node.

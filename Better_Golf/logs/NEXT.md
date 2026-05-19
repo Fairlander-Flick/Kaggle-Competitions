@@ -1,4 +1,35 @@
-# Resume pointer — FINAL PROTOCOL v2 (Phase-1 DONE, Phase-2 active)
+# Resume pointer — FINAL PROTOCOL v3 (STRATEGIC PIVOT 2026-05-19)
+
+## PIVOT: this is a public-bundle-blend + grader-faithful-rewrite game
+Notebook intel (Octaviograu et al.) proved hand-building ONNX is the WRONG
+game: novel op-chains pass local verify but get **0 LB** on the real grader
+→ that IS the ~7% projected↔actual gap. Our 77 hand-built were poisoning
+the blend. Full record: `intel/INTELLIGENCE.md` + ~/.claude memories
+(neurogolf-real-game-strategy / -public-bundle-leads / -projected-actual-gap).
+
+### Done 2026-05-19
+- Hunted public CC0 artifacts. Best = `beicicc/neurogolf-6645-39` =
+  **6645.39 actual LB** (verbatim, proven). Downloaded to `sources/hunt/`
+  (afr6335, jsrdcht6029, octavia6042 too).
+- `blend.py` gained `--no-ours` (exclude out/onnx 0-LB class). Graded-only
+  blend = proj 6148.04 — but our local verifier rejects ~395/400 beicicc
+  files (beicicc won only 5 tasks), so blend < beicicc standalone.
+- **SUBMITTED beicicc6645 verbatim** (out/submission.zip, filename MUST be
+  `submission.zip`). Status PENDING; expect ≈6645.39 (+938 vs 5706.97).
+- Backups: out/submission.shipstate-5707.zip,
+  out/submission.gradedblend-6148.zip.
+
+### Next (üstüne devam)
+1. Confirm beicicc submit LB (poll `kaggle competitions submissions`).
+2. **Debug why verify rejects beicicc files** — if our verifier is the
+   bottleneck, a corrected blend across {beicicc6645, afr6335, jsrdcht6029,
+   octavia6042} can exceed 6645. (beicicc only won 5/400 in blend.)
+3. Pull `octaviograu/5743-35-canonical-onnx-fusions` recipe; apply the 3
+   grader-faithful patterns on the chosen bundle. Re-hunt for >6645 artifacts.
+4. Submit gated, A/B single change, no spray.
+
+---
+# Resume pointer — FINAL PROTOCOL v2 (Phase-1 DONE, Phase-2 active) [SUPERSEDED]
 
 ## State (2026-05-18)
 - **Phase-1 BASE blend SHIPPED.** 5 public banks + logic/karnak + our 77
