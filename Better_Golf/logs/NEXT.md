@@ -20,15 +20,30 @@ the blend. Full record: `intel/INTELLIGENCE.md` + ~/.claude memories
   on LB page). Backups: submission.shipstate-5707.zip,
   submission.gradedblend-6148.zip, submission.beicicc6645.zip.
 
-### Next — corrected
-1. Confirm public LB = best-submission (standing still 5706.97).
-2. NO more trusting dataset-name scores. Only `engine.verify` truth.
-3. Real lever = Octaviograu `5743-35-canonical-onnx-fusions` (notebook in
-   `intel/`, he confirmed +4.22 on the GRADER): implement his 3 grader-
-   faithful patterns (ReduceSum-chain fusion / Cast-chain collapse / bool-
-   reduction dtype narrowing) and apply to OUR genuine 5706.97 bundle.
-4. The `--no-ours` graded blend (proj 6148.04 → ~5707 actual w/ 7% gap) is
-   ≈ break-even; not worth a submit alone. Gate, A/B, no spray.
+## PLATEAU CONFIRMED (2026-05-19) — paradigm-shift required
+Three experiments this session all return ~5707:
+1. bundle-hunt → beicicc6645 verbatim → real **1128** (names are fake).
+2. graded-only blend (`--no-ours`) → proj 6148.04 ≈ 5707 actual.
+3. Octaviograu 3-pattern fusion (`fusion_rewrite.py`) → **+3.18 proj**
+   (18 tasks; faithful class ≈ +3 actual). Banked to submission.zip,
+   NOT submitted (no-spray: +3 ≪ ±400 noise). Lever bundle-specific &
+   exhausted.
+
+Per CLAUDE.md plateau protocol → paradigm shift. The single biggest
+unexploited lever is **the ~7% projected↔actual gap itself** (proj 6149
+vs actual 5707 ≈ 441 LB locked). Validated asset: our `engine.verify` is
+a trustworthy faithfulness oracle; Octaviograu's exact grader-matching
+oracle code is in `intel/` (cells 5/7). 
+
+### Paradigm options (pick before grinding)
+A. **GAP DIAGNOSIS (highest EV):** port Octaviograu's exact
+   calculate_memory/params as oracle #2, diff vs engine.verify per-task
+   on our bundle → find the tasks where projected≠grader (the leak) →
+   fix/replace those files. Closing half the gap ≈ +200 actual.
+B. Per-task grader-faithful construction for the <14-pt tail (verifier-
+   gated; restrict to faithful op vocab). Slow grind, uncertain.
+C. Accept plateau; 5707 is a genuine faithful score (public LB likely
+   cost-gaming-inflated → private may favor us). Monitor only.
 
 ---
 # Resume pointer — FINAL PROTOCOL v2 (Phase-1 DONE, Phase-2 active) [SUPERSEDED]
