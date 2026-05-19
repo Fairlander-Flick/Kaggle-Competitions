@@ -1,5 +1,15 @@
 # NeuroGolf 2026 — INTELLIGENCE (2026-05-19)
 
+> **⚠ CORRECTION (2026-05-19, post-submit):** the "Assets in hand" scores
+> below are the artifacts' *named* scores and are **FAKE**. beicicc6645
+> submitted verbatim scored **1128.42** on the real grader, not 6645.39.
+> Dataset-name scores = authors' local projected fantasy / cost-gaming
+> tricks (`dummy_cost_scalar`). Our strict `engine.verify` correctly
+> rejected them (17/20, nfail=0). **Trust only our official verifier.**
+> Genuine best stays 5706.97. The one verified-real lever is Octaviograu's
+> 3 fusion patterns (his notebook is in this dir). Treat the table below
+> as candidate *fodder* names only, never as scores.
+
 ## The real game (corrected — this overrides the per-task-solve thesis)
 
 NeuroGolf 2026 is **not** "hand-build the smallest ONNX for each of 400
