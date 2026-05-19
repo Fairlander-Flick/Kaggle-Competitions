@@ -1,0 +1,126 @@
+{
+ "base": "afr1ste-5689 + konbu17{205,308,370,382}",
+ "files>1.44MB": [],
+ "fused": 19,
+ "fused_detail": {
+  "080": {
+   "base_pts": 13.048,
+   "new_pts": 13.048,
+   "pattern": "P2_cast",
+   "task": 80
+  },
+  "101": {
+   "base_pts": 13.904,
+   "new_pts": 13.905,
+   "pattern": "P3_narrow_1",
+   "task": 101
+  },
+  "137": {
+   "base_pts": 13.809,
+   "new_pts": 13.809,
+   "pattern": "P2_cast",
+   "task": 137
+  },
+  "150": {
+   "base_pts": 16.55,
+   "new_pts": 18.019,
+   "pattern": "P1_reducesum",
+   "task": 150
+  },
+  "155": {
+   "base_pts": 16.55,
+   "new_pts": 18.019,
+   "pattern": "P1_reducesum",
+   "task": 155
+  },
+  "191": {
+   "base_pts": 13.788,
+   "new_pts": 13.792,
+   "pattern": "P3_narrow_2",
+   "task": 191
+  },
+  "203": {
+   "base_pts": 13.602,
+   "new_pts": 13.611,
+   "pattern": "P3_narrow_1",
+   "task": 203
+  },
+  "215": {
+   "base_pts": 14.18,
+   "new_pts": 14.204,
+   "pattern": "P3_narrow_1",
+   "task": 215
+  },
+  "216": {
+   "base_pts": 13.444,
+   "new_pts": 13.45,
+   "pattern": "P2_cast",
+   "task": 216
+  },
+  "285": {
+   "base_pts": 13.068,
+   "new_pts": 13.115,
+   "pattern": "P3_narrow_2",
+   "task": 285
+  },
+  "293": {
+   "base_pts": 14.862,
+   "new_pts": 14.887,
+   "pattern": "P3_narrow_1",
+   "task": 293
+  },
+  "295": {
+   "base_pts": 14.968,
+   "new_pts": 14.971,
+   "pattern": "P1_reducesum",
+   "task": 295
+  },
+  "301": {
+   "base_pts": 13.627,
+   "new_pts": 13.636,
+   "pattern": "P3_narrow_3",
+   "task": 301
+  },
+  "313": {
+   "base_pts": 13.655,
+   "new_pts": 13.665,
+   "pattern": "P3_narrow_1",
+   "task": 313
+  },
+  "322": {
+   "base_pts": 17.797,
+   "new_pts": 17.859,
+   "pattern": "P2_cast",
+   "task": 322
+  },
+  "332": {
+   "base_pts": 15.645,
+   "new_pts": 15.65,
+   "pattern": "P3_narrow_2",
+   "task": 332
+  },
+  "338": {
+   "base_pts": 14.244,
+   "new_pts": 14.271,
+   "pattern": "P2_cast",
+   "task": 338
+  },
+  "364": {
+   "base_pts": 13.034,
+   "new_pts": 13.045,
+   "pattern": "P2_cast",
+   "task": 364
+  },
+  "365": {
+   "base_pts": 14.015,
+   "new_pts": 14.017,
+   "pattern": "P2_cast",
+   "task": 365
+  }
+ },
+ "his_base_lb": 5740.3,
+ "his_target_lb": 5744.52,
+ "our_prev_best": 5706.97,
+ "tasks": 400,
+ "zip_kb": 1038
+}
