@@ -35,15 +35,32 @@ vs actual 5707 ≈ 441 LB locked). Validated asset: our `engine.verify` is
 a trustworthy faithfulness oracle; Octaviograu's exact grader-matching
 oracle code is in `intel/` (cells 5/7). 
 
-### Paradigm options (pick before grinding)
-A. **GAP DIAGNOSIS (highest EV):** port Octaviograu's exact
-   calculate_memory/params as oracle #2, diff vs engine.verify per-task
-   on our bundle → find the tasks where projected≠grader (the leak) →
-   fix/replace those files. Closing half the gap ≈ +200 actual.
-B. Per-task grader-faithful construction for the <14-pt tail (verifier-
-   gated; restrict to faithful op vocab). Slow grind, uncertain.
-C. Accept plateau; 5707 is a genuine faithful score (public LB likely
-   cost-gaming-inflated → private may favor us). Monitor only.
+## PARADIGM A — EXECUTED, BREAKTHROUGH (2026-05-19)
+Root cause LOCALIZED with hard data (`gap_diagnose.py`, oracle#1 +
+static strict-DQ probe; Octaviograu ORT oracle#2 dropped — redundant +
+double-profiling segfault):
+- proj 6152.36 vs actual 5706.97, gap +445. **23 tasks engine.verify
+  scores 13-17 but real grader 0s** = 339.6 LB = **76% of gap**.
+  Flags: `noshape:20` (no static shape under strict_mode infer →
+  grader calculate_memory None → 0) + `unused_init:3`.
+- `gap_fix.py` (A/B, only the 23): **11 fixed** with DQ-clean valid
+  swaps, 12 unfixable (8 have 0 clean candidates anywhere; 4 clean-but-
+  incorrect). **dq_honest_projected = 5964.52** (realistic actual est).
+- **SUBMITTED 2026-05-19 07:36** (out/submission.zip ← gapfix).
+  Status PENDING; expect ≈5850–5965 (≥ +150 actual; gate cleared:
+  DQ-clean ⇒ projected≈actual, real margin, A/B, no spray).
+- Autonomous mandate granted ("kendin karar al, en yüksek puan").
+
+### Next autonomous cycles
+1. Read actual LB → calibrate: actual≈5964 ⇒ DQ model exact; actual≈5850
+   ⇒ ~110 LB residual (Octaviograu novel-op class or cost-divergence)
+   to hunt next.
+2. Re-diagnose submitted bundle (bg) → next leak tier.
+3. 12 unfixable (~150 LB): re-hunt FRESH public sources filtered through
+   the DQ-clean gate (more sources ⇒ more clean cheapest-valid wins); or
+   hand-build grader-faithful ONNX for the high-value ones (030/049/109/
+   117/131/138/361/398 have zero clean candidates anywhere).
+4. Loop diagnose→fix→submit, gated, until genuine plateau / budget.
 
 ---
 # Resume pointer — FINAL PROTOCOL v2 (Phase-1 DONE, Phase-2 active) [SUPERSEDED]
