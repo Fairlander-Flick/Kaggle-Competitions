@@ -65,13 +65,24 @@ proven unreliable for root-causing/gating — ONLY actual LB is truth.
 theory) → highest-confidence remaining lever, +37 vs 5706.97. One submit
 validates.
 
-### Next
-1. byj55z9a3 done → verify 400/400 ≤1.44MB → autonomous submit → LB.
-2. If ≈5744 lands: that is the documented public ceiling. Converge to
-   evidence-based plateau (paradigm C); stop falsified-signal grinding.
-   Only pursue hand-build tail (B) if clearly +EV vs budget/noise.
-3. If <5740: even author-validated repro diverges ⇒ our env differs from
-   grader ⇒ accept 5706.97 as the genuine ceiling, stop submitting.
+## VALIDATED WIN (2026-05-19): Octaviograu repro → actual 5743.43
++36.46 vs 5706.97, ≈ his author-confirmed 5744.52. PROVES our env
+matches the grader for grader-faithful builds (gap = cost-gamed file
+selection, NOT env divergence). New genuine best = **5743.43**
+(submission.best-5743.zip). Paradigm B de-risked (faithful builds
+realize) but is the only path materially beyond the documented ~5744
+public-faithful ceiling.
+
+### ACTIVE: afr6335 verbatim test (poller b1d027l8x)
+afr1ste "Current Rules" naming proved HONEST (5689-51 → 5743). Testing
+if afr1ste "controlled-public-artifact 6335.19" is also real (+592) or
+beicicc-style gamed. Standing safe at 5743.43 (LB=best). Decision:
+- real >5743 → keep hunting afr1ste honest line / fresher faithful bundles.
+- gamed → 5743.43 IS the validated public-faithful ceiling. Paradigm B
+  (per-task faithful hand-build of the cost tail, now de-risked) is the
+  only path higher: long grind, each step needs an LB-validated submit,
+  diminishing returns vs daily budget. Assess EV; likely converge with
+  honest report rather than burn budget.
 
 ---
 # Resume pointer — FINAL PROTOCOL v2 (Phase-1 DONE, Phase-2 active) [SUPERSEDED]
