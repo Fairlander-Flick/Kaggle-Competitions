@@ -51,16 +51,27 @@ double-profiling segfault):
   DQ-clean ⇒ projected≈actual, real margin, A/B, no spray).
 - Autonomous mandate granted ("kendin karar al, en yüksek puan").
 
-### Next autonomous cycles
-1. Read actual LB → calibrate: actual≈5964 ⇒ DQ model exact; actual≈5850
-   ⇒ ~110 LB residual (Octaviograu novel-op class or cost-divergence)
-   to hunt next.
-2. Re-diagnose submitted bundle (bg) → next leak tier.
-3. 12 unfixable (~150 LB): re-hunt FRESH public sources filtered through
-   the DQ-clean gate (more sources ⇒ more clean cheapest-valid wins); or
-   hand-build grader-faithful ONNX for the high-value ones (030/049/109/
-   117/131/138/361/398 have zero clean candidates anywhere).
-4. Loop diagnose→fix→submit, gated, until genuine plateau / budget.
+## noshape-DQ FALSIFIED by LB (2026-05-19) — calibration result
+gap_fix submitted → **actual 5691.08** (predicted dq_honest 5964.52;
+worse than genuine 5706.97). The static strict-shape `noshape` probe does
+NOT model the grader. 2nd falsified theory this session (1=beicicc
+names). Restored genuine best 5706.97 (standing intact). Local projection
+proven unreliable for root-causing/gating — ONLY actual LB is truth.
+
+## ACTIVE: reproduce Octaviograu grader-validated 5744.52
+`repro_octavia.py` (bg byj55z9a3): afr1ste-5689 base + konbu17
+{205,308,370,382} (= his confirmed 5740.30) + 3 fusion (= his confirmed
+5744.52). Author-grader-validated target (NOT a fake name, NOT our
+theory) → highest-confidence remaining lever, +37 vs 5706.97. One submit
+validates.
+
+### Next
+1. byj55z9a3 done → verify 400/400 ≤1.44MB → autonomous submit → LB.
+2. If ≈5744 lands: that is the documented public ceiling. Converge to
+   evidence-based plateau (paradigm C); stop falsified-signal grinding.
+   Only pursue hand-build tail (B) if clearly +EV vs budget/noise.
+3. If <5740: even author-validated repro diverges ⇒ our env differs from
+   grader ⇒ accept 5706.97 as the genuine ceiling, stop submitting.
 
 ---
 # Resume pointer — FINAL PROTOCOL v2 (Phase-1 DONE, Phase-2 active) [SUPERSEDED]
