@@ -21,10 +21,14 @@ it encodes, build a text-based safety net, and audit it for bias and inconsisten
 | **A — Calibrated acuity model** | LightGBM (5-fold OOF) → ESI acuity 1–5; isotonic calibration; SHAP rule reverse-engineering; leakage-safe outcome validation | **Acc 0.855 · macro-F1 0.870 · QWK 0.930**; safety recall **L1 0.92 / L2 0.97**; **ECE 0.0067 → 0.0014**; outcomes monotone (admit 71%→4%, mortality 8%→0%) |
 | **B — Chief-complaint red-flag NLP** | TF-IDF + 15-pattern clinical lexicon over free-text complaints; honest marginal-lift analysis; subjective/objective split | 8/15 lexicon patterns = **100% high-acuity triggers**; text lift over vitals reported honestly (AUC 1.0 flagged as a synthetic artefact) |
 | **C — Equity & reliability audit** | Reusable `NEWS2-residual` audit toolkit with **negative + positive controls**; inter-rater outlier detection; literature contrast | Null bias on provided data (all CIs ∋ 0); **positive control detects injected bias at effect size 0.05**; 1/50 outlier nurse flagged |
+| **D — Outcome-anchored second opinion** | Calibrated model predicting *real* critical outcome (admit/transfer/death) from triage-time features with acuity **excluded**; outcome-anchored undertriage flags; `triage_second_opinion()` tool; data forensics | **ROC-AUC 0.813** (honest, non-trivial); **3,646** low-acuity patients flagged (11.9% vs 9.3% actual critical rate); derived vitals are exact formulae (**R² ≥ 0.9999**) |
 
-**Headline insight:** SHAP shows the synthetic triage policy is **age-blind** (mean |SHAP| ≈ 0 for age/BMI/
-weight/height) — reassuring for fairness here, but the exact failure mode behind real-world geriatric
-undertriage (>22%). The reusable audit toolkit (Pillar C) is the impact pathway: it runs unmodified on
+**Headline insights:** (1) SHAP shows the synthetic triage policy is **age-blind** (mean |SHAP| ≈ 0 for
+age/BMI/weight/height) — reassuring for fairness here, but the exact failure mode behind real-world
+geriatric undertriage (>22%). (2) Unlike the deterministic acuity label, the **outcome-anchored** model
+(Pillar D) is a genuinely hard, honest problem (AUC 0.81, not a synthetic 1.0) — and it catches missed
+severity (e.g. *"mild chest discomfort," L4 → admitted*). The two reusable tools — the **audit toolkit**
+(Pillar C) and **`triage_second_opinion()`** (Pillar D) — are the impact pathway: both run unmodified on
 **MIMIC-IV-ED** or a hospital's own triage logs.
 
 ## Reproduce
@@ -46,6 +50,7 @@ src/
   01_pillarA_acuity_model.py     # calibrated model + SHAP + outcome validation
   02_pillarB_nlp_redflag.py      # chief-complaint NLP red-flag flagger
   03_pillarC_equity_audit.py     # equity & inter-rater audit toolkit
+  04_pillarD_outcome_undertriage.py  # outcome-anchored undertriage + second-opinion tool
 figures/            # all generated figures
 ```
 
