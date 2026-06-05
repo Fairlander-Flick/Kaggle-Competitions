@@ -1,0 +1,86 @@
+{
+  "accuracy": 0.9996,
+  "macro_f1": 0.999,
+  "qwk": 0.9998,
+  "ece": 0.0002,
+  "errors": 35,
+  "undertriage": 31,
+  "overtriage": 4,
+  "dangerous": 31,
+  "mean_conf_correct": 0.9998,
+  "mean_conf_wrong": 0.8359,
+  "per_class": {
+    "L1 \u00b7 resus": {
+      "precision": 0.9991,
+      "recall": 0.9944,
+      "f1": 0.9967,
+      "support": 3222,
+      "mean_conf": 0.9977
+    },
+    "L2 \u00b7 emergent": {
+      "precision": 0.9986,
+      "recall": 0.9988,
+      "f1": 0.9987,
+      "support": 13439,
+      "mean_conf": 0.9992
+    },
+    "L3 \u00b7 urgent": {
+      "precision": 0.9996,
+      "recall": 1.0,
+      "f1": 0.9998,
+      "support": 28921,
+      "mean_conf": 1.0
+    },
+    "L4 \u00b7 less urgent": {
+      "precision": 0.9999,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 23020,
+      "mean_conf": 0.9999
+    },
+    "L5 \u00b7 non-urgent": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 11398,
+      "mean_conf": 0.9999
+    }
+  },
+  "trust_bands": [
+    {
+      "thresh": 0.9,
+      "coverage": 0.9991,
+      "acc_auto": 0.9998,
+      "danger_slip": 15
+    },
+    {
+      "thresh": 0.95,
+      "coverage": 0.9989,
+      "acc_auto": 0.9998,
+      "danger_slip": 11
+    },
+    {
+      "thresh": 0.99,
+      "coverage": 0.998,
+      "acc_auto": 0.9999,
+      "danger_slip": 7
+    },
+    {
+      "thresh": 0.995,
+      "coverage": 0.9972,
+      "acc_auto": 0.9999,
+      "danger_slip": 4
+    },
+    {
+      "thresh": 0.999,
+      "coverage": 0.995,
+      "acc_auto": 1.0,
+      "danger_slip": 0
+    }
+  ],
+  "taxonomy": {
+    "hard boundary": 24,
+    "intrinsic noise": 8,
+    "ambiguous phrase": 3
+  }
+}

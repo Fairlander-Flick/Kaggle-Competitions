@@ -1,0 +1,3 @@
+# large regenerable analysis artifacts (produced by src/05-09)
+inspection/*.csv
+inspection/*.npy
