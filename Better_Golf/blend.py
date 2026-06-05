@@ -66,13 +66,18 @@ def fast_cost(raw: bytes):
     return p + nb
 
 
-def gather():
-    """task_num -> list[(fast_cost, raw_bytes, source_label)]"""
+def gather(include_ours=True):
+    """task_num -> list[(fast_cost, raw_bytes, source_label)].
+
+    include_ours=False excludes Better_Golf/out/onnx (our hand-built /
+    Phase-2 graphs). Those are the novel-op-chain 0-LB class: cheap+valid
+    locally but ~0 on the real grader (the projected<->actual gap). Set
+    False for a 100%-verbatim-graded-bundle blend (projected == actual)."""
     cand = {}
     files = []
     if SRC.exists():
         files += list(SRC.rglob("*"))
-    if ONNX_OURS.exists():
+    if include_ours and ONNX_OURS.exists():
         files += [(p) for p in ONNX_OURS.glob("task*.onnx")]
     for f in files:
         f = Path(f)
@@ -106,8 +111,8 @@ def gather():
     return cand
 
 
-def main(limit=400):
-    cand = gather()
+def main(limit=400, include_ours=True):
+    cand = gather(include_ours)
     print(f"sources: {sum(len(v) for v in cand.values())} candidate ONNX "
           f"across {len(cand)} tasks")
     results = {}
@@ -149,4 +154,4 @@ if __name__ == "__main__":
     lim = 400
     if "--limit" in sys.argv:
         lim = int(sys.argv[sys.argv.index("--limit") + 1])
-    main(lim)
+    main(lim, include_ours="--no-ours" not in sys.argv)

@@ -1,0 +1,3660 @@
+{
+ "bundle": "submission.zip",
+ "o1_total_projected": 6152.357,
+ "actual_lb_reference": 5706.97,
+ "n_tasks": 400,
+ "n_dq_flagged_while_ok": 23,
+ "lb_at_risk_total": 339.55,
+ "flag_histogram": {
+  "noshape": 20,
+  "unused_init": 3
+ },
+ "rows": [
+  {
+   "task": 52,
+   "ok": true,
+   "points": 17.431,
+   "memory": 1895,
+   "params": 42,
+   "dq_flags": [
+    "noshape:iw_f"
+   ],
+   "lb_at_risk": 17.431
+  },
+  {
+   "task": 146,
+   "ok": true,
+   "points": 17.278,
+   "memory": 2232,
+   "params": 26,
+   "dq_flags": [
+    "unused_init:2(false_bool)"
+   ],
+   "lb_at_risk": 17.278
+  },
+  {
+   "task": 394,
+   "ok": true,
+   "points": 16.528,
+   "memory": 4746,
+   "params": 35,
+   "dq_flags": [
+    "noshape:rT"
+   ],
+   "lb_at_risk": 16.528
+  },
+  {
+   "task": 320,
+   "ok": true,
+   "points": 16.445,
+   "memory": 5049,
+   "params": 142,
+   "dq_flags": [
+    "unused_init:1(zero_i32)"
+   ],
+   "lb_at_risk": 16.445
+  },
+  {
+   "task": 262,
+   "ok": true,
+   "points": 16.055,
+   "memory": 7636,
+   "params": 30,
+   "dq_flags": [
+    "noshape:pad_value"
+   ],
+   "lb_at_risk": 16.055
+  },
+  {
+   "task": 39,
+   "ok": true,
+   "points": 16.006,
+   "memory": 8028,
+   "params": 29,
+   "dq_flags": [
+    "noshape:zero"
+   ],
+   "lb_at_risk": 16.006
+  },
+  {
+   "task": 361,
+   "ok": true,
+   "points": 15.264,
+   "memory": 16641,
+   "params": 277,
+   "dq_flags": [
+    "noshape:has_3"
+   ],
+   "lb_at_risk": 15.264
+  },
+  {
+   "task": 134,
+   "ok": true,
+   "points": 15.259,
+   "memory": 16917,
+   "params": 82,
+   "dq_flags": [
+    "unused_init:1(c_1_f)"
+   ],
+   "lb_at_risk": 15.259
+  },
+  {
+   "task": 117,
+   "ok": true,
+   "points": 15.17,
+   "memory": 17955,
+   "params": 628,
+   "dq_flags": [
+    "noshape:ReduceSum_0_redu"
+   ],
+   "lb_at_risk": 15.17
+  },
+  {
+   "task": 183,
+   "ok": true,
+   "points": 14.878,
+   "memory": 24840,
+   "params": 38,
+   "dq_flags": [
+    "noshape:v18"
+   ],
+   "lb_at_risk": 14.878
+  },
+  {
+   "task": 49,
+   "ok": true,
+   "points": 14.614,
+   "memory": 32263,
+   "params": 152,
+   "dq_flags": [
+    "noshape:_mc_h_f"
+   ],
+   "lb_at_risk": 14.614
+  },
+  {
+   "task": 30,
+   "ok": true,
+   "points": 14.169,
+   "memory": 49572,
+   "params": 976,
+   "dq_flags": [
+    "noshape:c1_top"
+   ],
+   "lb_at_risk": 14.169
+  },
+  {
+   "task": 174,
+   "ok": true,
+   "points": 14.115,
+   "memory": 53205,
+   "params": 147,
+   "dq_flags": [
+    "noshape:v46"
+   ],
+   "lb_at_risk": 14.115
+  },
+  {
+   "task": 131,
+   "ok": true,
+   "points": 13.95,
+   "memory": 62019,
+   "params": 954,
+   "dq_flags": [
+    "noshape:max_row_m2"
+   ],
+   "lb_at_risk": 13.95
+  },
+  {
+   "task": 377,
+   "ok": true,
+   "points": 13.92,
+   "memory": 62741,
+   "params": 2140,
+   "dq_flags": [
+    "noshape:v217"
+   ],
+   "lb_at_risk": 13.92
+  },
+  {
+   "task": 328,
+   "ok": true,
+   "points": 13.846,
+   "memory": 66790,
+   "params": 3050,
+   "dq_flags": [
+    "noshape:v24"
+   ],
+   "lb_at_risk": 13.846
+  },
+  {
+   "task": 107,
+   "ok": true,
+   "points": 13.8,
+   "memory": 59450,
+   "params": 13681,
+   "dq_flags": [
+    "noshape:v63"
+   ],
+   "lb_at_risk": 13.8
+  },
+  {
+   "task": 185,
+   "ok": true,
+   "points": 13.764,
+   "memory": 75771,
+   "params": 67,
+   "dq_flags": [
+    "noshape:reducesum_8"
+   ],
+   "lb_at_risk": 13.764
+  },
+  {
+   "task": 398,
+   "ok": true,
+   "points": 13.658,
+   "memory": 83533,
+   "params": 770,
+   "dq_flags": [
+    "noshape:nz_count_f"
+   ],
+   "lb_at_risk": 13.658
+  },
+  {
+   "task": 201,
+   "ok": true,
+   "points": 13.554,
+   "memory": 92548,
+   "params": 932,
+   "dq_flags": [
+    "noshape:v32"
+   ],
+   "lb_at_risk": 13.554
+  },
+  {
+   "task": 109,
+   "ok": true,
+   "points": 13.539,
+   "memory": 93924,
+   "params": 983,
+   "dq_flags": [
+    "noshape:H_f"
+   ],
+   "lb_at_risk": 13.539
+  },
+  {
+   "task": 29,
+   "ok": true,
+   "points": 13.503,
+   "memory": 98207,
+   "params": 170,
+   "dq_flags": [
+    "noshape:task029_row_last"
+   ],
+   "lb_at_risk": 13.503
+  },
+  {
+   "task": 138,
+   "ok": true,
+   "points": 12.804,
+   "memory": 197829,
+   "params": 135,
+   "dq_flags": [
+    "noshape:v29"
+   ],
+   "lb_at_risk": 12.804
+  },
+  {
+   "task": 1,
+   "ok": true,
+   "points": 16.625,
+   "memory": 4315,
+   "params": 24,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 2,
+   "ok": true,
+   "points": 13.508,
+   "memory": 97200,
+   "params": 726,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 3,
+   "ok": true,
+   "points": 15.786,
+   "memory": 10026,
+   "params": 9,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 4,
+   "ok": true,
+   "points": 14.085,
+   "memory": 54000,
+   "params": 1020,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 5,
+   "ok": true,
+   "points": 13.311,
+   "memory": 118653,
+   "params": 555,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 6,
+   "ok": true,
+   "points": 17.44,
+   "memory": 1872,
+   "params": 47,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 7,
+   "ok": true,
+   "points": 15.87,
+   "memory": 9200,
+   "params": 31,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 8,
+   "ok": true,
+   "points": 14.933,
+   "memory": 23484,
+   "params": 62,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 9,
+   "ok": true,
+   "points": 13.695,
+   "memory": 77400,
+   "params": 3841,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 10,
+   "ok": true,
+   "points": 15.983,
+   "memory": 8165,
+   "params": 77,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 11,
+   "ok": true,
+   "points": 13.899,
+   "memory": 63916,
+   "params": 2331,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 12,
+   "ok": true,
+   "points": 15.448,
+   "memory": 13968,
+   "params": 103,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 13,
+   "ok": true,
+   "points": 13.331,
+   "memory": 114625,
+   "params": 2306,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 14,
+   "ok": true,
+   "points": 13.76,
+   "memory": 72063,
+   "params": 4017,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 15,
+   "ok": true,
+   "points": 18.198,
+   "memory": 0,
+   "params": 900,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 16,
+   "ok": true,
+   "points": 21.088,
+   "memory": 40,
+   "params": 10,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 17,
+   "ok": true,
+   "points": 14.389,
+   "memory": 39837,
+   "params": 739,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 18,
+   "ok": true,
+   "points": 13.224,
+   "memory": 123384,
+   "params": 6748,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 19,
+   "ok": true,
+   "points": 13.075,
+   "memory": 150936,
+   "params": 66,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 20,
+   "ok": true,
+   "points": 13.591,
+   "memory": 89863,
+   "params": 271,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 21,
+   "ok": true,
+   "points": 13.824,
+   "memory": 69540,
+   "params": 1861,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 22,
+   "ok": true,
+   "points": 14.287,
+   "memory": 44812,
+   "params": 144,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 23,
+   "ok": true,
+   "points": 15.027,
+   "memory": 20943,
+   "params": 490,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 24,
+   "ok": true,
+   "points": 15.886,
+   "memory": 8820,
+   "params": 260,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 25,
+   "ok": true,
+   "points": 13.6,
+   "memory": 74054,
+   "params": 15232,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 26,
+   "ok": true,
+   "points": 17.92,
+   "memory": 1140,
+   "params": 48,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 27,
+   "ok": true,
+   "points": 14.063,
+   "memory": 48981,
+   "params": 7217,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 28,
+   "ok": true,
+   "points": 15.315,
+   "memory": 15752,
+   "params": 318,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 31,
+   "ok": true,
+   "points": 15.152,
+   "memory": 18854,
+   "params": 60,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 32,
+   "ok": true,
+   "points": 16.867,
+   "memory": 3336,
+   "params": 69,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 33,
+   "ok": true,
+   "points": 14.082,
+   "memory": 55112,
+   "params": 49,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 34,
+   "ok": true,
+   "points": 13.421,
+   "memory": 103949,
+   "params": 2850,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 35,
+   "ok": true,
+   "points": 14.409,
+   "memory": 39476,
+   "params": 286,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 36,
+   "ok": true,
+   "points": 13.71,
+   "memory": 79832,
+   "params": 160,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 37,
+   "ok": true,
+   "points": 13.91,
+   "memory": 55418,
+   "params": 10119,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 38,
+   "ok": true,
+   "points": 17.297,
+   "memory": 2116,
+   "params": 98,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 40,
+   "ok": true,
+   "points": 15.685,
+   "memory": 11026,
+   "params": 80,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 41,
+   "ok": true,
+   "points": 15.299,
+   "memory": 16300,
+   "params": 27,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 42,
+   "ok": true,
+   "points": 14.586,
+   "memory": 32909,
+   "params": 413,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 43,
+   "ok": true,
+   "points": 16.129,
+   "memory": 6980,
+   "params": 139,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 44,
+   "ok": true,
+   "points": 14.633,
+   "memory": 20902,
+   "params": 10903,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 45,
+   "ok": true,
+   "points": 16.04,
+   "memory": 7750,
+   "params": 32,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 46,
+   "ok": true,
+   "points": 14.059,
+   "memory": 55580,
+   "params": 866,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 47,
+   "ok": true,
+   "points": 16.071,
+   "memory": 7423,
+   "params": 127,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 48,
+   "ok": true,
+   "points": 15.914,
+   "memory": 8765,
+   "params": 67,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 50,
+   "ok": true,
+   "points": 15.753,
+   "memory": 10125,
+   "params": 250,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 51,
+   "ok": true,
+   "points": 13.112,
+   "memory": 145398,
+   "params": 72,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 53,
+   "ok": true,
+   "points": 21.599,
+   "memory": 0,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 54,
+   "ok": true,
+   "points": 12.888,
+   "memory": 181895,
+   "params": 162,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 55,
+   "ok": true,
+   "points": 14.474,
+   "memory": 36292,
+   "params": 994,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 56,
+   "ok": true,
+   "points": 18.672,
+   "memory": 460,
+   "params": 100,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 57,
+   "ok": true,
+   "points": 14.246,
+   "memory": 46804,
+   "params": 11,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 58,
+   "ok": true,
+   "points": 15.309,
+   "memory": 9724,
+   "params": 6446,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 59,
+   "ok": true,
+   "points": 14.74,
+   "memory": 26008,
+   "params": 2554,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 60,
+   "ok": true,
+   "points": 15.779,
+   "memory": 9920,
+   "params": 191,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 61,
+   "ok": true,
+   "points": 15.152,
+   "memory": 16942,
+   "params": 1972,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 62,
+   "ok": true,
+   "points": 14.232,
+   "memory": 46560,
+   "params": 929,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 63,
+   "ok": true,
+   "points": 14.667,
+   "memory": 30700,
+   "params": 32,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 64,
+   "ok": true,
+   "points": 13.211,
+   "memory": 131578,
+   "params": 248,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 65,
+   "ok": true,
+   "points": 14.152,
+   "memory": 51338,
+   "params": 77,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 66,
+   "ok": true,
+   "points": 15.028,
+   "memory": 16962,
+   "params": 4446,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 67,
+   "ok": true,
+   "points": 19.247,
+   "memory": 282,
+   "params": 33,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 68,
+   "ok": true,
+   "points": 15.205,
+   "memory": 17924,
+   "params": 27,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 69,
+   "ok": true,
+   "points": 13.648,
+   "memory": 82858,
+   "params": 2313,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 70,
+   "ok": true,
+   "points": 13.899,
+   "memory": 66060,
+   "params": 169,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 71,
+   "ok": true,
+   "points": 13.226,
+   "memory": 128850,
+   "params": 930,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 72,
+   "ok": true,
+   "points": 17.342,
+   "memory": 2040,
+   "params": 78,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 73,
+   "ok": true,
+   "points": 17.748,
+   "memory": 1340,
+   "params": 71,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 74,
+   "ok": true,
+   "points": 15.009,
+   "memory": 21780,
+   "params": 45,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 75,
+   "ok": true,
+   "points": 14.128,
+   "memory": 52612,
+   "params": 57,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 76,
+   "ok": true,
+   "points": 14.504,
+   "memory": 31154,
+   "params": 5030,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 77,
+   "ok": true,
+   "points": 12.833,
+   "memory": 190140,
+   "params": 2215,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 78,
+   "ok": true,
+   "points": 15.335,
+   "memory": 15720,
+   "params": 36,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 79,
+   "ok": true,
+   "points": 14.875,
+   "memory": 24708,
+   "params": 245,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 80,
+   "ok": true,
+   "points": 13.048,
+   "memory": 153612,
+   "params": 1495,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 81,
+   "ok": true,
+   "points": 17.255,
+   "memory": 2198,
+   "params": 113,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 82,
+   "ok": true,
+   "points": 14.347,
+   "memory": 42240,
+   "params": 79,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 83,
+   "ok": true,
+   "points": 16.321,
+   "memory": 5864,
+   "params": 13,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 84,
+   "ok": true,
+   "points": 15.121,
+   "memory": 19400,
+   "params": 113,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 85,
+   "ok": true,
+   "points": 13.363,
+   "memory": 113040,
+   "params": 138,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 86,
+   "ok": true,
+   "points": 14.494,
+   "memory": 36288,
+   "params": 231,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 87,
+   "ok": true,
+   "points": 19.07,
+   "memory": 360,
+   "params": 16,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 88,
+   "ok": true,
+   "points": 13.468,
+   "memory": 100626,
+   "params": 1253,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 89,
+   "ok": true,
+   "points": 14.179,
+   "memory": 49943,
+   "params": 99,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 90,
+   "ok": true,
+   "points": 13.944,
+   "memory": 63250,
+   "params": 104,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 91,
+   "ok": true,
+   "points": 14.151,
+   "memory": 51388,
+   "params": 107,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 92,
+   "ok": true,
+   "points": 13.071,
+   "memory": 151500,
+   "params": 37,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 93,
+   "ok": true,
+   "points": 14.234,
+   "memory": 47264,
+   "params": 113,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 94,
+   "ok": true,
+   "points": 14.218,
+   "memory": 48060,
+   "params": 103,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 95,
+   "ok": true,
+   "points": 16.588,
+   "memory": 3600,
+   "params": 900,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 96,
+   "ok": true,
+   "points": 14.798,
+   "memory": 10305,
+   "params": 16643,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 97,
+   "ok": true,
+   "points": 13.853,
+   "memory": 68400,
+   "params": 923,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 98,
+   "ok": true,
+   "points": 18.187,
+   "memory": 0,
+   "params": 910,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 99,
+   "ok": true,
+   "points": 16.501,
+   "memory": 0,
+   "params": 4910,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 100,
+   "ok": true,
+   "points": 16.135,
+   "memory": 7033,
+   "params": 44,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 101,
+   "ok": true,
+   "points": 13.905,
+   "memory": 54261,
+   "params": 11555,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 102,
+   "ok": true,
+   "points": 14.284,
+   "memory": 44352,
+   "params": 715,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 103,
+   "ok": true,
+   "points": 19.372,
+   "memory": 221,
+   "params": 57,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 104,
+   "ok": true,
+   "points": 16.239,
+   "memory": 5312,
+   "params": 1070,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 105,
+   "ok": true,
+   "points": 14.156,
+   "memory": 43964,
+   "params": 7268,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 106,
+   "ok": true,
+   "points": 17.94,
+   "memory": 1039,
+   "params": 125,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 108,
+   "ok": true,
+   "points": 17.504,
+   "memory": 0,
+   "params": 1800,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 110,
+   "ok": true,
+   "points": 13.29,
+   "memory": 120387,
+   "params": 1427,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 111,
+   "ok": true,
+   "points": 16.581,
+   "memory": 4504,
+   "params": 28,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 112,
+   "ok": true,
+   "points": 14.002,
+   "memory": 59644,
+   "params": 106,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 113,
+   "ok": true,
+   "points": 21.599,
+   "memory": 0,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 114,
+   "ok": true,
+   "points": 17.866,
+   "memory": 1091,
+   "params": 163,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 115,
+   "ok": true,
+   "points": 16.676,
+   "memory": 4042,
+   "params": 80,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 116,
+   "ok": true,
+   "points": 21.599,
+   "memory": 0,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 118,
+   "ok": true,
+   "points": 13.997,
+   "memory": 49986,
+   "params": 10040,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 119,
+   "ok": true,
+   "points": 14.132,
+   "memory": 45936,
+   "params": 6524,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 120,
+   "ok": true,
+   "points": 18.187,
+   "memory": 0,
+   "params": 910,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 121,
+   "ok": true,
+   "points": 16.216,
+   "memory": 6484,
+   "params": 46,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 122,
+   "ok": true,
+   "points": 17.172,
+   "memory": 0,
+   "params": 2510,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 123,
+   "ok": true,
+   "points": 16.63,
+   "memory": 3365,
+   "params": 949,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 124,
+   "ok": true,
+   "points": 15.359,
+   "memory": 15034,
+   "params": 353,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 125,
+   "ok": true,
+   "points": 15.496,
+   "memory": 13170,
+   "params": 247,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 126,
+   "ok": true,
+   "points": 13.637,
+   "memory": 86044,
+   "params": 47,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 127,
+   "ok": true,
+   "points": 18.198,
+   "memory": 0,
+   "params": 900,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 128,
+   "ok": true,
+   "points": 13.538,
+   "memory": 94940,
+   "params": 102,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 129,
+   "ok": true,
+   "points": 18.222,
+   "memory": 848,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 130,
+   "ok": true,
+   "points": 15.323,
+   "memory": 15840,
+   "params": 108,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 132,
+   "ok": true,
+   "points": 14.392,
+   "memory": 40374,
+   "params": 64,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 133,
+   "ok": true,
+   "points": 12.825,
+   "memory": 146687,
+   "params": 47236,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 135,
+   "ok": true,
+   "points": 19.097,
+   "memory": 360,
+   "params": 6,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 136,
+   "ok": true,
+   "points": 15.178,
+   "memory": 18000,
+   "params": 433,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 137,
+   "ok": true,
+   "points": 13.809,
+   "memory": 71496,
+   "params": 966,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 139,
+   "ok": true,
+   "points": 16.801,
+   "memory": 3456,
+   "params": 181,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 140,
+   "ok": true,
+   "points": 19.07,
+   "memory": 360,
+   "params": 16,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 141,
+   "ok": true,
+   "points": 15.33,
+   "memory": 15750,
+   "params": 81,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 142,
+   "ok": true,
+   "points": 16.604,
+   "memory": 4416,
+   "params": 12,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 143,
+   "ok": true,
+   "points": 14.96,
+   "memory": 22868,
+   "params": 58,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 144,
+   "ok": true,
+   "points": 17.856,
+   "memory": 1216,
+   "params": 50,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 145,
+   "ok": true,
+   "points": 13.797,
+   "memory": 72424,
+   "params": 934,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 147,
+   "ok": true,
+   "points": 17.797,
+   "memory": 1236,
+   "params": 108,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 148,
+   "ok": true,
+   "points": 14.516,
+   "memory": 35396,
+   "params": 353,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 149,
+   "ok": true,
+   "points": 16.455,
+   "memory": 5095,
+   "params": 44,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 150,
+   "ok": true,
+   "points": 18.019,
+   "memory": 1040,
+   "params": 36,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 151,
+   "ok": true,
+   "points": 14.951,
+   "memory": 23040,
+   "params": 86,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 152,
+   "ok": true,
+   "points": 16.604,
+   "memory": 4416,
+   "params": 12,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 153,
+   "ok": true,
+   "points": 15.675,
+   "memory": 8424,
+   "params": 2788,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 154,
+   "ok": true,
+   "points": 13.743,
+   "memory": 77374,
+   "params": 67,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 155,
+   "ok": true,
+   "points": 18.019,
+   "memory": 1040,
+   "params": 36,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 156,
+   "ok": true,
+   "points": 14.013,
+   "memory": 58135,
+   "params": 967,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 157,
+   "ok": true,
+   "points": 13.711,
+   "memory": 55993,
+   "params": 23937,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 158,
+   "ok": true,
+   "points": 12.884,
+   "memory": 146688,
+   "params": 36088,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 159,
+   "ok": true,
+   "points": 13.555,
+   "memory": 89316,
+   "params": 4105,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 160,
+   "ok": true,
+   "points": 15.453,
+   "memory": 13900,
+   "params": 97,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 161,
+   "ok": true,
+   "points": 13.174,
+   "memory": 136627,
+   "params": 81,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 162,
+   "ok": true,
+   "points": 13.944,
+   "memory": 63248,
+   "params": 48,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 163,
+   "ok": true,
+   "points": 14.537,
+   "memory": 33324,
+   "params": 1655,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 164,
+   "ok": true,
+   "points": 21.599,
+   "memory": 0,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 165,
+   "ok": true,
+   "points": 13.88,
+   "memory": 66530,
+   "params": 994,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 166,
+   "ok": true,
+   "points": 14.57,
+   "memory": 33824,
+   "params": 37,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 167,
+   "ok": true,
+   "points": 18.294,
+   "memory": 523,
+   "params": 294,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 168,
+   "ok": true,
+   "points": 14.621,
+   "memory": 31636,
+   "params": 546,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 169,
+   "ok": true,
+   "points": 14.018,
+   "memory": 57816,
+   "params": 971,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 170,
+   "ok": true,
+   "points": 13.684,
+   "memory": 78315,
+   "params": 3816,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 171,
+   "ok": true,
+   "points": 17.309,
+   "memory": 2065,
+   "params": 124,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 172,
+   "ok": true,
+   "points": 21.599,
+   "memory": 0,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 173,
+   "ok": true,
+   "points": 12.891,
+   "memory": 181276,
+   "params": 218,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 175,
+   "ok": true,
+   "points": 14.92,
+   "memory": 23356,
+   "params": 503,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 176,
+   "ok": true,
+   "points": 15.818,
+   "memory": 9600,
+   "params": 120,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 177,
+   "ok": true,
+   "points": 13.779,
+   "memory": 74600,
+   "params": 105,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 178,
+   "ok": true,
+   "points": 14.407,
+   "memory": 39266,
+   "params": 570,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 179,
+   "ok": true,
+   "points": 25.0,
+   "memory": 0,
+   "params": 0,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 180,
+   "ok": true,
+   "points": 15.567,
+   "memory": 11576,
+   "params": 922,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 181,
+   "ok": true,
+   "points": 17.915,
+   "memory": 1108,
+   "params": 86,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 182,
+   "ok": true,
+   "points": 12.808,
+   "memory": 81891,
+   "params": 115367,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 184,
+   "ok": true,
+   "points": 14.147,
+   "memory": 51621,
+   "params": 48,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 186,
+   "ok": true,
+   "points": 18.318,
+   "memory": 416,
+   "params": 382,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 187,
+   "ok": true,
+   "points": 13.402,
+   "memory": 108000,
+   "params": 913,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 188,
+   "ok": true,
+   "points": 15.692,
+   "memory": 10972,
+   "params": 49,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 189,
+   "ok": true,
+   "points": 14.256,
+   "memory": 46036,
+   "params": 304,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 190,
+   "ok": true,
+   "points": 15.67,
+   "memory": 11026,
+   "params": 240,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 191,
+   "ok": true,
+   "points": 13.211,
+   "memory": 131636,
+   "params": 140,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 192,
+   "ok": true,
+   "points": 14.093,
+   "memory": 54474,
+   "params": 62,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 193,
+   "ok": true,
+   "points": 14.11,
+   "memory": 53600,
+   "params": 63,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 194,
+   "ok": true,
+   "points": 17.504,
+   "memory": 0,
+   "params": 1800,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 195,
+   "ok": true,
+   "points": 15.376,
+   "memory": 13210,
+   "params": 1919,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 196,
+   "ok": true,
+   "points": 14.299,
+   "memory": 44325,
+   "params": 69,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 197,
+   "ok": true,
+   "points": 13.913,
+   "memory": 65314,
+   "params": 16,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 198,
+   "ok": true,
+   "points": 13.45,
+   "memory": 102908,
+   "params": 913,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 199,
+   "ok": true,
+   "points": 15.309,
+   "memory": 16103,
+   "params": 67,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 200,
+   "ok": true,
+   "points": 15.648,
+   "memory": 11452,
+   "params": 65,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 202,
+   "ok": true,
+   "points": 13.258,
+   "memory": 125716,
+   "params": 15,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 203,
+   "ok": true,
+   "points": 13.611,
+   "memory": 87652,
+   "params": 710,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 204,
+   "ok": true,
+   "points": 13.443,
+   "memory": 103500,
+   "params": 1044,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 205,
+   "ok": true,
+   "points": 13.327,
+   "memory": 96954,
+   "params": 20461,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 206,
+   "ok": true,
+   "points": 13.895,
+   "memory": 66250,
+   "params": 230,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 207,
+   "ok": true,
+   "points": 17.222,
+   "memory": 2352,
+   "params": 35,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 208,
+   "ok": true,
+   "points": 13.566,
+   "memory": 91886,
+   "params": 522,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 209,
+   "ok": true,
+   "points": 13.883,
+   "memory": 22494,
+   "params": 44843,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 210,
+   "ok": true,
+   "points": 21.599,
+   "memory": 0,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 211,
+   "ok": true,
+   "points": 17.504,
+   "memory": 0,
+   "params": 1800,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 212,
+   "ok": true,
+   "points": 15.309,
+   "memory": 15934,
+   "params": 237,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 213,
+   "ok": true,
+   "points": 14.132,
+   "memory": 52309,
+   "params": 160,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 214,
+   "ok": true,
+   "points": 17.504,
+   "memory": 0,
+   "params": 1800,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 215,
+   "ok": true,
+   "points": 14.204,
+   "memory": 48668,
+   "params": 168,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 216,
+   "ok": true,
+   "points": 13.45,
+   "memory": 103712,
+   "params": 100,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 217,
+   "ok": true,
+   "points": 13.748,
+   "memory": 75126,
+   "params": 1935,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 218,
+   "ok": true,
+   "points": 14.948,
+   "memory": 23158,
+   "params": 45,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 219,
+   "ok": true,
+   "points": 14.228,
+   "memory": 19406,
+   "params": 28282,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 220,
+   "ok": true,
+   "points": 18.198,
+   "memory": 0,
+   "params": 900,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 221,
+   "ok": true,
+   "points": 14.069,
+   "memory": 50841,
+   "params": 5030,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 222,
+   "ok": true,
+   "points": 14.031,
+   "memory": 57948,
+   "params": 88,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 223,
+   "ok": true,
+   "points": 17.504,
+   "memory": 0,
+   "params": 1800,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 224,
+   "ok": true,
+   "points": 13.826,
+   "memory": 70958,
+   "params": 308,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 225,
+   "ok": true,
+   "points": 15.148,
+   "memory": 18384,
+   "params": 608,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 226,
+   "ok": true,
+   "points": 15.861,
+   "memory": 9156,
+   "params": 151,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 227,
+   "ok": true,
+   "points": 16.839,
+   "memory": 3456,
+   "params": 47,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 228,
+   "ok": true,
+   "points": 14.374,
+   "memory": 41116,
+   "params": 78,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 229,
+   "ok": true,
+   "points": 17.387,
+   "memory": 1980,
+   "params": 45,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 230,
+   "ok": true,
+   "points": 18.198,
+   "memory": 0,
+   "params": 900,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 231,
+   "ok": true,
+   "points": 14.348,
+   "memory": 42186,
+   "params": 103,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 232,
+   "ok": true,
+   "points": 14.367,
+   "memory": 41412,
+   "params": 69,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 233,
+   "ok": true,
+   "points": 13.941,
+   "memory": 49136,
+   "params": 14404,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 234,
+   "ok": true,
+   "points": 13.151,
+   "memory": 138492,
+   "params": 1446,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 235,
+   "ok": true,
+   "points": 17.424,
+   "memory": 1824,
+   "params": 126,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 236,
+   "ok": true,
+   "points": 17.963,
+   "memory": 1088,
+   "params": 50,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 237,
+   "ok": true,
+   "points": 15.003,
+   "memory": 21915,
+   "params": 42,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 238,
+   "ok": true,
+   "points": 13.928,
+   "memory": 62907,
+   "params": 1467,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 239,
+   "ok": true,
+   "points": 13.525,
+   "memory": 95891,
+   "params": 387,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 240,
+   "ok": true,
+   "points": 13.894,
+   "memory": 66520,
+   "params": 74,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 241,
+   "ok": true,
+   "points": 25.0,
+   "memory": 0,
+   "params": 0,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 242,
+   "ok": true,
+   "points": 14.896,
+   "memory": 24394,
+   "params": 36,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 243,
+   "ok": true,
+   "points": 13.875,
+   "memory": 56051,
+   "params": 11827,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 244,
+   "ok": true,
+   "points": 14.607,
+   "memory": 32539,
+   "params": 86,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 245,
+   "ok": true,
+   "points": 13.601,
+   "memory": 88274,
+   "params": 997,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 246,
+   "ok": true,
+   "points": 15.498,
+   "memory": 12960,
+   "params": 431,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 247,
+   "ok": true,
+   "points": 14.993,
+   "memory": 22142,
+   "params": 33,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 248,
+   "ok": true,
+   "points": 16.115,
+   "memory": 7186,
+   "params": 40,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 249,
+   "ok": true,
+   "points": 15.424,
+   "memory": 14246,
+   "params": 170,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 250,
+   "ok": true,
+   "points": 15.28,
+   "memory": 16392,
+   "params": 249,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 251,
+   "ok": true,
+   "points": 13.472,
+   "memory": 100560,
+   "params": 919,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 252,
+   "ok": true,
+   "points": 14.401,
+   "memory": 39600,
+   "params": 486,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 253,
+   "ok": true,
+   "points": 14.215,
+   "memory": 47830,
+   "params": 439,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 254,
+   "ok": true,
+   "points": 15.865,
+   "memory": 9116,
+   "params": 158,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 255,
+   "ok": true,
+   "points": 13.783,
+   "memory": 67833,
+   "params": 6570,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 256,
+   "ok": true,
+   "points": 14.816,
+   "memory": 25228,
+   "params": 1241,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 257,
+   "ok": true,
+   "points": 17.629,
+   "memory": 1536,
+   "params": 53,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 258,
+   "ok": true,
+   "points": 18.187,
+   "memory": 0,
+   "params": 910,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 259,
+   "ok": true,
+   "points": 16.158,
+   "memory": 6871,
+   "params": 51,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 260,
+   "ok": true,
+   "points": 15.377,
+   "memory": 14962,
+   "params": 142,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 261,
+   "ok": true,
+   "points": 18.198,
+   "memory": 0,
+   "params": 900,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 263,
+   "ok": true,
+   "points": 15.981,
+   "memory": 8206,
+   "params": 52,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 264,
+   "ok": true,
+   "points": 13.155,
+   "memory": 138584,
+   "params": 852,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 265,
+   "ok": true,
+   "points": 14.408,
+   "memory": 39681,
+   "params": 131,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 266,
+   "ok": true,
+   "points": 17.92,
+   "memory": 1088,
+   "params": 100,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 267,
+   "ok": true,
+   "points": 17.719,
+   "memory": 1358,
+   "params": 95,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 268,
+   "ok": true,
+   "points": 14.878,
+   "memory": 24776,
+   "params": 99,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 269,
+   "ok": true,
+   "points": 15.406,
+   "memory": 14564,
+   "params": 114,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 270,
+   "ok": true,
+   "points": 14.235,
+   "memory": 46815,
+   "params": 500,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 271,
+   "ok": true,
+   "points": 14.725,
+   "memory": 28928,
+   "params": 63,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 272,
+   "ok": true,
+   "points": 18.141,
+   "memory": 855,
+   "params": 97,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 273,
+   "ok": true,
+   "points": 16.294,
+   "memory": 6000,
+   "params": 37,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 274,
+   "ok": true,
+   "points": 15.922,
+   "memory": 8372,
+   "params": 389,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 275,
+   "ok": true,
+   "points": 13.615,
+   "memory": 85206,
+   "params": 2774,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 276,
+   "ok": true,
+   "points": 22.697,
+   "memory": 0,
+   "params": 10,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 277,
+   "ok": true,
+   "points": 14.248,
+   "memory": 10240,
+   "params": 36497,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 278,
+   "ok": true,
+   "points": 14.414,
+   "memory": 39204,
+   "params": 364,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 279,
+   "ok": true,
+   "points": 14.171,
+   "memory": 50176,
+   "params": 286,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 280,
+   "ok": true,
+   "points": 13.155,
+   "memory": 139200,
+   "params": 125,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 281,
+   "ok": true,
+   "points": 13.597,
+   "memory": 88588,
+   "params": 988,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 282,
+   "ok": true,
+   "points": 18.198,
+   "memory": 0,
+   "params": 900,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 283,
+   "ok": true,
+   "points": 16.951,
+   "memory": 3000,
+   "params": 132,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 284,
+   "ok": true,
+   "points": 13.304,
+   "memory": 117157,
+   "params": 2875,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 285,
+   "ok": true,
+   "points": 13.115,
+   "memory": 120722,
+   "params": 24357,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 286,
+   "ok": true,
+   "points": 12.966,
+   "memory": 167129,
+   "params": 1302,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 287,
+   "ok": true,
+   "points": 14.976,
+   "memory": 22528,
+   "params": 39,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 288,
+   "ok": true,
+   "points": 14.189,
+   "memory": 48952,
+   "params": 608,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 289,
+   "ok": true,
+   "points": 14.633,
+   "memory": 31714,
+   "params": 80,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 290,
+   "ok": true,
+   "points": 13.384,
+   "memory": 106308,
+   "params": 4546,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 291,
+   "ok": true,
+   "points": 16.618,
+   "memory": 3436,
+   "params": 933,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 292,
+   "ok": true,
+   "points": 16.04,
+   "memory": 7680,
+   "params": 105,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 293,
+   "ok": true,
+   "points": 14.887,
+   "memory": 24168,
+   "params": 499,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 294,
+   "ok": true,
+   "points": 17.474,
+   "memory": 1720,
+   "params": 135,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 295,
+   "ok": true,
+   "points": 14.971,
+   "memory": 22611,
+   "params": 66,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 296,
+   "ok": true,
+   "points": 16.677,
+   "memory": 3762,
+   "params": 354,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 297,
+   "ok": true,
+   "points": 15.684,
+   "memory": 11048,
+   "params": 68,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 298,
+   "ok": true,
+   "points": 14.958,
+   "memory": 22434,
+   "params": 535,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 299,
+   "ok": true,
+   "points": 17.107,
+   "memory": 2616,
+   "params": 62,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 300,
+   "ok": true,
+   "points": 13.741,
+   "memory": 77438,
+   "params": 137,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 301,
+   "ok": true,
+   "points": 13.636,
+   "memory": 84344,
+   "params": 1858,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 302,
+   "ok": true,
+   "points": 14.731,
+   "memory": 28800,
+   "params": 29,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 303,
+   "ok": true,
+   "points": 13.701,
+   "memory": 80400,
+   "params": 310,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 304,
+   "ok": true,
+   "points": 15.413,
+   "memory": 14476,
+   "params": 98,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 305,
+   "ok": true,
+   "points": 16.718,
+   "memory": 3668,
+   "params": 284,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 306,
+   "ok": true,
+   "points": 13.495,
+   "memory": 99174,
+   "params": 75,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 307,
+   "ok": true,
+   "points": 17.504,
+   "memory": 0,
+   "params": 1800,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 308,
+   "ok": true,
+   "points": 14.534,
+   "memory": 21358,
+   "params": 13746,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 309,
+   "ok": true,
+   "points": 22.697,
+   "memory": 0,
+   "params": 10,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 310,
+   "ok": true,
+   "points": 14.012,
+   "memory": 58269,
+   "params": 871,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 311,
+   "ok": true,
+   "points": 21.599,
+   "memory": 0,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 312,
+   "ok": true,
+   "points": 15.792,
+   "memory": 9960,
+   "params": 20,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 313,
+   "ok": true,
+   "points": 13.665,
+   "memory": 79153,
+   "params": 4549,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 314,
+   "ok": true,
+   "points": 15.617,
+   "memory": 11712,
+   "params": 178,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 315,
+   "ok": true,
+   "points": 15.469,
+   "memory": 13680,
+   "params": 99,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 316,
+   "ok": true,
+   "points": 14.15,
+   "memory": 51462,
+   "params": 49,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 317,
+   "ok": true,
+   "points": 18.198,
+   "memory": 0,
+   "params": 900,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 318,
+   "ok": true,
+   "points": 17.908,
+   "memory": 1152,
+   "params": 50,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 319,
+   "ok": true,
+   "points": 15.182,
+   "memory": 10760,
+   "params": 7608,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 321,
+   "ok": true,
+   "points": 16.139,
+   "memory": 6912,
+   "params": 139,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 322,
+   "ok": true,
+   "points": 17.859,
+   "memory": 1242,
+   "params": 21,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 323,
+   "ok": true,
+   "points": 14.173,
+   "memory": 49788,
+   "params": 587,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 324,
+   "ok": true,
+   "points": 13.33,
+   "memory": 94032,
+   "params": 22991,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 325,
+   "ok": true,
+   "points": 14.331,
+   "memory": 41120,
+   "params": 1902,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 326,
+   "ok": true,
+   "points": 19.888,
+   "memory": 160,
+   "params": 6,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 327,
+   "ok": true,
+   "points": 15.429,
+   "memory": 14312,
+   "params": 32,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 329,
+   "ok": true,
+   "points": 15.454,
+   "memory": 13948,
+   "params": 46,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 330,
+   "ok": true,
+   "points": 13.518,
+   "memory": 93900,
+   "params": 3041,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 331,
+   "ok": true,
+   "points": 18.187,
+   "memory": 0,
+   "params": 910,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 332,
+   "ok": true,
+   "points": 15.65,
+   "memory": 11331,
+   "params": 167,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 333,
+   "ok": true,
+   "points": 14.878,
+   "memory": 24840,
+   "params": 53,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 334,
+   "ok": true,
+   "points": 18.12,
+   "memory": 680,
+   "params": 293,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 335,
+   "ok": true,
+   "points": 13.994,
+   "memory": 60136,
+   "params": 114,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 336,
+   "ok": true,
+   "points": 16.295,
+   "memory": 5900,
+   "params": 136,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 337,
+   "ok": true,
+   "points": 21.088,
+   "memory": 40,
+   "params": 10,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 338,
+   "ok": true,
+   "points": 14.271,
+   "memory": 44375,
+   "params": 1274,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 339,
+   "ok": true,
+   "points": 18.112,
+   "memory": 872,
+   "params": 108,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 340,
+   "ok": true,
+   "points": 13.836,
+   "memory": 70360,
+   "params": 165,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 341,
+   "ok": true,
+   "points": 14.99,
+   "memory": 21952,
+   "params": 289,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 342,
+   "ok": true,
+   "points": 15.499,
+   "memory": 13132,
+   "params": 245,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 343,
+   "ok": true,
+   "points": 14.7,
+   "memory": 29362,
+   "params": 370,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 344,
+   "ok": true,
+   "points": 17.172,
+   "memory": 0,
+   "params": 2510,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 345,
+   "ok": true,
+   "points": 14.154,
+   "memory": 50388,
+   "params": 941,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 346,
+   "ok": true,
+   "points": 15.875,
+   "memory": 9069,
+   "params": 110,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 347,
+   "ok": true,
+   "points": 17.44,
+   "memory": 1872,
+   "params": 47,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 348,
+   "ok": true,
+   "points": 16.103,
+   "memory": 7168,
+   "params": 139,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 349,
+   "ok": true,
+   "points": 13.103,
+   "memory": 146700,
+   "params": 109,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 350,
+   "ok": true,
+   "points": 14.734,
+   "memory": 28080,
+   "params": 649,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 351,
+   "ok": true,
+   "points": 14.533,
+   "memory": 35114,
+   "params": 40,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 352,
+   "ok": true,
+   "points": 16.566,
+   "memory": 4500,
+   "params": 101,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 353,
+   "ok": true,
+   "points": 16.404,
+   "memory": 5186,
+   "params": 225,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 354,
+   "ok": true,
+   "points": 14.253,
+   "memory": 46220,
+   "params": 251,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 355,
+   "ok": true,
+   "points": 15.186,
+   "memory": 18168,
+   "params": 126,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 356,
+   "ok": true,
+   "points": 16.482,
+   "memory": 4880,
+   "params": 122,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 357,
+   "ok": true,
+   "points": 16.115,
+   "memory": 7186,
+   "params": 40,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 358,
+   "ok": true,
+   "points": 13.356,
+   "memory": 113605,
+   "params": 417,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 359,
+   "ok": true,
+   "points": 14.157,
+   "memory": 51042,
+   "params": 134,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 360,
+   "ok": true,
+   "points": 15.66,
+   "memory": 11360,
+   "params": 26,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 362,
+   "ok": true,
+   "points": 15.356,
+   "memory": 15284,
+   "params": 144,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 363,
+   "ok": true,
+   "points": 14.099,
+   "memory": 47793,
+   "params": 6448,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 364,
+   "ok": true,
+   "points": 13.045,
+   "memory": 155400,
+   "params": 188,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 365,
+   "ok": true,
+   "points": 14.017,
+   "memory": 58773,
+   "params": 71,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 366,
+   "ok": true,
+   "points": 8.243,
+   "memory": 18893275,
+   "params": 52418,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 367,
+   "ok": true,
+   "points": 14.185,
+   "memory": 43366,
+   "params": 6406,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 368,
+   "ok": true,
+   "points": 14.105,
+   "memory": 53832,
+   "params": 81,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 369,
+   "ok": true,
+   "points": 15.502,
+   "memory": 12800,
+   "params": 529,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 370,
+   "ok": true,
+   "points": 13.689,
+   "memory": 52413,
+   "params": 29329,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 371,
+   "ok": true,
+   "points": 14.88,
+   "memory": 24740,
+   "params": 90,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 372,
+   "ok": true,
+   "points": 15.477,
+   "memory": 13640,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 373,
+   "ok": true,
+   "points": 18.027,
+   "memory": 1040,
+   "params": 27,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 374,
+   "ok": true,
+   "points": 14.14,
+   "memory": 51404,
+   "params": 633,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 375,
+   "ok": true,
+   "points": 15.373,
+   "memory": 15113,
+   "params": 59,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 376,
+   "ok": true,
+   "points": 14.34,
+   "memory": 42588,
+   "params": 39,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 378,
+   "ok": true,
+   "points": 13.926,
+   "memory": 63982,
+   "params": 486,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 379,
+   "ok": true,
+   "points": 13.809,
+   "memory": 70769,
+   "params": 1732,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 380,
+   "ok": true,
+   "points": 18.007,
+   "memory": 1080,
+   "params": 9,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 381,
+   "ok": true,
+   "points": 14.082,
+   "memory": 54240,
+   "params": 937,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 382,
+   "ok": true,
+   "points": 12.292,
+   "memory": 319580,
+   "params": 10937,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 383,
+   "ok": true,
+   "points": 13.225,
+   "memory": 129030,
+   "params": 945,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 384,
+   "ok": true,
+   "points": 13.778,
+   "memory": 74616,
+   "params": 135,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 385,
+   "ok": true,
+   "points": 21.599,
+   "memory": 0,
+   "params": 30,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 386,
+   "ok": true,
+   "points": 17.122,
+   "memory": 2592,
+   "params": 47,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 387,
+   "ok": true,
+   "points": 13.242,
+   "memory": 37996,
+   "params": 89727,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 388,
+   "ok": true,
+   "points": 15.273,
+   "memory": 16596,
+   "params": 175,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 389,
+   "ok": true,
+   "points": 17.41,
+   "memory": 1936,
+   "params": 43,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 390,
+   "ok": true,
+   "points": 14.616,
+   "memory": 31346,
+   "params": 997,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 391,
+   "ok": true,
+   "points": 15.788,
+   "memory": 9992,
+   "params": 29,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 392,
+   "ok": true,
+   "points": 14.173,
+   "memory": 48260,
+   "params": 2091,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 393,
+   "ok": true,
+   "points": 16.322,
+   "memory": 5844,
+   "params": 29,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 395,
+   "ok": true,
+   "points": 17.404,
+   "memory": 1944,
+   "params": 47,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 396,
+   "ok": true,
+   "points": 12.968,
+   "memory": 151392,
+   "params": 16675,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 397,
+   "ok": true,
+   "points": 14.714,
+   "memory": 29134,
+   "params": 195,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 399,
+   "ok": true,
+   "points": 17.483,
+   "memory": 930,
+   "params": 909,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  },
+  {
+   "task": 400,
+   "ok": true,
+   "points": 14.533,
+   "memory": 35114,
+   "params": 39,
+   "dq_flags": [],
+   "lb_at_risk": 0.0
+  }
+ ]
+}

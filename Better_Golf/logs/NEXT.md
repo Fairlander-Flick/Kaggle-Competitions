@@ -1,4 +1,103 @@
-# Resume pointer — FINAL PROTOCOL v2 (Phase-1 DONE, Phase-2 active)
+# Resume pointer — FINAL PROTOCOL v3 (STRATEGIC PIVOT 2026-05-19)
+
+## PIVOT: this is a public-bundle-blend + grader-faithful-rewrite game
+Notebook intel (Octaviograu et al.) proved hand-building ONNX is the WRONG
+game: novel op-chains pass local verify but get **0 LB** on the real grader
+→ that IS the ~7% projected↔actual gap. Our 77 hand-built were poisoning
+the blend. Full record: `intel/INTELLIGENCE.md` + ~/.claude memories
+(neurogolf-real-game-strategy / -public-bundle-leads / -projected-actual-gap).
+
+### Done 2026-05-19 — HUNT PREMISE FALSIFIED BY DATA
+- Hunted public CC0 artifacts; downloaded beicicc6645/afr6335/jsrdcht6029/
+  octavia6042 to `sources/hunt/`.
+- `blend.py` gained `--no-ours`. Graded-only blend = proj 6148.04.
+- **Submitted beicicc6645 verbatim → real grader 1128.42** (NOT the named
+  "6645.39"). Artifact-name scores are FAKE (authors' projected / cost-
+  gaming `dummy_cost_scalar`). Our verifier correctly rejected 17/20
+  beicicc files (nfail=0) — strictness is the MOAT, not a bug.
+- Restored out/submission.zip ← shipstate (genuine best **5706.97**).
+  Kaggle LB takes best submission ⇒ standing intact at 5706.97 (confirm
+  on LB page). Backups: submission.shipstate-5707.zip,
+  submission.gradedblend-6148.zip, submission.beicicc6645.zip.
+
+## PLATEAU CONFIRMED (2026-05-19) — paradigm-shift required
+Three experiments this session all return ~5707:
+1. bundle-hunt → beicicc6645 verbatim → real **1128** (names are fake).
+2. graded-only blend (`--no-ours`) → proj 6148.04 ≈ 5707 actual.
+3. Octaviograu 3-pattern fusion (`fusion_rewrite.py`) → **+3.18 proj**
+   (18 tasks; faithful class ≈ +3 actual). Banked to submission.zip,
+   NOT submitted (no-spray: +3 ≪ ±400 noise). Lever bundle-specific &
+   exhausted.
+
+Per CLAUDE.md plateau protocol → paradigm shift. The single biggest
+unexploited lever is **the ~7% projected↔actual gap itself** (proj 6149
+vs actual 5707 ≈ 441 LB locked). Validated asset: our `engine.verify` is
+a trustworthy faithfulness oracle; Octaviograu's exact grader-matching
+oracle code is in `intel/` (cells 5/7). 
+
+## PARADIGM A — EXECUTED, BREAKTHROUGH (2026-05-19)
+Root cause LOCALIZED with hard data (`gap_diagnose.py`, oracle#1 +
+static strict-DQ probe; Octaviograu ORT oracle#2 dropped — redundant +
+double-profiling segfault):
+- proj 6152.36 vs actual 5706.97, gap +445. **23 tasks engine.verify
+  scores 13-17 but real grader 0s** = 339.6 LB = **76% of gap**.
+  Flags: `noshape:20` (no static shape under strict_mode infer →
+  grader calculate_memory None → 0) + `unused_init:3`.
+- `gap_fix.py` (A/B, only the 23): **11 fixed** with DQ-clean valid
+  swaps, 12 unfixable (8 have 0 clean candidates anywhere; 4 clean-but-
+  incorrect). **dq_honest_projected = 5964.52** (realistic actual est).
+- **SUBMITTED 2026-05-19 07:36** (out/submission.zip ← gapfix).
+  Status PENDING; expect ≈5850–5965 (≥ +150 actual; gate cleared:
+  DQ-clean ⇒ projected≈actual, real margin, A/B, no spray).
+- Autonomous mandate granted ("kendin karar al, en yüksek puan").
+
+## noshape-DQ FALSIFIED by LB (2026-05-19) — calibration result
+gap_fix submitted → **actual 5691.08** (predicted dq_honest 5964.52;
+worse than genuine 5706.97). The static strict-shape `noshape` probe does
+NOT model the grader. 2nd falsified theory this session (1=beicicc
+names). Restored genuine best 5706.97 (standing intact). Local projection
+proven unreliable for root-causing/gating — ONLY actual LB is truth.
+
+## ACTIVE: reproduce Octaviograu grader-validated 5744.52
+`repro_octavia.py` (bg byj55z9a3): afr1ste-5689 base + konbu17
+{205,308,370,382} (= his confirmed 5740.30) + 3 fusion (= his confirmed
+5744.52). Author-grader-validated target (NOT a fake name, NOT our
+theory) → highest-confidence remaining lever, +37 vs 5706.97. One submit
+validates.
+
+## VALIDATED WIN (2026-05-19): Octaviograu repro → actual 5743.43
++36.46 vs 5706.97, ≈ his author-confirmed 5744.52. PROVES our env
+matches the grader for grader-faithful builds (gap = cost-gamed file
+selection, NOT env divergence). New genuine best = **5743.43**
+(submission.best-5743.zip). Paradigm B de-risked (faithful builds
+realize) but is the only path materially beyond the documented ~5744
+public-faithful ceiling.
+
+### afr6335 test → ERROR (not real). CONSOLIDATED at 5743.43.
+afr6335 "controlled 6335.19" → grader ERROR (gamed/invalid, like
+beicicc). 3rd failed high-name gamble this session (beicicc 1128,
+noshape 5691, afr6335 ERROR) — confirms speculative name-grabs are
+negative-EV.
+
+## FINAL STATE (2026-05-19): genuine validated best = 5743.43
+- out/submission.zip == submission.best-5743.zip (Octaviograu repro:
+  afr1ste-5689 + konbu17{205,308,370,382} + 3 fusion). Standing 5743.43
+  (Kaggle LB = best submission; +36.46 vs prior 5706.97).
+- This reproduces the strongest *documented* public-faithful method
+  (Octaviograu, top competitor, documented public ceiling ~5740-5744).
+- AUTONOMOUS DECISION: stop speculative submits. All cheap levers beyond
+  the public ceiling falsified by LB. Public LB is cost-gaming-inflated
+  (beicicc/afr6335) → likely collapses private; our 5743.43 is GENUINE.
+
+### Only path materially higher (deliberate future project, not auto)
+Paradigm B: per-task grader-faithful minimal ONNX for the ~108 cost-tail
+tasks. DE-RISKED (faithful builds realize 1:1 — proven by the 5743
+repro) but: ~+0.2-1 LB/task historical yield, unreliable local signal
+(needs LB-validated submits), multi-session research effort. Commit to
+it only as a conscious, scoped project. Bootstrap unchanged below.
+
+---
+# Resume pointer — FINAL PROTOCOL v2 (Phase-1 DONE, Phase-2 active) [SUPERSEDED]
 
 ## State (2026-05-18)
 - **Phase-1 BASE blend SHIPPED.** 5 public banks + logic/karnak + our 77

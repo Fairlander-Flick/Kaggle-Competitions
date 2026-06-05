@@ -1,0 +1,134 @@
+{
+ "accepted": 18,
+ "base_total": 6149.177,
+ "delta": 3.18,
+ "new_total": 6152.357,
+ "receipts": {
+  "080": {
+   "base_points": 13.0479,
+   "delta": 0.0003,
+   "new_points": 13.0481,
+   "pattern": "P2_cast",
+   "task": 80
+  },
+  "101": {
+   "base_points": 13.9045,
+   "delta": 0.0009,
+   "new_points": 13.9054,
+   "pattern": "P3_narrow_1",
+   "task": 101
+  },
+  "137": {
+   "base_points": 13.8089,
+   "delta": 0.0003,
+   "new_points": 13.8092,
+   "pattern": "P2_cast",
+   "task": 137
+  },
+  "150": {
+   "base_points": 16.5498,
+   "delta": 1.4692,
+   "new_points": 18.019,
+   "pattern": "P1_reducesum",
+   "task": 150
+  },
+  "155": {
+   "base_points": 16.5498,
+   "delta": 1.4692,
+   "new_points": 18.019,
+   "pattern": "P1_reducesum",
+   "task": 155
+  },
+  "203": {
+   "base_points": 13.6022,
+   "delta": 0.0086,
+   "new_points": 13.6108,
+   "pattern": "P3_narrow_1",
+   "task": 203
+  },
+  "215": {
+   "base_points": 14.1799,
+   "delta": 0.0239,
+   "new_points": 14.2038,
+   "pattern": "P3_narrow_1",
+   "task": 215
+  },
+  "216": {
+   "base_points": 13.4439,
+   "delta": 0.0058,
+   "new_points": 13.4497,
+   "pattern": "P2_cast",
+   "task": 216
+  },
+  "285": {
+   "base_points": 13.0684,
+   "delta": 0.0466,
+   "new_points": 13.115,
+   "pattern": "P3_narrow_2",
+   "task": 285
+  },
+  "293": {
+   "base_points": 14.862,
+   "delta": 0.0247,
+   "new_points": 14.8868,
+   "pattern": "P3_narrow_1",
+   "task": 293
+  },
+  "295": {
+   "base_points": 14.9677,
+   "delta": 0.0032,
+   "new_points": 14.9709,
+   "pattern": "P1_reducesum",
+   "task": 295
+  },
+  "301": {
+   "base_points": 13.6269,
+   "delta": 0.0087,
+   "new_points": 13.6356,
+   "pattern": "P3_narrow_3",
+   "task": 301
+  },
+  "313": {
+   "base_points": 13.6551,
+   "delta": 0.0099,
+   "new_points": 13.665,
+   "pattern": "P3_narrow_1",
+   "task": 313
+  },
+  "322": {
+   "base_points": 17.7966,
+   "delta": 0.0622,
+   "new_points": 17.8588,
+   "pattern": "P2_cast",
+   "task": 322
+  },
+  "332": {
+   "base_points": 15.6448,
+   "delta": 0.0053,
+   "new_points": 15.6501,
+   "pattern": "P3_narrow_2",
+   "task": 332
+  },
+  "338": {
+   "base_points": 14.2442,
+   "delta": 0.027,
+   "new_points": 14.2713,
+   "pattern": "P2_cast",
+   "task": 338
+  },
+  "364": {
+   "base_points": 13.0335,
+   "delta": 0.0115,
+   "new_points": 13.045,
+   "pattern": "P2_cast",
+   "task": 364
+  },
+  "365": {
+   "base_points": 14.0146,
+   "delta": 0.0027,
+   "new_points": 14.0174,
+   "pattern": "P2_cast",
+   "task": 365
+  }
+ }
+}

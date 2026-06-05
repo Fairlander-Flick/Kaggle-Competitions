@@ -1,0 +1,185 @@
+{
+ "dq_honest_projected": 5964.52,
+ "fixed": 11,
+ "fixed_detail": {
+  "029": {
+   "cands_scanned": 8,
+   "mem": 368135,
+   "n_cands": 9,
+   "new_points": 12.181,
+   "par": 1035,
+   "src": "submission.zip",
+   "task": 29
+  },
+  "039": {
+   "cands_scanned": 2,
+   "mem": 7804,
+   "n_cands": 10,
+   "new_points": 16.034,
+   "par": 28,
+   "src": "jsrdcht6029",
+   "task": 39
+  },
+  "052": {
+   "cands_scanned": 4,
+   "mem": 1647,
+   "n_cands": 11,
+   "new_points": 17.568,
+   "par": 43,
+   "src": "submission.zip",
+   "task": 52
+  },
+  "107": {
+   "cands_scanned": 9,
+   "mem": 1119486,
+   "n_cands": 10,
+   "new_points": 11.058,
+   "par": 15437,
+   "src": "submission.zip",
+   "task": 107
+  },
+  "134": {
+   "cands_scanned": 2,
+   "mem": 16917,
+   "n_cands": 11,
+   "new_points": 15.259,
+   "par": 80,
+   "src": "jsrdcht6029",
+   "task": 134
+  },
+  "146": {
+   "cands_scanned": 5,
+   "mem": 220335,
+   "n_cands": 10,
+   "new_points": 12.697,
+   "par": 16,
+   "src": "blend",
+   "task": 146
+  },
+  "183": {
+   "cands_scanned": 9,
+   "mem": 524864,
+   "n_cands": 10,
+   "new_points": 11.829,
+   "par": 261,
+   "src": "submission.zip",
+   "task": 183
+  },
+  "262": {
+   "cands_scanned": 2,
+   "mem": 7404,
+   "n_cands": 11,
+   "new_points": 16.086,
+   "par": 29,
+   "src": "jsrdcht6029",
+   "task": 262
+  },
+  "320": {
+   "cands_scanned": 2,
+   "mem": 5049,
+   "n_cands": 9,
+   "new_points": 16.446,
+   "par": 141,
+   "src": "jsrdcht6029",
+   "task": 320
+  },
+  "377": {
+   "cands_scanned": 10,
+   "mem": 1626724,
+   "n_cands": 10,
+   "new_points": 10.698,
+   "par": 188,
+   "src": "submission.zip",
+   "task": 377
+  },
+  "394": {
+   "cands_scanned": 9,
+   "mem": 509608,
+   "n_cands": 9,
+   "new_points": 11.857,
+   "par": 1029,
+   "src": "submission.zip",
+   "task": 394
+  }
+ },
+ "leaking_input": 23,
+ "naive_projected": 6132.96,
+ "prev_actual_ref": 5706.97,
+ "still_flagged_after": [
+  30,
+  49,
+  109,
+  117,
+  131,
+  138,
+  174,
+  185,
+  201,
+  328,
+  361,
+  398
+ ],
+ "unfixable": 12,
+ "unfixable_detail": {
+  "030": {
+   "n_cands": 7,
+   "reason": "no DQ-clean valid candidate",
+   "task": 30
+  },
+  "049": {
+   "n_cands": 8,
+   "reason": "no DQ-clean valid candidate",
+   "task": 49
+  },
+  "109": {
+   "n_cands": 11,
+   "reason": "no DQ-clean valid candidate",
+   "task": 109
+  },
+  "117": {
+   "n_cands": 9,
+   "reason": "no DQ-clean valid candidate",
+   "task": 117
+  },
+  "131": {
+   "n_cands": 9,
+   "reason": "no DQ-clean valid candidate",
+   "task": 131
+  },
+  "138": {
+   "n_cands": 9,
+   "reason": "no DQ-clean valid candidate",
+   "task": 138
+  },
+  "174": {
+   "n_cands": 11,
+   "reason": "no DQ-clean valid candidate",
+   "task": 174
+  },
+  "185": {
+   "n_cands": 9,
+   "reason": "no DQ-clean valid candidate",
+   "task": 185
+  },
+  "201": {
+   "n_cands": 11,
+   "reason": "no DQ-clean valid candidate",
+   "task": 201
+  },
+  "328": {
+   "n_cands": 8,
+   "reason": "no DQ-clean valid candidate",
+   "task": 328
+  },
+  "361": {
+   "n_cands": 7,
+   "reason": "no DQ-clean valid candidate",
+   "task": 361
+  },
+  "398": {
+   "n_cands": 7,
+   "reason": "no DQ-clean valid candidate",
+   "task": 398
+  }
+ }
+}
