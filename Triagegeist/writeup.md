@@ -5,13 +5,13 @@
 
 This submission treats the provided `triage_acuity` label as a triage policy and does five things with it: predict it with a calibrated model, reverse-engineer the rule it encodes, add an independent NLP red-flag safety net, build an outcome-anchored second opinion that flags likely undertriage, and provide a reusable toolkit to audit any triage policy for bias and inconsistency. The main technical finding is that this synthetic policy is almost entirely driven by the chief-complaint text, which we stress-test and report honestly as a property of synthetic data, not a real-world benchmark.
 
-## Clinical Problem Statement
+### Clinical Problem Statement
 
 Emergency department triage compresses a life-or-death judgment into ninety seconds. A nurse assigns each arriving patient an acuity level. In the Emergency Severity Index (ESI), Level 1 is resuscitation and Level 5 is non-urgent, and the nurse decides under cognitive load, with incomplete information, in chronically understaffed rooms. The specific failure mode we target is **undertriage**: under-prioritising a critically ill patient, which directly delays life-saving care. It is not a symmetric mistake. Overtriage wastes capacity; undertriage kills. It is also unequally distributed. Elderly patients face undertriage rates above 22%, patients with limited English proficiency are admitted at higher rates than their triage level predicts (OR 1.16), Black patients receive lower-acuity triage at equivalent severity (aOR 0.76), and women with atypical cardiac presentations are systematically under-recognised.
 
 The narrow workflow gap we address is the moment of acuity assignment itself: a tool that is only accurate is insufficient, and potentially dangerous, at that moment. To be usable at the bedside it has to be calibrated (its confidence has to mean something to a nurse), interpretable (its reasoning has to be auditable), and fair (it must not encode the disparities above). We build for all three, and we add a separate audit layer so a hospital can check its own triage policy, not just ours.
 
-## Approach and Methodology
+### Approach and Methodology
 
 **Data and why.** We use only the competition's synthetic Triagegeist dataset: 80,000 training and 20,000 test encounters joined on `patient_id`, with structured vitals, demographics, 25 comorbidity flags, free-text chief complaints, and post-triage outcomes (`disposition`, `ed_los_hours`). It is the right and only data for the task because the label, the text, and the outcomes are all present, which lets us both model the policy and validate it against outcomes. We state plainly that the data is synthetic, because that shapes every interpretation below.
 
@@ -23,7 +23,7 @@ The narrow workflow gap we address is the moment of acuity assignment itself: a 
 
 **Evaluation strategy.** All metrics are out-of-fold from `StratifiedKFold(5, shuffle=True, random_state=42)`. Level 1 is only 4% of cases, so stratification keeps the safety-critical class in every fold. We report accuracy, macro-F1, quadratic-weighted kappa, and per-class recall, treating L1 and L2 recall as the safety metric, and we measure Expected Calibration Error before and after isotonic recalibration. To check that high accuracy is genuine rather than memorization, we also evaluate held out by complaint phrase (GroupKFold) and against a one-line lookup baseline.
 
-## Results and Findings
+### Results and Findings
 
 **The vitals-only model is accurate, and that is the least interesting result.** It reaches 0.855 accuracy, 0.870 macro-F1, and quadratic-weighted kappa 0.930, with safety recall of 92% at L1 and 97% at L2. Errors concentrate on the clinically forgiving L3/L4/L5 boundary. Isotonic recalibration cuts ECE from 0.0067 to 0.0014, which makes the probabilities safe to surface to a nurse.
 
@@ -39,13 +39,13 @@ The narrow workflow gap we address is the moment of acuity assignment itself: a 
 
 **The outcome-anchored second opinion, an honest and hard result.** Predicting real critical outcomes from triage-time features (acuity excluded) yields ROC-AUC 0.813 and PR-AUC 0.729, the realistic range for this task; any claim above about 0.95 would betray leakage. The model is well calibrated overall (ECE 0.014 to about 0 after isotonic) and within every language and age subgroup (ECE 0.001 to 0.015), so it does not quietly mislead minority-language or elderly patients. Flagging the top-decile-risk patients among the 34,418 low-acuity (L4/L5) cases surfaces 3,646 undertriage candidates whose actual critical-outcome rate is 11.9%, against 9.3% for their non-flagged peers, for example a patient logged as "mild chest discomfort", L4, whom the model scored at 59.5% risk and who was ultimately admitted. The flags are distributed equitably across all protected groups. Data forensics confirm the generator's hand: `mean_arterial_pressure`, `pulse_pressure`, and `shock_index` are exact analytic derivations of base vitals (R-squared at least 0.9999).
 
-## Limitations and Future Work
+### Limitations and Future Work
 
 The dataset is synthetic, and four properties bound our claims. First, the label is near-deterministic in the chief-complaint text (a one-line lookup scores 0.996 and a leakage-safe text model reaches 0.9995), so acuity accuracy is an upper bound, not a realistic benchmark. Second, the text AUC of 1.0 is an encoding artefact. Third, inter-rater variability is near zero, unlike real triage. Fourth, there is no demographic bias to find, so our null audit result is a property of the data, not a statement about real EDs. The Pillar D undertriage signal is correspondingly modest (1.3 times enrichment) because low-acuity patients are genuinely low-risk by construction; in a real ED, where compensated physiology masks severity, the same method would surface a far stronger signal. We assume, throughout, that the triage-time features are recorded accurately and that the complaint text is entered consistently, neither of which holds perfectly in practice.
 
 The deliverables built to outlast this synthetic dataset are two reusable tools. Pillar C's audit toolkit (`audit_by_group`, `inject_undertriage`, `audit_inter_rater`, and the literature-contrast builder) runs without modification on MIMIC-IV-ED (about 425k stays, identical triage schema) or a hospital's own triage logs, to detect protected-attribute disparities, quantify them in interpretable NEWS2-residual units, flag individual nurses for re-training, and benchmark against the literature, with a demonstrated detection floor near 0.05 acuity units. Pillar D's `triage_second_opinion()` raises a soft undertriage alert while the nurse works, catching the "mild chest discomfort" that is really an admission, anchored to real outcomes and auditable for fairness. The path to clinical validation is external testing on MIMIC-IV-ED and NHAMCS, where the human-judgment residual, the real text signal, and genuine demographic bias the synthetic data lacks will all be present, followed by prospective silent-mode evaluation in a live ED before any deployment.
 
-## Reproducibility Notes
+### Reproducibility Notes
 
 **Datasets.** The only data used is the competition's Triagegeist dataset (Laitinen-Fredriksson Foundation, synthetic, non-commercial research license), read from `/kaggle/input/competitions/triagegeist/` and available on the competition Data tab. We use all five files, joined on `patient_id`: `train.csv` (80,000 rows: features, the `triage_acuity` label, and the outcomes `disposition` and `ed_los_hours`), `test.csv` (20,000 rows, features only), `chief_complaints.csv` (100,000 rows, free-text `chief_complaint_raw`), `patient_history.csv` (100,000 rows, 25 binary `hx_*` flags), and `sample_submission.csv`. No external datasets are used.
 
