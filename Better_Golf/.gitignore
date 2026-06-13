@@ -12,3 +12,11 @@ sources/
 logs/TRIAGE_PROBE.json
 logs/TRIAGE_GEN2.json
 logs/blend_results.json
+
+# session scratch (regenerable)
+out/*.zip
+.last_blend_jobid
+logs/*.out
+logs/*.err
+logs/neurogolf-2026.zip
+sources/_fetch.log
