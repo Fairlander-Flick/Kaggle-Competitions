@@ -1,0 +1,9 @@
+# run state lives on the cluster $WORK, not here
+__pycache__/
+*.pyc
+replays/
+logs/
+*.json.gz
+data/
+artifacts/
+params_*.json
