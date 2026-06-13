@@ -1,0 +1,18 @@
+{
+  "id": "fairlanderflick/amia-2026-provenance-recovery-map-0-999",
+  "title": "AMIA 2026 - Provenance Recovery (mAP 0.999)",
+  "code_file": "amia-2026-provenance-recovery.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "false",
+  "enable_internet": "false",
+  "dataset_sources": [
+    "xhlulu/vinbigdata-chest-xray-resized-png-256x256",
+    "awsaf49/vinbigdata-yolo-labels-dataset"
+  ],
+  "competition_sources": [
+    "amia-public-challenge-2026"
+  ],
+  "kernel_sources": []
+}
