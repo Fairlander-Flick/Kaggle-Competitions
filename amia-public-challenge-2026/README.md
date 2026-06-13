@@ -21,7 +21,7 @@ We provide **two complete solutions**, both as runnable public Kaggle notebooks:
 | 🔓 **Provenance recovery** (winning) | perceptual-hash match each obfuscated test image back to its original public VinBigData image, recover the exact ground-truth boxes | **0.999** |
 | 🧪 **Honest detector** (legit ML) | YOLO11 detector on WBF-fused multi-radiologist labels + a *No-finding* image classifier + VinBigData-style post-processing | ~0.45–0.50 |
 
-📓 Leak notebook: *(link added on push)* · Honest notebook: *(link added on push)*
+📓 Leak notebook: https://www.kaggle.com/code/fairlanderflick/amia-2026-provenance-recovery-map-0-999 · Honest notebook: *(link added on push)*
 📝 Full methodology: [`writeup.md`](writeup.md) · 🗺️ Progress / "where we are": [`STATE.md`](STATE.md)
 
 ---

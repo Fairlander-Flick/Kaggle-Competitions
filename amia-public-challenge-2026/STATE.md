@@ -16,7 +16,7 @@ _Live "you are here" for this competition. Updated as work progresses._
 | 4 | Test match 100% coverage, clean bijection | ✅ done (6427/6427) |
 | 5 | Leak submission via CLI | ✅ **LB 0.999, rank 1 (tied)** |
 | 6 | GitHub repo folder + docs | 🟡 in progress |
-| 7 | Leak → public Kaggle notebook + submit via notebook | ⬜ todo |
+| 7 | Leak → public Kaggle notebook + submit via notebook | ✅ done (https://www.kaggle.com/code/fairlanderflick/amia-2026-provenance-recovery-map-0-999) |
 | 8 | Honest detector training (YOLO11 @1024 + no-finding clf) | ⬜ todo |
 | 9 | Honest → public Kaggle notebook + submit via notebook | ⬜ todo |
 | 10 | Final pick: select scoring submissions; LB defend | ⬜ todo |
@@ -36,6 +36,7 @@ _Live "you are here" for this competition. Updated as work progresses._
 | date | file | method | public LB |
 |---|---|---|---|
 | 2026-06-13 09:06 | leak/submission.csv | provenance recovery | **0.999** |
+| 2026-06-13 11:32 | notebook output | provenance recovery (public notebook) | (pending score) |
 
 ## Next action
 Build the leak Kaggle notebook (`notebooks/`), push public, submit via notebook. Then prep + launch
