@@ -114,3 +114,13 @@ lb_2026_06_13:
   big intermediates: ReduceSum-chain fusion, Cast-chain collapse, bool-reduction narrowing). Lossless =>
   semantics identical => passes private iff original did (vyanktesh base does) => SAFE climb. This is the
   ONLY private-safe lever beyond the public ceiling. Restrict Phase 2 to PROVABLY-lossless transforms.
+
+### Phase-2 finding (2026-06-13) — AUTOMATED LEVERS EXHAUSTED
+- Top bundles differ on 328/400 tasks BUT consensus-safe (graph in >=2 high-LB bundles = private-safe)
+  cheaper-than-vyank alternatives total only **+2.4 pts** (3 tasks). Cross-bundle blending is dead.
+- Intermediate dtypes in the public graphs are ALREADY narrowed (FLOAT16/BOOL/UINT8); naive dtype pass saturated.
+- => NO meaningful automated/blending headroom beyond 6372 (~rank 265). The full +1095 to top-10 is
+  NOVEL per-task minimal-ONNX construction (Phase 3) — genuine algorithmic golf on hard ARC tasks,
+  multi-session, competing vs ARC/Kaggle GMs. Headroom is in the 48 (@10-14) + 258 (@14-17) tasks, but
+  those are LOW-point precisely because the transform is complex => cheaper correct nets are HARD to build.
+- Realistic: focused golf plausibly reaches top-100 (+198) / top-50 (+598); top-10 (+1095) is a stretch.
