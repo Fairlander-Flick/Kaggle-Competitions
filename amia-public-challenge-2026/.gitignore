@@ -1,0 +1,10 @@
+# data & heavy artifacts live on the cluster $WORK, not in git
+data/
+*.zip
+*.png
+!figures/*.png
+*.pt
+*.onnx
+*.npy
+submission*.csv
+__pycache__/

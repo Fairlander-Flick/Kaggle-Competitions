@@ -1,0 +1,8 @@
+{
+  "train_exact": 1.0,
+  "train_clsset": 1.0,
+  "test_cov": 6427,
+  "n_test": 6427,
+  "train_dist_p95": 0.04751464426517486,
+  "test_dist_p95": 0.048372697085142136
+}
