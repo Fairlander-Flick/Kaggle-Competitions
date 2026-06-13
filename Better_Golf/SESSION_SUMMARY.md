@@ -2,34 +2,28 @@
 
 _Overwritten each checkpoint. History in context.md. Read this + context.md first on resume._
 
-## Status: Phase 1 DONE. New best LB = 6372.58 (rank ~265/1893). Building Phase 2 (lossless memory minimizer).
-- **competition:** neurogolf-2026. Deadline 2026-07-15 (T-32d). Target rank 10 (public LB).
-- **working dir:** `$WORK/Kaggle-Competitions/Better_Golf`. env: conda `kaggle` (`$WORK/software/private/conda/envs/kaggle/bin/python`); grader onnx==1.21.0/ort==1.24.4/onnx-tool==1.0.1.
-- **current best submission on LB:** vyanktesh 6372-58 flat verbatim = **6372.58** (= out/submission.zip and out/submission.best-6372.zip).
+## Status: Phase 1 DONE (best LB 6372.58, rank ~265/1893). Phase 3 grind STARTED — no cheap wins found; real per-task golf is the only path.
+- competition neurogolf-2026, deadline 2026-07-15 (T-32d). Target rank 10 (user confirmed FULL GRIND).
+- working dir `$WORK/Kaggle-Competitions/Better_Golf`. env conda `kaggle` (`$WORK/software/private/conda/envs/kaggle/bin/python`). grader onnx==1.21.0/ort==1.24.4/onnx-tool==1.0.1.
+- best on LB: vyanktesh 6372-58 flat verbatim = **6372.58** (= out/submission.zip, out/submission.best-6372.zip).
 
-## EXACT NEXT ACTION
-Build the **Phase-2 lossless memory minimizer** (the safe climb). Start from the vyanktesh 6372 base; for every task graph apply PROVABLY-lossless rewrites that shrink intermediate-tensor memory:
-- dtype-narrow intermediates (float32 -> uint8/bool where value range allows, semantics identical),
-- octaviograu fusions: ReduceSum/ReduceMax-chain fusion, Cast-chain collapse, bool-reduction dtype narrowing,
-- constant-fold, drop unused initializers/value_info.
-Reuse `fusion_rewrite.py` + study seddik graph-surgeon / souldrive lossless-optimizer in sources/. Accept a rewrite ONLY if real-oracle cost strictly lower AND n_fail==0 on all arc-gen AND transform is semantics-preserving (lossless => private-safe). Verify via SLURM (see jobs/blend.sbatch pattern). Then package + submit when projected beats 6372.58.
+## EXACT NEXT ACTION (next session — Phase 3 real golf)
+1. Build a proper per-task golf harness: `golf.py` with build-candidate + real-oracle verify + accept-if(cost↓ & n_fail==0 & true-rule) + write to out/golf/taskNNN.onnx + rebuild submission by overlaying out/golf/* on the 6372 base.
+2. TEST the COMPACT-INDEX-SPACE hypothesis on ONE high-cost task end-to-end: ArgMax([1,10,30,30])→[1,1,30,30] int8 index; do transform in index space; Equal-with-color-consts → one-hot output. Verify cheaper, then SUBMIT to confirm it's grader-faithful (realizes on LB, not a 0-LB novel-op-chain). This single test decides if Phase 3 can scale.
+3. If grader-faithful: industrialize index-space rewrites across the 258 tasks @14-17 + 48 @10-14. If 0-LB: fall back to per-task golf using ONLY the working-bundle op vocabulary.
 
-## running_jobs
-- (none active) — blend job 1698133 COMPLETED.
+## running_jobs: none.
+## Submission budget: 2/5 used today (blend 6191.85, vyanktesh 6372.58). 3 left today; resets daily. 2 final picks at deadline 07-15.
 
-## Submission budget: 2/5 used today (blend 6191.85, vyanktesh 6372.58). 3 left. Reset daily. 2 final picks at deadline.
-
-## Key facts / decisions
-- Best public ceiling = 6372 (bundles converged, forks of one lineage; cross-blend gains ~0 and is private-UNSAFE).
-- **Top-10 (7467) = +1095 over public** = top teams' private LOSSLESS memory minimization (avg cost 560 vs public 8700). Cost is MEMORY-dominated; 258 tasks sit at 14-17 pts (mem 85k-190k) — the bulk of the headroom.
-- Headroom: lift<17->17=+603(top50); <18->18=+920(top20); <20->20=+1656(>top10).
-- LOSSLESS rewrites preserve exact computation => pass private iff base does => the ONE safe lever. Greedy bundle-swapping is private-unsafe (proven: blend 6379 proj -> 6192 actual).
-- Submitted file MUST be named exactly `submission.zip` (else 400 Bad Request).
+## Hard-won findings (do not re-litigate)
+- Public ceiling = 6372 (~rank 265). Bundles converged; cross-blend consensus-safe gain only +2.4; dtype already narrowed. AUTOMATED LEVERS EXHAUSTED.
+- Greedy cheapest-valid-per-task is PRIVATE-UNSAFE (blend proj 6379 -> actual 6192). Only validated bundles / true-rule builds / lossless rewrites realize.
+- NO cheap per-task wins: color-map/const/identity saturated; geometric (flip/rot) needs data-dependent extent detection (content top-left in fixed 30x30) => public cost is justified. transpose is free (top-left-preserving); flip is not.
+- Submitted file MUST be named `submission.zip` (else 400).
+- top-10 (7467) = +1095 = out-golfing GMs on ~250 hard tasks. Realistic interim: top-100/top-50. Honest: top-10 is a stretch.
 
 ## DO-NOT-REDO
-- Step 0 intel done; data + grader env built; 16 public sources fetched (sources/); cost map in logs/blend_results.json.
-- Phase-1 blend ran (job 1698133, proj 6379 / actual 6192). vyanktesh 6372 = validated baseline.
+- Step0 intel, data+grader env, 16 sources fetched, blend (job 1698133), cost map (logs/blend_results.json), 6372 baseline locked, geometric/color-map/consensus scans done & negative.
 
-## Artifacts
-- out/submission.zip = best 6372. out/submission.best-6372.zip, .vyanktesh-6372.zip, .blend-6379.zip (backups).
-- sources/*/ = fetched bundles. logs/blend_results.json = per-task cost map. context.md = invariants+lb_history.
+## Artifacts / repo
+- out/submission.zip = 6372 base (+ .best-6372/.vyanktesh-6372/.blend-6379 backups). Committed+pushed: STATUS.md, context.md, SESSION_SUMMARY.md, jobs/blend.sbatch, fetch_sources.sh. data/ & sources/ & out/*.zip gitignored.

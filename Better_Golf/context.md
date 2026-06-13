@@ -124,3 +124,20 @@ lb_2026_06_13:
   multi-session, competing vs ARC/Kaggle GMs. Headroom is in the 48 (@10-14) + 258 (@14-17) tasks, but
   those are LOW-point precisely because the transform is complex => cheaper correct nets are HARD to build.
 - Realistic: focused golf plausibly reaches top-100 (+198) / top-50 (+598); top-10 (+1095) is a stretch.
+
+### Phase-3 entry findings (2026-06-13) — NO cheap wins; difficulty is REAL
+- color-map family: 4 tasks, all already ~22.7 (cost 10) — saturated.
+- constant-output / identity: none.
+- geometric (flip/rot180/rot90): 6 tasks LOOK over-priced (cost 368-704) BUT minimal reverse-Slice
+  FAILS (n_fail~266). ROOT CAUSE: ARC grids are variable-size, content anchored TOP-LEFT in the fixed
+  [1,10,30,30] frame. `transpose` keeps the top-left k×k block in place => FREE (tasks 179/241 cost 0).
+  But flip/rot180 move content to bottom-right => a correct flip must detect the DATA-DEPENDENT content
+  extent (H,W) and flip only that region. That extent-detection is exactly why public spends ~704. So
+  even "trivial" geometry needs nontrivial ops. => every public per-task cost reflects GENUINE difficulty.
+- CONCLUSION: top-10 = out-golfing GMs on extent-aware ARC transforms in minimal ONNX, ~250 hard tasks,
+  low yield/task, multi-week. The locked 6372.58 (rank ~265, +629 over stale) is the solid realistic win.
+- LEADING Phase-3 hypothesis (next session): work in COMPACT [1,1,30,30] int8 index space (ArgMax to
+  collapse 10 one-hot channels -> 1 channel; transform there; Equal-with-color-consts to re-expand to
+  one-hot output). 10-20x smaller intermediates than the public [1,10,30,30] float16. Must test ONE task
+  end-to-end (verify cheaper + SUBMIT to confirm grader-faithful, not a 0-LB novel-op-chain) before scaling.
+  Also: "ops-via-attributes are free" (Transpose perm, opset-1 attribute ops) — exploit where extent-safe.
