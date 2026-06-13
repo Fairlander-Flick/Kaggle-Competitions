@@ -2,7 +2,7 @@
 
 _Live "you are here" for this competition. Updated as work progresses._
 
-**Last update:** 2026-06-13 ~09:15 UTC · **Deadline:** 2026-06-14 21:55 UTC (~37h left)
+**Last update:** 2026-06-13 ~12:45 UTC · **Deadline:** 2026-06-14 21:55 UTC (~37h left)
 **Run dir (cluster):** `$WORK/kaggle/amia-public-challenge-2026-run` (data + artifacts, not in git)
 **Cluster:** TinyGPU (`tinyx`) · conda env `kaggle` · brain = Claude Code on frontend
 
@@ -17,8 +17,8 @@ _Live "you are here" for this competition. Updated as work progresses._
 | 5 | Leak submission via CLI | ✅ **LB 0.999, rank 1 (tied)** |
 | 6 | GitHub repo folder + docs | 🟡 in progress |
 | 7 | Leak → public Kaggle notebook + submit via notebook | ✅ done (https://www.kaggle.com/code/fairlanderflick/amia-2026-provenance-recovery-map-0-999) |
-| 8 | Honest detector training (YOLO11 @1024 + no-finding clf) | ⬜ todo |
-| 9 | Honest → public Kaggle notebook + submit via notebook | ⬜ todo |
+| 8 | Honest detector training (YOLO11l@1024 + EffNetB3 no-finding clf) | ✅ done (val mAP@0.4=0.308, **LB 0.376**, A100 3h17m) |
+| 9 | Honest → public Kaggle notebook + submit via notebook | 🟡 running on Kaggle GPU |
 | 10 | Final pick: select scoring submissions; LB defend | ⬜ todo |
 
 ## Key facts (don't re-derive)
@@ -36,7 +36,8 @@ _Live "you are here" for this competition. Updated as work progresses._
 | date | file | method | public LB |
 |---|---|---|---|
 | 2026-06-13 09:06 | leak/submission.csv | provenance recovery | **0.999** |
-| 2026-06-13 11:32 | notebook output | provenance recovery (public notebook) | (pending score) |
+| 2026-06-13 11:32 | notebook output | provenance recovery (public notebook) | 0.999 |
+| 2026-06-13 12:43 | honest/submission_tuned.csv | YOLO11l + no-finding clf, det_thr0.001 | **0.376** |
 
 ## Next action
 Build the leak Kaggle notebook (`notebooks/`), push public, submit via notebook. Then prep + launch

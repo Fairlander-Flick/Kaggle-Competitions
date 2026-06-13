@@ -76,7 +76,8 @@ Trained on the **8,573 challenge-train images only** (the 6,427 test held out), 
    `14 P(no-finding)^pow 0 0 1 1` on every image; thresholds tuned offline on the held-out fold against
    the raw GT with the same PASCAL-VOC scorer (no submissions burned).
 
-Reference public LB for this family on this account: **~0.45–0.47** (single model → small ensemble).
+Our HPC single-model run: held-out **val mAP@0.4 = 0.308**, **public LB = 0.376** (det_thr=0.001, nf_pow=0.5).
+Reference: the original VinBigData winners were ~0.31 mAP; the ~0.45–0.47 prior on this account used a multi-model ensemble.
 Code: [`src/honest_train.py`](src/honest_train.py); SLURM job [`src/honest.sbatch`](src/honest.sbatch).
 
 ## 3. Execution on HPC (NHR@FAU TinyGPU)

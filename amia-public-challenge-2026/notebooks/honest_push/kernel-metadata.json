@@ -1,0 +1,17 @@
+{
+  "id": "fairlanderflick/amia-2026-honest-detector-yolo11-no-finding",
+  "title": "AMIA 2026 - Honest Detector (YOLO11 + No-finding)",
+  "code_file": "amia-2026-honest-detector.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "fairlanderflick/amia-honest-weights"
+  ],
+  "competition_sources": [
+    "amia-public-challenge-2026"
+  ],
+  "kernel_sources": []
+}
