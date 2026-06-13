@@ -19,7 +19,7 @@ _Live "you are here" for this competition. Updated as work progresses._
 | 7 | Leak → public Kaggle notebook + submit via notebook | ✅ done (https://www.kaggle.com/code/fairlanderflick/amia-2026-provenance-recovery-map-0-999) |
 | 8 | Honest detector training (YOLO11l@1024 + EffNetB3 no-finding clf) | ✅ done (val mAP@0.4=0.308, **LB 0.376**, A100 3h17m) |
 | 9 | Honest → public Kaggle notebook + submit via notebook | 🟡 running on Kaggle GPU |
-| 10 | Final pick: select scoring submissions; LB defend | ⬜ todo |
+| 10 | Final pick: select leak 0.999 + honest 0.376 (web UI) — see FINAL_PICK.md | 🟡 user web action |
 
 ## Key facts (don't re-derive)
 - **It is a re-host of public VinBigData.** All 15,000 imgs = original public TRAIN set (labelled).
@@ -42,3 +42,6 @@ _Live "you are here" for this competition. Updated as work progresses._
 ## Next action
 Build the leak Kaggle notebook (`notebooks/`), push public, submit via notebook. Then prep + launch
 honest YOLO11 training on TinyGPU A100.
+
+## Finding: 0.999 is the ceiling
+- raw recovered boxes = 0.999 (all 3 top teams); WBF-dedup = 0.731 → grader GT is raw multi-rad. Co-first at max score.
