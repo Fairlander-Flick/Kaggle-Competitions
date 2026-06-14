@@ -1,40 +1,37 @@
 # STATE — where we are (orbit-wars)
 
-_Live "you are here". Newest at top. Full invariants/log on the cluster `$WORK`
-(`kaggle/orbit-wars-run/context.md`, `SESSION_SUMMARY.md`)._
+_Live "you are here". Full invariants/log on the cluster `$WORK/kaggle/orbit-wars-run/`._
 
-## Status @ 2026-06-14 (T-9 days, deadline 2026-06-23 23:59 UTC)
+## Status @ 2026-06-14 — PARKED (strong bot submitted, plays passively on Kaggle)
 
-- **Champion = `agent/main.py` = Orbiter-MC (forward-model Monte-Carlo SEARCH).** Submitted
-  as our 2nd agent (sub 53665873). Each turn it generates candidate full-turn action-sets
-  (greedy heuristic + 7 "mood" variants + idle), rolls each forward ~14 turns through a
-  compact EXACT-engine simulator (both sides play the greedy policy), scores by an economic
-  eval, and picks the best — within the 1 s/turn budget (worst 0.84 s; adaptive horizon).
-- **It beats everything we have:** vs the v1 heuristic 100% (2p) / 92% (4p); vs the `rusher`
-  archetype 65% (2p) / 54% (4p) — the rusher had beaten *both* v1 and the aggressive
-  `orbiter2` rewrite. Search handles 2p (aggression) and 4p (survival) natively, which a
-  single heuristic param-set could not.
-- v1 (sub 53649581) settled at ladder μ≈533; field top ≈1807. Watching v2 climb.
+Decision: ship our strongest agent and let Kaggle's servers grind the ladder (deadline
+2026-06-23 + ~2 weeks of post-deadline games). HPC jobs stopped to free the cluster.
 
-### What we learned (the iteration that mattered)
-1. **v1 was too passive** — replay intel (`docs/intel_report.md`) showed top bots issue ~560
-   launches/game vs our 17-130; we froze hoarding 300-400 idle ships. 
-2. **But pure throughput is a trap** — the aggressive `orbiter2` rewrite won 2p (0.73 vs v1)
-   yet collapsed in 4p (0.18) by over-extending. Throughput is a *correlate* of having many
-   planets, not a cause of winning.
-3. **Forward-model search wins** — evaluating the actual consequences of moves (not a fixed
-   policy) is robust across 2p/4p and beats aggressive archetypes. This is the champion.
+- **Submitted champion = `agent/main.py` = Orbiter-MC v3 (search + tuned policy)**
+  (sub 53677385). Forward-model Monte-Carlo SEARCH (horizon 22 @ 0.72 s/turn, faster
+  exact-engine sim) using the **832-core CMA-ES tuned heuristic** as its rollout +
+  candidate policy. Self-contained (base64-embedded), worst turn ~0.84 s.
+- Strength (local league): beats the prior MC champion **88% head-to-head**; vs the
+  strong replay-derived gauntlet **0.83 (sg:swarm) / 0.92 (sg:econdef)** — the
+  transfer-relevant opponents that previously beat us. Clear top of everything we built.
+- Latest-2 (count for final): v3 tuned (53677385) + v2 fast (53676278). Both MC bots.
 
-### Campaign infra (on the cluster `$WORK`, not in git)
-- **832 cores / 12 CMA-ES islands** tuning the heuristic vs a strong+diverse gauntlet
-  (`rusher/turtle/expander/comet` + incumbent), on TinyFat (CPU: 128-core `work` + 24-core
-  `long256`, self-requeue to deadline). Global-best ~0.91-0.94 vs the strong gauntlet.
-  The tuned heuristic doubles as a better rollout policy for the search bot.
-- Harness `eval/league.py` (Wilson-LB gate), gauntlet `eval/archetypes.py`, tuner
-  `eval/cmaes_tune.py`, ship-gate `eval/confirm_submit.py`.
+## How we got here (the iteration that worked)
+1. Heuristic v1 → too passive (replay intel) ; aggressive rewrite (orbiter2) → 4p-weak.
+2. **Forward-model search** (orbiter_mc) → robust 2p+4p, beat all our archetypes.
+3. **Faster sim** → deeper search (horizon 14→22) at the same safe budget (orbiter_mc_fast).
+4. **832-core CMA-ES** tuned the heuristic (vs a strong gauntlet) → much better policy.
+5. **Combined** search + tuned policy = the champion. (Learned-eval path was rejected:
+   slower AND weaker.)
 
-## Next steps (ranked)
-1. Watch v2's ladder rating + **timing** (timeout = instant loss; lower `time_budget` if it ERRORs).
-2. **Tune Orbiter-MC's own params** (horizon, eval weights, candidate moods) — biggest lever left.
-3. Feed best island heuristic params into the MC rollout policy (synergy).
-4. S5 loss-replay analysis on v2's ladder games → next refinements; deeper search if budget allows.
+## Honest outlook
+Field top ≈1700; we started ~600. Winning #1 is a long shot (strong veteran teams +
+the fixed 1 s/turn ladder limit — HPC tunes/tests offline but can't add per-turn compute).
+A solid rank / medal zone is realistic as the bot climbs over the multi-week game period.
+
+## To RESUME later (everything is preserved on $WORK)
+- `SESSION_SUMMARY.md` + `context.md` in `$WORK/kaggle/orbit-wars-run/` have full state.
+- Re-launch tuning: `sbatch.tinyfat jobs/cmaes_island.sbatch` (+ `_long.sbatch`).
+- Next levers if resumed: harvest newer island bests into the rollout policy; pull the
+  champion's ladder LOSS replays (`kaggle competitions episodes 53677385`) → S5 analysis;
+  faster sim → deeper search; a learned eval done right (fast model).

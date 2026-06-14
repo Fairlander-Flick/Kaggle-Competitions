@@ -1,0 +1,20 @@
+{
+  "reserve_frac": 0.030581131806447184,
+  "reserve_min": 0.6149199225996143,
+  "capture_margin": 0.3876755548688749,
+  "capture_margin_frac": 0.001927340577365945,
+  "prod_weight": 1.0468393316064732,
+  "dist_weight": 2.9562746203903223,
+  "cost_weight": 1.7906005585298337,
+  "enemy_bonus": 2.404734313501816,
+  "comet_penalty": 0.24760771652574104,
+  "neutral_bias": 1.1749349262500572,
+  "max_launches": 2,
+  "min_fleet": 3,
+  "endgame_turn": 461,
+  "sun_margin": 4.89880763782912,
+  "graze_margin": 2.0934587988801323,
+  "defense_tol": 0.2541288908753509,
+  "threat_reserve": 0.8867961005564717,
+  "max_eta": 285.7703296281106
+}

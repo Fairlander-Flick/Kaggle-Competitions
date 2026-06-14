@@ -11,6 +11,11 @@ process fork (closures aren't reliably picklable):
     pool:random | pool:starter | pool:sniper | pool:idle
     orbiter                       -> Orbiter with baked-in PARAMS
     orbiter:/abs/params.json      -> Orbiter with evolved params
+    arch:<name>                   -> diverse archetype (eval/archetypes.py)
+    sg:<name>                     -> STRONG, replay-mimicking opponent
+                                     (eval/strong_gauntlet.py): snowball | blitz
+                                     | bigfleet | swarm | econdef
+    file:/abs/main.py             -> load mod.agent from a file
 
 Usage:
     python league.py --a orbiter --b pool:sniper --games 200 --procs 16
@@ -44,6 +49,12 @@ def resolve(spec):
         return make_agent()
     if spec.startswith("pool:"):
         return POOL[spec.split(":", 1)[1]]
+    if spec.startswith("arch:"):
+        from eval.archetypes import get_archetypes
+        return get_archetypes()[spec.split(":", 1)[1]]
+    if spec.startswith("sg:"):
+        from eval.strong_gauntlet import get_strong
+        return get_strong(spec.split(":", 1)[1])
     if spec.startswith("file:"):
         # load an agent() from an arbitrary main.py-style file
         import importlib.util
@@ -84,6 +95,50 @@ def _play(args):
     if a_r != 1 and any(r == 1 for r in others):
         return -1
     return 0
+
+
+def _play_params(args):
+    """Like _play but side A is Orbiter built from an explicit params dict
+    (no file IO / spec round-trip — used by the CMA-ES tuner)."""
+    params_a, spec_b, seed, swap, n_agents, steps = args
+    warnings.filterwarnings("ignore")
+    from kaggle_environments import make
+    from bots.orbiter import make_agent
+    A = make_agent(params_a)
+    B = resolve(spec_b)
+    if n_agents == 2:
+        line = [B, A] if swap else [A, B]
+        a_idx = 1 if swap else 0
+    else:
+        line = [A, B, B, B]
+        a_idx = swap % 4
+        line = line[-a_idx:] + line[:-a_idx] if a_idx else line
+    env = make("orbit_wars",
+               configuration={"seed": seed, "episodeSteps": steps},
+               debug=False)
+    env.run(line)
+    rewards = [s["reward"] for s in env.steps[-1]]
+    a_r = rewards[a_idx]
+    others = [r for i, r in enumerate(rewards) if i != a_idx]
+    if a_r == 1 and all(r != 1 for r in others):
+        return 1
+    if a_r != 1 and any(r == 1 for r in others):
+        return -1
+    return 0
+
+
+def winequiv_params(pool, params_a, opponents, games_per_opp, base_seed,
+                    n_agents=2, steps=500):
+    """Build the task list for one candidate over several opponents; return
+    tasks to be mapped on a shared Pool (caller owns the pool for efficiency)."""
+    tasks = []
+    n_seeds = games_per_opp // 2
+    for spec_b in opponents:
+        for i in range(n_seeds):
+            seed = base_seed + i
+            tasks.append((params_a, spec_b, seed, 0, n_agents, steps))
+            tasks.append((params_a, spec_b, seed, 1, n_agents, steps))
+    return tasks
 
 
 def wilson_lower(wins, n, z=1.96):
