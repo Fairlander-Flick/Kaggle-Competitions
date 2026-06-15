@@ -32,7 +32,7 @@ from onnx import version_converter
 from engine import dataio, verify as bgverify
 
 BASE = Path(__file__).parent
-SRC_ZIP = BASE / "out" / "submission.shipstate-5707.zip"
+SRC_ZIP = BASE / "out" / "submission.best-6372.zip"
 OUT_ZIP = BASE / "out" / "submission.fusion.zip"
 RECEIPTS = BASE / "logs" / "fusion_receipts.json"
 EPS = 1e-9
