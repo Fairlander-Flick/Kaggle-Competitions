@@ -1,0 +1,1 @@
+p=lambda j:j[:2]+[*zip(*j[:1]*len(j[0]))]*2

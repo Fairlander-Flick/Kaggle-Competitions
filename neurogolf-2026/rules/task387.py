@@ -1,0 +1,1 @@
+def p(g,A=enumerate):(G,C),*B,(H,D)=I=[(B,D)for(B,C)in A(g)for(D,E)in A(C)if E];return[[J+5*((E:=min(A-C,D-A))*(F:=min(B-G,H-B))<1<E|F<E|F^1)or max(g[E][C^D^F]*(2>A-F>-2<B-E<2)for(E,F)in I)for(A,J)in A(J)]for(B,J)in A(g)]

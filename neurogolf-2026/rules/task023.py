@@ -1,0 +1,1 @@
+def p(g):B=len(g[0]);D=lambda a:a<{1}or any(D(a-C)*[g[A//B].__setitem__(A%B,6*len(C)-16)for A in C]for A in a for C in({A,A+1,A+2},{A,A+B,A+B*2},{A,A+1,A+B,A-~B})if C<=a);D({A for(A,B)in enumerate(sum(g,[]))if B});return g

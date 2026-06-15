@@ -1,0 +1,1 @@
+def p(g):B=range(len(g));(C,D),*A,(F,E)=[(A,C)for A in B for C in B if g[A][C]];return g[C][D+2]and[*zip(*p([*zip(*g[::-1])]))][::-1]or[[g[A][B]|4*((A<F)*(B-D>(A<=C)<E-B)|(A<C)*(C-A-2in(B-E,D-B)))for B in B]for A in B]

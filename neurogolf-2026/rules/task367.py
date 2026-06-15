@@ -1,0 +1,1 @@
+p=lambda g,b=bytes,e=enumerate:(B:=[*map(b,g)],E:=[*map(b,zip(*g))])and[[v or~(d:=E[a].rfind(5,0,r))&~(f:=E[a].find(5,r))and 4&min(B[f][(l:=-~B[d].rfind(0,0,a)):(h:=B[d].find(0,a))]+E[l or~-h][d:f])for a,v in e(R)]for r,R in e(B)]

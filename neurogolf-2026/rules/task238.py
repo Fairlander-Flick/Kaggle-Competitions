@@ -1,0 +1,1 @@
+def p(I):C=filter;D={8}.issubset;E,F,G,H={}.fromkeys(C((7).__and__,sum(I,[])));J=[*C(D,zip(*C(D,I)))];A=len(J);K=range(A);B=[0];return[B+[E]*A+B,*[[F,*[J[B][C]and((F,E,H,G)[(C<B)|2*(B+C>=A)],8)[C in(B,A+~B)]for B in K],G]for C in K],B+[H]*A+B]

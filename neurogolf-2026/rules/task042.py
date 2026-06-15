@@ -1,0 +1,1 @@
+def p(g):B=range(9);D={(A,C,g[A][C:].index(0))for A in B for C in B if g[A-1][C]^3};[g[E].__setitem__(J,8)for(F,G,A)in D for C in(-A,A)if(F+A,G+C,A)in D for H in(-1,2)for I in B[:A*A]if(E:=F+H*A+I//A)<10>(J:=G+C-C*H+I%A)>-1<E];return g

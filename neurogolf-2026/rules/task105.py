@@ -1,0 +1,1 @@
+def p(g):E=*zip(*g),;e=enumerate;b,*_,c=[a for a,b in e(g)if 1in b];d=bytes(map(any,E)).rfind(1);return[[v or 2*(b<=y<=c>1<x<=d)*(y in(b,c)or x%d<3or sum(r[3:d]+[*E[x][b+1:c]])>1)for x,v in e(r)]for y,r in e(g)]

@@ -1,0 +1,1 @@
+p=lambda i:(c:=[(b:=lambda y,x,k=k:10>y>-1<x<10>i[y][x]>7and(i[y].__setitem__(x,k)or-~sum(b(y+a//3-1,x+a%3-1)for a in range(9))))(*divmod(sum(i,[]).index(8),10))for k in(3,2,1)])and[[v and-~(c[-v]<max(c))for v in r]for r in i]

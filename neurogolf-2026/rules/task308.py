@@ -1,0 +1,1 @@
+def p(g):s='for C,A in enumerate(sum(g,[])):\n ';B=len(g[0]);E=[0]*10;exec(s+'E[A]+=C');G=E.index(max(E));F=~-B//5;I=F-~F;J=[[G]*I for _ in[0]*I];exec(s+'if A-G:P=E[A]//4;J[C//B-P//B+F][C%B-P%B+F]=A');return J
